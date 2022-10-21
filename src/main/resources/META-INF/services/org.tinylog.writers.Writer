@@ -1,1 +1,2 @@
 ch.eswitch.tinylog.writers.AwsCloudWatchLogsWriter
+ch.eswitch.tinylog.writers.AwsCloudWatchLogsJsonWriter

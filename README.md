@@ -10,6 +10,11 @@ to [AWS CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/log
 [AWS SDK for Java 2.0](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/home.html) is used to send log
 events to AWS CloudWatch Logs
 
+Two different types of message formats are supported:
+
+- [Format Pattern](#FormatPatternID)
+- [JSON Format](#JsonFormatID)
+
 ## Installation
 
 ### Maven
@@ -38,16 +43,29 @@ https://artifactory.e-switch.ch/artifactory/libs-release-public
 
 ### Writer name
 
+#### Format Pattern
+
+to use Format Pattern, use the following writer name in tinylog writer configuration:<br/>
 `aws cloud watch logs`
+
+see [Message Format - Format Pattern](#FormatPatternID) for configuration
+
+#### JSON Format
+
+to use JSON Format, use the following writer name in tinylog writer configuration:<br/>
+`aws cloud watch logs json`
+
+see [Message Format - JSON Format](#JsonFormatID) for configuration
 
 ### AWS configuration
 
-#### log group and log stream
+#### Log Group and Log Stream
 
-Property `logGroupName` and `streamName` are mandatory and must be specified in tinylog configuration writer config.
+Property `logGroupName` and `streamName` are mandatory and must be specified in tinylog configuration writer
+config.<br/>
 see [Working with log groups and log streams](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html)
 
-#### authentication
+#### Authentication
 
 Class [software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/auth/credentials/DefaultCredentialsProvider.html)
 is used for AWS authentication.
@@ -57,13 +75,17 @@ how to configure credentials
 Properties starting with `aws.` in tinylog configuration writer config are read and forwarded
 to [software.amazon.awssdk.auth.credentials.SystemPropertyCredentialsProvider](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/auth/credentials/SystemPropertyCredentialsProvider.html)
 
-### Message Formatter
+### Message Format
 
-[Message Formatter](https://tinylog.org/v2/extending/#custom-logging-api) (`format` property) is supported
+#### <a id="FormatPatternID"/>Format Pattern
 
-### Example
+[Message Formatter](https://tinylog.org/v2/configuration/#format-pattern) (`format` property) is supported and can be
+used to format message.
 
-example of `tinylog.properties`:
+Formatting is based on
+class [`org.tinylog.writers.AbstractFormatPatternWriter`](https://github.com/tinylog-org/tinylog/blob/v2.5/tinylog-impl/src/main/java/org/tinylog/writers/AbstractFormatPatternWriter.java)
+
+*Example of `tinylog.properties`:*
 
 ```
 writer_awscloudwatchlogs=aws cloud watch logs
@@ -77,6 +99,31 @@ writer_awscloudwatchlogs.aws.secretAccessKey=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
                                              
 ```
 
+#### <a id="JsonFormatID"/>JSON Format
+
+[JSON Writer](https://tinylog.org/v2/configuration/#json-writer) is used and can be used for JSON configuration.<br/>
+Properties `file`, `charset`, `append` and `buffered` are NOT supported.
+
+Formatting is done in the same way as in
+class [`org.tinylog.writers.JsonWriter`](https://github.com/tinylog-org/tinylog/blob/v2.5/tinylog-impl/src/main/java/org/tinylog/writers/JsonWriter.java)
+
+*Example of `tinylog.properties`:*
+
+```
+writer_awscloudwatchlogsjson=aws cloud watch logs json
+writer_awscloudwatchlogsjson.level=trace
+writer_awscloudwatchlogsjson.format=LDJSON
+writer_awscloudwatchlogsjson.field.level=level
+writer_awscloudwatchlogsjson.field.thread=thread
+writer_awscloudwatchlogsjson.field.source={class}.{method}()
+writer_awscloudwatchlogsjson.field.message=message
+writer_awscloudwatchlogsjson.logGroupName=myLogGroup
+writer_awscloudwatchlogsjson.streamName=myStream
+writer_awscloudwatchlogsjson.aws.region=eu-central-1
+writer_awscloudwatchlogsjson.aws.accessKeyId=AKIAxxxxxxxxxxxxxxxx
+writer_awscloudwatchlogsjson.aws.secretAccessKey=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                                             
+```
 
 
 

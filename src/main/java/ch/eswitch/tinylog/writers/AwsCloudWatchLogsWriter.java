@@ -18,6 +18,7 @@ import software.amazon.awssdk.services.cloudwatchlogs.model.PutLogEventsRequest;
  * tinylog 2 AWS CloudWatch Logs Writer based on Amazon SDK for Java 2.x<br/>
  * This is a <a href="https://tinylog.org/v2/extending/#custom-writer">custom writer</a> for
  * <a href="https://tinylog.org/v2/">tinylog 2</a> logging framework to send log events to AWS CloudWatch Logs.<br/>
+ * Message is formatted based on {@link AbstractFormatPatternWriter}<br/>
  * see <a href="https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/home.html">AWS SDK for Java
  * 2.0</a><br/>
  * <br/>
@@ -100,7 +101,7 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
                                                              .get(0)
                                                              .uploadSequenceToken();
 
-            String msg = render(logEntry);
+            String msg = renderMessage(logEntry);
             // Build an input log message to put to CloudWatch.
             InputLogEvent inputLogEvent = InputLogEvent.builder()
                                                        .message(msg)
@@ -124,6 +125,11 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
             System.err.println(e.awsErrorDetails()
                                 .errorMessage());
         }
+    }
+
+    protected String renderMessage(LogEntry logEntry)
+    {
+        return render(logEntry);
     }
 
     @Override
