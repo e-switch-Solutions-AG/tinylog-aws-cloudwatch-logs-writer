@@ -42,11 +42,15 @@ public class AWSCloudWatchLogsTest
         long startTime = System.currentTimeMillis();
 
         // create log message
-        String msg = "Hello AWS CloudWatch Logs! (" + startTime + ")";
-        System.out.println("log message: " + msg);
+        String msgBase = "Hello AWS CloudWatch Logs! (" + startTime + ")";
+        String msg1 = msgBase + " - 1";
+        String msg2 = msgBase + " - 2";
+
+        System.out.println("log message: " + msg1);
 
         // log to CloudWatch Logs
-        Logger.info(msg);
+        Logger.info(msg1);
+        Logger.debug(msg2);
 
         // wait until all is processed in AWS CloudWatch
         try
@@ -63,7 +67,8 @@ public class AWSCloudWatchLogsTest
                                                               .credentialsProvider(DefaultCredentialsProvider.create())
                                                               .build();
 
-        boolean ok = false;
+        boolean ok1 = false;
+        boolean ok2 = false;
 
         try
         {
@@ -87,9 +92,14 @@ public class AWSCloudWatchLogsTest
                                              .get(c);
 
                 if (e.message()
-                     .contains(msg))
+                     .contains(msg1))
                 {
-                    ok = true;
+                    ok1 = true;
+                }
+                else if (e.message()
+                          .contains(msg2))
+                {
+                    ok2 = true;
                 }
 
                 System.out.println(e.message());
@@ -103,7 +113,8 @@ public class AWSCloudWatchLogsTest
                                 .errorMessage());
         }
 
-        Assertions.assertTrue(ok, "Log message '" + msg + "' not found");
+        Assertions.assertTrue(ok1, "Log message '" + msg1 + "' not found");
+        Assertions.assertTrue(ok2, "Log message '" + msg2 + "' not found");
     }
 
 }
