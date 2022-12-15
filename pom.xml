@@ -6,7 +6,7 @@
 
     <groupId>ch.eswitch.tinylog.writers</groupId>
     <artifactId>tinylog-aws-cloudwatch-logs-writer</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <packaging>jar</packaging>
 
@@ -44,7 +44,7 @@
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>cloudwatch</artifactId>
-            <version>2.18.25</version>
+            <version>2.18.35</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

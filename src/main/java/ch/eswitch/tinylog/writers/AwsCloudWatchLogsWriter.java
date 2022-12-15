@@ -2,6 +2,8 @@ package ch.eswitch.tinylog.writers;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.tinylog.core.LogEntry;
 import org.tinylog.writers.AbstractFormatPatternWriter;
@@ -50,6 +52,8 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
      */
     private final String PROPERTY_AWS = "aws.";
 
+    private ExecutorService executor;
+
     /**
      * @param properties Configuration for writer
      */
@@ -59,72 +63,64 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
 
         logGroupName = getStringValue("logGroupName");
 
-        if (logGroupName == null
-                || logGroupName.length() == 0)
+        if (logGroupName == null || logGroupName.length() == 0)
         {
             throw new Exception("parameter 'logGroupName' must be set in tinylog writer configuration");
         }
 
         streamName = getStringValue("streamName");
 
-        if (streamName == null
-                || streamName.length() == 0)
+        if (streamName == null || streamName.length() == 0)
         {
             throw new Exception("parameter 'streamName' must be set in tinylog writer configuration");
         }
 
         properties.forEach((key, value) -> {
             if (key.startsWith(PROPERTY_AWS))
+            {
                 System.setProperty(key, value);
+            }
         });
 
         // example
         // https://docs.aws.amazon.com/code-samples/latest/catalog/javav2-cloudwatch-src-main-java-com-example-cloudwatch-PutLogEvents.java.html
-        logsClient = CloudWatchLogsClient.builder()
-                                         .credentialsProvider(DefaultCredentialsProvider.create())
-                                         .build();
+        logsClient = CloudWatchLogsClient.builder().credentialsProvider(DefaultCredentialsProvider.create()).build();
+
+        executor = Executors.newCachedThreadPool();
     }
 
     @Override
-    public void write(LogEntry logEntry) throws Exception
+    public void write(final LogEntry logEntry) throws Exception
     {
-        try
-        {
-            DescribeLogStreamsRequest logStreamRequest = DescribeLogStreamsRequest.builder()
-                                                                                  .logGroupName(logGroupName)
-                                                                                  .logStreamNamePrefix(streamName)
-                                                                                  .build();
-            DescribeLogStreamsResponse describeLogStreamsResponse = logsClient.describeLogStreams(logStreamRequest);
+        executor.execute(() -> {
+            try
+            {
+                DescribeLogStreamsRequest logStreamRequest = DescribeLogStreamsRequest.builder().logGroupName(logGroupName)
+                                                                                                .logStreamNamePrefix(streamName).build();
+                DescribeLogStreamsResponse describeLogStreamsResponse = logsClient.describeLogStreams(logStreamRequest);
 
-            // Assume that a single stream is returned since a specific stream name was specified in the previous request.
-            String sequenceToken = describeLogStreamsResponse.logStreams()
-                                                             .get(0)
-                                                             .uploadSequenceToken();
+                // Assume that a single stream is returned since a specific stream name was specified in the previous request.
+                String sequenceToken = describeLogStreamsResponse.logStreams().get(0).uploadSequenceToken();
 
-            String msg = renderMessage(logEntry);
-            // Build an input log message to put to CloudWatch.
-            InputLogEvent inputLogEvent = InputLogEvent.builder()
-                                                       .message(msg)
-                                                       .timestamp(System.currentTimeMillis())
-                                                       .build();
+                String msg = renderMessage(logEntry);
+                // Build an input log message to put to CloudWatch.
+                InputLogEvent inputLogEvent = InputLogEvent.builder().message(msg).timestamp(System.currentTimeMillis()).build();
 
-            // Specify the request parameters.
-            // Sequence token is required so that the log can be written to the
-            // latest location in the stream.
-            PutLogEventsRequest putLogEventsRequest = PutLogEventsRequest.builder()
-                                                                         .logEvents(Arrays.asList(inputLogEvent))
-                                                                         .logGroupName(logGroupName)
-                                                                         .logStreamName(streamName)
-                                                                         .sequenceToken(sequenceToken)
-                                                                         .build();
+                // Specify the request parameters.
+                // Sequence token is required so that the log can be written to the
+                // latest location in the stream.
+                PutLogEventsRequest putLogEventsRequest = PutLogEventsRequest.builder().logEvents(Arrays.asList(inputLogEvent))
+                                                                                       .logGroupName(logGroupName).logStreamName(streamName)
+                                                                                       .sequenceToken(sequenceToken).build();
 
-            logsClient.putLogEvents(putLogEventsRequest);
+                logsClient.putLogEvents(putLogEventsRequest);
 
-        } catch (CloudWatchException e)
-        {
-            System.err.println(e.awsErrorDetails()
-                                .errorMessage());
-        }
+            }
+            catch (CloudWatchException e)
+            {
+                System.err.println(e.awsErrorDetails().errorMessage());
+            }
+        });
     }
 
     protected String renderMessage(LogEntry logEntry)
@@ -141,6 +137,7 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
     @Override
     public void close() throws Exception
     {
+        executor.shutdown();
         logsClient.close();
     }
 }
