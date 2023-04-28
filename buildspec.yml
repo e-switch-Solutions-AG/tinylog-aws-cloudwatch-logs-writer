@@ -49,7 +49,7 @@ phases:
       - git status
       - git config --global user.email "dev@e-switch.ch"
       - git config --global user.name "e-switch Solutions Developer"
-      - git tag $PROJECT_VERSION
+      - git tag v$PROJECT_VERSION
       - git commit -m "README.md" -m "AWS CodeBuild, build number $CODEBUILD_BUILD_NUMBER" -m "$CODEBUILD_BUILD_ARN"
       - git status
       - echo GITHUB_ACCESS_TOKEN $GITHUB_ACCESS_TOKEN
