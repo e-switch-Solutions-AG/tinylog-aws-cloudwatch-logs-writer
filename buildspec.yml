@@ -1,0 +1,67 @@
+version: 0.2
+
+env:
+  secrets-manager:
+    ESWITCH_ARTIFACOTRY_USERNAME: "aws/artifactory:username"
+    ESWITCH_ARTIFACOTRY_PASSWORD: "aws/artifactory:password"
+    GITHUB_ACCESS_TOKEN: "aws/github/e-switch-ch:access.token"
+
+phases:
+  install:
+    commands:
+      - echo $(date +"%F %T.%N") install phase started
+      - yum update -y
+      - yum -y install ant
+      - # install latest maven
+      - # yum install -y maven # resolves to outdated maven 3.0
+      - maven_version=3.9.1
+      - wget -q https://dlcdn.apache.org/maven/maven-3/${maven_version}/binaries/apache-maven-${maven_version}-bin.tar.gz
+      - tar -xf apache-maven-${maven_version}-bin.tar.gz
+      - mv apache-maven-${maven_version} /usr/local/apache-maven
+      - export M2_HOME=/usr/local/apache-maven
+      - export M2=$M2_HOME/bin
+      - export PATH=$M2:$PATH
+      - mvn --version
+    finally:
+      - echo $(date +"%F %T.%N") install phase ended
+  pre_build:
+    commands:
+      - echo $(date +"%F %T.%N") pre_build phase started
+    finally:
+      - echo $(date +"%F %T.%N") pre_build phase ended
+  build:
+    commands:
+      - echo $(date +"%F %T.%N") build phase started
+      - pwd
+      - echo ESWITCH_ARTIFACOTRY_USERNAME $ESWITCH_ARTIFACOTRY_USERNAME
+      - PROJECT_VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.4.0:evaluate -Dexpression=project.version -q -DforceStdout)
+      - echo PROJECT_VERSION $PROJECT_VERSION
+      - mvn --no-transfer-progress -s settings.xml clean deploy
+    finally:
+      - echo $(date +"%F %T.%N") build phase ended
+  post_build:
+    commands:
+      - echo $(date +"%F %T.%N") post_build phase started
+      - cd $CODEBUILD_SRC_DIR
+      - ls -a
+      - git status
+      - git add README.md
+      - git status
+      - git config --global user.email "dev@e-switch.ch"
+      - git config --global user.name "e-switch Solutions Developer"
+      - git tag $PROJECT_VERSION
+      - git commit -m "README.md" -m "AWS CodeBuild, build number $CODEBUILD_BUILD_NUMBER" -m "$CODEBUILD_BUILD_ARN"
+      - git status
+      - echo GITHUB_ACCESS_TOKEN $GITHUB_ACCESS_TOKEN
+      - git remote add github_eswitch https://e-switch-ch:$GITHUB_ACCESS_TOKEN@github.com/e-switch-Solutions-AG/tinylog-simplemail-and-masked-writer
+      - git remote -v
+      - git push github_eswitch HEAD:main --force
+      - git push --tags github_eswitch
+    finally:
+      - echo $(date +"%F %T.%N") post_build phase ended
+
+artifacts:
+  files:
+    - '*.jar'
+  base-directory: target
+  name: jar
