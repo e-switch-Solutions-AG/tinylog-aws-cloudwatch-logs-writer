@@ -171,17 +171,12 @@
         </plugins>
     </build>
 
-    <distributionManagement>
+	<distributionManagement>
         <repository>
-            <id>eswitch-artifactory-release</id>
-            <name>libs-release-local</name>
+            <id>eswitch-artifactory-release-public</id>
+            <name>libs-release-public</name>
             <url>https://artifactory.e-switch.ch/artifactory/libs-release-public</url>
         </repository>
-        <snapshotRepository>
-            <id>eswitch-artifactory-snapshot</id>
-            <name>libs-snapshot-local</name>
-            <url>https://artifactory.e-switch.ch/artifactory/libs-snapshot-local/</url>
-        </snapshotRepository>
     </distributionManagement>
 
 </project>
