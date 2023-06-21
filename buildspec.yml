@@ -14,7 +14,7 @@ phases:
       - yum -y install ant
       - # install latest maven
       - # yum install -y maven # resolves to outdated maven 3.0
-      - maven_version=3.9.1
+      - maven_version=3.9.2
       - wget -q https://dlcdn.apache.org/maven/maven-3/${maven_version}/binaries/apache-maven-${maven_version}-bin.tar.gz
       - tar -xf apache-maven-${maven_version}-bin.tar.gz
       - mv apache-maven-${maven_version} /usr/local/apache-maven
