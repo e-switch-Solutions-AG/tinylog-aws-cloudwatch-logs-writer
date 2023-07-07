@@ -190,6 +190,22 @@
                             <goal>test</goal>
                         </goals>
                     </execution>
+                </executions>
+                <configuration>
+                    <apiToken>${env.SNYK_TOKEN}</apiToken>
+                    <args>
+                        <arg>--print-deps</arg>
+                        <arg>--fail-on=all</arg>
+                        <arg>--json-file-output=snyk-test-result.json</arg>
+                    </args>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.snyk</groupId>
+                <artifactId>snyk-maven-plugin</artifactId>
+                <version>2.2.0</version>
+                <inherited>false</inherited>
+                <executions>
                     <execution>
                         <id>snyk-code-test</id>
                         <goals>
@@ -202,7 +218,7 @@
                     <args>
                         <arg>--print-deps</arg>
                         <arg>--fail-on=all</arg>
-                        <arg>--json-file-output=snyk-result.json</arg>
+                        <arg>--json-file-output=snyk-code-test-result.json</arg>
                     </args>
                 </configuration>
             </plugin>
