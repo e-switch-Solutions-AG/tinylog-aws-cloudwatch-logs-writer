@@ -5,6 +5,7 @@ env:
     ESWITCH_ARTIFACOTRY_USERNAME: "aws/artifactory:username"
     ESWITCH_ARTIFACOTRY_PASSWORD: "aws/artifactory:password"
     GITHUB_ACCESS_TOKEN: "aws/github/e-switch-ch:access.token"
+    SNYK_TOKEN: "aws/snyk/schelldorfer:snyk.token"
 
 phases:
   install:
@@ -14,7 +15,7 @@ phases:
       - yum -y install ant
       - # install latest maven
       - # yum install -y maven # resolves to outdated maven 3.0
-      - maven_version=3.9.2
+      - maven_version=3.9.3
       - wget -q https://dlcdn.apache.org/maven/maven-3/${maven_version}/binaries/apache-maven-${maven_version}-bin.tar.gz
       - tar -xf apache-maven-${maven_version}-bin.tar.gz
       - rm apache-maven-${maven_version}-bin.tar.gz
@@ -46,13 +47,18 @@ phases:
       - cd $CODEBUILD_SRC_DIR
       - ls -a
       - git status
-      - git add README.md
+      - git add snyk-result.json
       - git status
       - git config --global user.email "dev@e-switch.ch"
       - git config --global user.name "e-switch Solutions Developer"
+      - git commit -m "snyk-result.json" -m "AWS CodeBuild, build number $CODEBUILD_BUILD_NUMBER" -m "$CODEBUILD_BUILD_ARN"
+      - git status
+      - git add README.md
+      - git status
       - git tag v$PROJECT_VERSION
       - git commit -m "README.md" -m "AWS CodeBuild, build number $CODEBUILD_BUILD_NUMBER" -m "$CODEBUILD_BUILD_ARN"
       - git status
+      - git add 
       - echo GITHUB_ACCESS_TOKEN $GITHUB_ACCESS_TOKEN
       - git remote add github_eswitch https://e-switch-ch:$GITHUB_ACCESS_TOKEN@github.com/e-switch-Solutions-AG/tinylog-aws-cloudwatch-logs-writer
       - git remote -v
