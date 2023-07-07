@@ -5,7 +5,7 @@ env:
     ESWITCH_ARTIFACOTRY_USERNAME: "aws/artifactory:username"
     ESWITCH_ARTIFACOTRY_PASSWORD: "aws/artifactory:password"
     GITHUB_ACCESS_TOKEN: "aws/github/e-switch-ch:access.token"
-    SNYK_TOKEN: "aws/snyk/schelldorfer:snyk.token"
+    SNYK_TOKEN: "aws/snyk/e-switch-ch:snyk.token"
 
 phases:
   install:
