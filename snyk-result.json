@@ -68,7 +68,7 @@
       "socialTrendAlert": false,
       "severityWithCritical": "medium",
       "from": [
-        "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.6",
+        "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.7",
         "software.amazon.awssdk:cloudwatchlogs@2.20.97",
         "software.amazon.awssdk:netty-nio-client@2.20.97",
         "io.netty:netty-handler@4.1.94.Final"
@@ -82,7 +82,7 @@
   ],
   "ok": false,
   "dependencyCount": 38,
-  "org": "schelldorfer",
+  "org": "e-switch-ch",
   "policy": "# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.\nversion: v1.25.1\nignore: {}\npatch: {}\n",
   "isPrivate": true,
   "licensesPolicy": {
@@ -247,7 +247,7 @@
         "socialTrendAlert": false,
         "packagePopularityRank": 99,
         "from": [
-          "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.6",
+          "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.7",
           "software.amazon.awssdk:cloudwatchlogs@2.20.97",
           "software.amazon.awssdk:netty-nio-client@2.20.97",
           "io.netty:netty-handler@4.1.94.Final"
@@ -276,5 +276,5 @@
   "projectName": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer",
   "displayTargetFile": "pom.xml",
   "hasUnknownVersions": false,
-  "path": "/codebuild/output/src1396727415/src/codestar-connections.eu-central-1.amazonaws.com/git-http/140096976191/eu-central-1/9665f533-81dd-446a-8dba-07cd6148e8c2/e-switch-Solutions-AG/tinylog-aws-cloudwatch-logs-writer"
+  "path": "/codebuild/output/src3596936301/src/codestar-connections.eu-central-1.amazonaws.com/git-http/140096976191/eu-central-1/9665f533-81dd-446a-8dba-07cd6148e8c2/e-switch-Solutions-AG/tinylog-aws-cloudwatch-logs-writer"
 }
