@@ -1,16 +1,23 @@
 package ch.eswitch.tinylog.writers;
 
-import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-
 import org.tinylog.Level;
+import org.tinylog.configuration.Configuration;
 import org.tinylog.core.LogEntry;
 import org.tinylog.pattern.FormatPatternParser;
 import org.tinylog.pattern.Token;
-import org.tinylog.provider.InternalLogger;
 import org.tinylog.writers.JsonWriter;
+import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
+import software.amazon.awssdk.services.cloudwatchlogs.CloudWatchLogsClient;
+import software.amazon.awssdk.services.cloudwatchlogs.model.GetLogEventsRequest;
+import software.amazon.awssdk.services.cloudwatchlogs.model.OutputLogEvent;
+import software.amazon.awssdk.services.cloudwatchlogs.paginators.GetLogEventsIterable;
+
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * tinylog 2 AWS CloudWatch Logs JSON Writer based on Amazon SDK for Java 2.x<br/>
@@ -28,8 +35,8 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
 {
     private static final String NEW_LINE = System.getProperty("line.separator");
     private static final String FIELD_PREFIX = "field.";
+    public static final String WRITER_PREFIX = "writer_";
 
-    private final Charset charset;
     private final Map<String, Token> fields;
     private final boolean lineDelimitedJson;
 
@@ -42,7 +49,6 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
 
         String format = getStringValue("format");
 
-        charset = getCharset();
         fields = createTokens(properties);
 
         if (format == null
@@ -57,7 +63,7 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
         else
         {
             lineDelimitedJson = false;
-            InternalLogger.log(Level.WARN, "Illegal format for JSON writer: " + format);
+            Util.log(Level.WARN, "Illegal format for JSON writer: %s", format);
         }
     }
 
@@ -83,9 +89,9 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
         }
 
         Token[] tokenEntries = fields.values()
-                                     .toArray(new Token[0]);
+                .toArray(new Token[0]);
         String[] fields = this.fields.keySet()
-                                     .toArray(new String[0]);
+                .toArray(new String[0]);
 
         for (int i = 0; i < tokenEntries.length; i++)
         {
@@ -177,7 +183,7 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
     {
         FormatPatternParser parser = new FormatPatternParser(properties.get("exception"));
 
-        Map<String, Token> tokens = new HashMap<String, Token>();
+        Map<String, Token> tokens = new HashMap<>();
         for (Map.Entry<String, String> entry : properties.entrySet())
         {
             if (entry.getKey()
@@ -189,5 +195,233 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
             }
         }
         return tokens;
+    }
+
+    /**
+     * get all configured writer names from tinylog config for this {@link AwsCloudWatchLogsJsonWriter}
+     *
+     * @return writer names
+     */
+    public static List<String> getAllWriterNames()
+    {
+        Map<String, String> writerConfig = Configuration.getSiblings(WRITER_PREFIX);
+        Util.log(Level.DEBUG, "%s - writerConfig size: %d", AwsCloudWatchLogsJsonWriter.class.getSimpleName(), writerConfig.keySet().size());
+        if (writerConfig != null)
+        {
+            Util.log(Level.DEBUG, "%s - writer name: %s", AwsCloudWatchLogsJsonWriter.class.getSimpleName(), getWriterName());
+            List<String> writerNames = writerConfig.entrySet()
+                    .stream()
+                    .filter(w -> w.getValue().equalsIgnoreCase(getWriterName()))
+                    .map(Map.Entry::getKey)
+                    .collect(Collectors.toList());
+
+            Util.log(Level.DEBUG, "%s - writerNames size: %d", AwsCloudWatchLogsJsonWriter.class.getSimpleName(), writerNames.size());
+            return writerNames;
+        }
+
+        return null;
+    }
+
+    /**
+     * get tinylog writer name for a tagged writer
+     *
+     * @param tagName tag name in tinylog configuration
+     * @return writer name
+     */
+    public static String getTaggedWriterName(String tagName)
+    {
+        Configuration.getChildren(WRITER_PREFIX);
+
+        Map<String, String> writerConfig = Configuration.getSiblings(WRITER_PREFIX);
+
+        return writerConfig.entrySet()
+                .stream()
+                .filter(wn -> Configuration.getChildren(wn.getKey()).entrySet()
+                        .stream()
+                        .anyMatch(w -> (w.getKey().equals("tag") && w.getValue().equals(tagName))))
+                .findFirst()
+                .map(Map.Entry::getKey)
+                .orElse(null);
+    }
+
+    public static LogGroupAndStreamName getLogGroupAndStreamName(String writerName)
+    {
+        Map<String, String> writerConfig = AwsCloudWatchLogsJsonWriter.getWriterConfig(writerName);
+        if (writerConfig != null)
+        {
+            String logGroupName = writerConfig.get(AwsCloudWatchLogsWriter.PROPERTY_LOG_GROUP_NAME);
+            String streamName = writerConfig.get(AwsCloudWatchLogsWriter.PROPERTY_STREAM_NAME);
+
+            if ((logGroupName != null && !logGroupName.isEmpty()) || (streamName != null && !streamName.isEmpty()))
+            {
+                return new LogGroupAndStreamName(logGroupName, streamName);
+            }
+        }
+
+        return null;
+    }
+
+    public static void setAwsSystemProperties(String writerName)
+    {
+        Map<String, String> writerConfig = AwsCloudWatchLogsJsonWriter.getWriterConfig(writerName);
+        if (writerConfig != null)
+        {
+            writerConfig.entrySet()
+                    .stream()
+                    .filter(c -> c.getKey().startsWith(PROPERTY_AWS))
+                    .forEach(c -> System.setProperty(c.getKey(), c.getValue()));
+        }
+    }
+
+    /**
+     * get tinylog config of logger by writer name
+     *
+     * @param writerName writer name
+     * @return config
+     */
+    public static Map<String, String> getWriterConfig(String writerName)
+    {
+        return Configuration.getChildren(writerName);
+    }
+
+    private static boolean isTaggedWriter(String writerName)
+    {
+        Map<String, String> cc = Configuration.getChildren(writerName);
+        String tagValue = cc.get("tag");
+        return tagValue != null && !tagValue.isEmpty();
+    }
+
+    /**
+     * get name for tinylog configuration of this writer
+     *
+     * @return writer name
+     */
+    private static String getWriterName()
+    {
+        StringBuilder writerName = new StringBuilder(AwsCloudWatchLogsJsonWriter.class.getSimpleName());
+        int posUpperCaseCharacter = Util.lastIndexOfUperCaseCharacter(writerName);
+
+        // remove 'Writer' suffix from class name
+        if (posUpperCaseCharacter > 0)
+        {
+            writerName.delete(posUpperCaseCharacter, writerName.length());
+        }
+
+        // insert 'space' after each upper case character
+        for (int i = writerName.length() - 1; i > 0; i--)
+        {
+            if (Character.isUpperCase(writerName.charAt(i)))
+            {
+                writerName.insert(i, " ");
+            }
+        }
+
+        return writerName.toString().toLowerCase();
+    }
+
+    /**
+     * get all combined Output Log Events from AWS CloudWatch for a specific writer name
+     *
+     * @param writer tinylog writer name
+     * @param startDateTime (optional) start date/time for Log Events
+     * @param endDateTime (optional) end date/time for Log Events
+     * @return combined Output Log Events
+     */
+    public static List<OutputLogEvent> getCombinedOutputLogEvents(String writer, String startDateTime, String endDateTime, String searchTerm, String useRegExp)
+    {
+        setAwsSystemProperties(writer);
+
+        CloudWatchLogsClient logsClient = CloudWatchLogsClient.builder()
+                .credentialsProvider(DefaultCredentialsProvider.create())
+                .build();
+
+        LogGroupAndStreamName logGroupAndStreamName = AwsCloudWatchLogsJsonWriter.getLogGroupAndStreamName(
+                writer);
+
+        if (logGroupAndStreamName != null)
+        {
+            GetLogEventsRequest.Builder builder = GetLogEventsRequest.builder()
+                    .logGroupName(logGroupAndStreamName.logGroupName)
+                    .logStreamName(logGroupAndStreamName.streamName).startFromHead(true)
+                    .limit(1000);
+
+            setTime(builder, startDateTime, true);
+            setTime(builder, endDateTime, false);
+
+            GetLogEventsRequest logEventsRequest = builder.build();
+
+            GetLogEventsIterable responses = logsClient.getLogEventsPaginator(logEventsRequest);
+            final List<OutputLogEvent> outputLogEvents = new ArrayList<>();
+            responses.stream()
+                    .forEach(responsePage -> {
+                        if (responsePage.hasEvents())
+                        {
+                            outputLogEvents.addAll(responsePage.events());
+                            int logEvents = responsePage.events().size();
+
+                            Util.log(Level.DEBUG, "log events: %d", logEvents);
+                        }
+                    });
+
+            DateTimeFormatter.ISO_DATE_TIME.format(LocalDateTime.now());
+
+            Util.log(Level.DEBUG, "outputLogEvents: %d", outputLogEvents.size());
+
+            List<OutputLogEvent> combinedOutputLogEvents = Util.combineOutputLogEvents(
+                    outputLogEvents);
+
+            Util.log(Level.DEBUG, "combinedOutputLogEvents: %d", combinedOutputLogEvents.size());
+
+            // filter log events by search term
+            if (searchTerm != null && !searchTerm.isEmpty())
+            {
+                final String searchTermFinal = searchTerm.toUpperCase();
+
+                final boolean regExp = Boolean.parseBoolean(useRegExp);
+                Util.log(Level.DEBUG, "filter with regExp: %b, searchTerm: %s", regExp, searchTerm);
+
+                final Pattern pattern;
+                if (regExp)
+                {
+                    pattern = Pattern.compile(searchTerm);
+                }
+                else
+                {
+                    pattern = null;
+                }
+
+                combinedOutputLogEvents = combinedOutputLogEvents.stream()
+                        .filter(e -> (!regExp && e.message().toUpperCase()
+                                                  .contains(searchTermFinal)) || (regExp && pattern.matcher(
+                                e.message()).matches()))
+                        .collect(Collectors.toList());
+
+                Util.log(Level.DEBUG, "filtered combinedOutputLogEvents: %d", combinedOutputLogEvents.size());
+            }
+
+            return combinedOutputLogEvents;
+        }
+
+        return null;
+    }
+
+    private static void setTime(GetLogEventsRequest.Builder builder, String dateTime,
+                                boolean startTime)
+    {
+        if (dateTime != null && !dateTime.isEmpty())
+        {
+            LocalDateTime ldt = LocalDateTime.parse(dateTime,
+                                                    DateTimeFormatter.ISO_DATE_TIME);
+            long millis = ldt.atZone(ZoneId.systemDefault()).toInstant()
+                             .toEpochMilli();
+            if (startTime)
+            {
+                builder.startTime(millis);
+            }
+            else
+            {
+                builder.endTime(millis);
+            }
+        }
     }
 }

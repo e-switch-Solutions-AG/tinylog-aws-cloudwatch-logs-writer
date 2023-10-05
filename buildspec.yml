@@ -6,6 +6,8 @@ env:
     ESWITCH_ARTIFACOTRY_PASSWORD: "aws/artifactory:password"
     GITHUB_ACCESS_TOKEN: "aws/github/e-switch-ch:access.token"
     SNYK_TOKEN: "aws/snyk/e-switch-ch:snyk.token"
+    CLOUDWATCH_ACCESS_KEY_ID: "aws/cloudwatch:accessKeyId"
+    CLOUDWATCH_SECRET_ACCESS_KEY: "aws/cloudwatch:secretAccessKey"
 
 phases:
   install:

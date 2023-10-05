@@ -1,17 +1,17 @@
 package ch.eswitch.tinylog.writers;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import org.tinylog.core.LogEntry;
 import org.tinylog.writers.AbstractFormatPatternWriter;
-
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.services.cloudwatch.model.CloudWatchException;
 import software.amazon.awssdk.services.cloudwatchlogs.CloudWatchLogsClient;
 import software.amazon.awssdk.services.cloudwatchlogs.model.*;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * tinylog 2 AWS CloudWatch Logs Writer based on Amazon SDK for Java 2.x<br/>
@@ -31,9 +31,51 @@ import software.amazon.awssdk.services.cloudwatchlogs.model.*;
  */
 public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
 {
+    /**
+     * property name in tinylog configuration for {@link #logGroupName}
+     */
+    public static final String PROPERTY_LOG_GROUP_NAME = "logGroupName";
+
+    /**
+     * property name in tinylog configuration for {@link #streamName}
+     */
+    public static final String PROPERTY_STREAM_NAME = "streamName";
+
+    /**
+     * maximum message size<br/>
+     * Log event size: 256 KB (maximum). This quota can't be changed.<br/>
+     * see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html" target="_blank">CloudWatch Logs quotas</a>
+     */
+    final static int MAX_MESSAGE_SIZE = 250 * 1024;
+
+    /**
+     * text which is appended to message, in case message is longer than {@link #MAX_MESSAGE_SIZE}
+     */
+    static final String MESSAGE_TRUNCATED = "... (total message size was %,d)";
+
+    /**
+     * JSON 'message' attribute name
+     */
+    static final String JSON_MESSAGE_ATTRIBUTE = "message";
+
+    /**
+     * JSON 'context' attribute name
+     */
+    static final String JSON_CONTEXT_ATTRIBUTE = "context";
+
+    /**
+     * key in log entry context for partial messages<br/>
+     * {@link LogEntry#getContext()}
+     */
+    static final String CONTEXT_KEY_PART = "part";
+
+    /**
+     * format for value of {@value #CONTEXT_KEY_PART}
+     */
+    static final String CONTEXT_PART_FORMAT = "[%d/%d]";
 
     private final CloudWatchLogsClient logsClient;
-    private LogStream logStream = null;
+
     /**
      * The name of the log group<br/>
      * see {@link PutLogEventsRequest#logGroupName()}
@@ -46,14 +88,22 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
     public String streamName;
 
     /**
+     * Boolean property to control large messages<br/>
+     * If this property is set, large messages (&gt; 256kB) are split into several messages<br>
+     * If this property is not set, large messages are truncated to allowed size (256kB)
+     */
+    public boolean splitLargeMessages;
+
+    /**
      * writer property prefix for {@link software.amazon.awssdk.auth.credentials.SystemPropertyCredentialsProvider}<br/>
      */
-    private final String PROPERTY_AWS = "aws.";
+    public static final String PROPERTY_AWS = "aws.";
 
     private String sequenceToken;
 
-    private ExecutorService cachedExecutor;
-    private ExecutorService singleExecutor;
+    private final ExecutorService cachedExecutor;
+    private final ExecutorService singleExecutor;
+    private static long lastTimestamp = 0;
 
     /**
      * @param properties Configuration for writer
@@ -62,19 +112,21 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
     {
         super(properties);
 
-        logGroupName = getStringValue("logGroupName");
+        logGroupName = getStringValue(PROPERTY_LOG_GROUP_NAME);
 
-        if (logGroupName == null || logGroupName.length() == 0)
+        if (logGroupName == null || logGroupName.isEmpty())
         {
             throw new Exception("parameter 'logGroupName' must be set in tinylog writer configuration");
         }
 
-        streamName = getStringValue("streamName");
+        streamName = getStringValue(PROPERTY_STREAM_NAME);
 
-        if (streamName == null || streamName.length() == 0)
+        if (streamName == null || streamName.isEmpty())
         {
             throw new Exception("parameter 'streamName' must be set in tinylog writer configuration");
         }
+
+        splitLargeMessages = getBooleanValue("splitLargeMessages");
 
         properties.forEach((key, value) -> {
             if (key.startsWith(PROPERTY_AWS))
@@ -94,7 +146,7 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
             DescribeLogStreamsResponse describeLogStreamsResponse = logsClient.describeLogStreams(logStreamRequest);
 
             // Assume that a single stream is returned since a specific stream name was specified in the previous request.
-            logStream = describeLogStreamsResponse.logStreams().get(0);
+            LogStream logStream = describeLogStreamsResponse.logStreams().get(0);
 
             sequenceToken = logStream.uploadSequenceToken();
         }
@@ -113,27 +165,61 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
         cachedExecutor.execute(() -> {
             try
             {
-                String msg = renderMessage(logEntry);
+                if (splitLargeMessages && logEntry.getMessage().length() > MAX_MESSAGE_SIZE)
+                {
+                    List<LogEntry> logEntries = Util.splitLogEntries(logEntry);
+                    final long ts = getTimestamp();
 
-                // Build an input log message to put to CloudWatch.
-                InputLogEvent inputLogEvent = InputLogEvent.builder().message(msg).timestamp(System.currentTimeMillis()).build();
-
-                singleExecutor.execute(() -> {
-                    // Specify the request parameters.
-                    // Sequence token is required so that the log can be written to the
-                    // latest location in the stream.
-                    PutLogEventsRequest putLogEventsRequest = PutLogEventsRequest.builder().logEvents(Arrays.asList(inputLogEvent))
-                                                                                           .logGroupName(logGroupName).logStreamName(streamName)
-                                                                                           .sequenceToken(sequenceToken).build();
-
-                    PutLogEventsResponse putLogEventsResponse = logsClient.putLogEvents(putLogEventsRequest);
-                    sequenceToken = putLogEventsResponse.nextSequenceToken();
-                });
+                    logEntries.forEach(e -> putLogEntry(e, ts));
+                }
+                else
+                {
+                    putLogEntry(logEntry, System.currentTimeMillis());
+                }
             }
             catch (CloudWatchException e)
             {
                 System.err.println(e.awsErrorDetails().errorMessage());
             }
+        });
+    }
+
+    private synchronized static long getTimestamp()
+    {
+        long ts = System.currentTimeMillis();
+        while (ts <= lastTimestamp)
+        {
+            ts++;
+        }
+
+        lastTimestamp = ts;
+
+        return ts;
+    }
+
+    private void putLogEntry(LogEntry logEntry, long timestamp)
+    {
+        String msg = renderMessage(logEntry);
+
+        // truncate message
+        if (!splitLargeMessages && msg.length() > MAX_MESSAGE_SIZE)
+        {
+            msg = msg.substring(0, MAX_MESSAGE_SIZE) + String.format(MESSAGE_TRUNCATED, msg.length());
+        }
+
+        // Build an input log message to put to CloudWatch.
+        InputLogEvent inputLogEvent = InputLogEvent.builder().message(msg).timestamp(timestamp).build();
+
+        singleExecutor.execute(() -> {
+            // Specify the request parameters.
+            // Sequence token is required so that the log can be written to the
+            // latest location in the stream.
+            PutLogEventsRequest putLogEventsRequest = PutLogEventsRequest.builder().logEvents(Collections.singletonList(inputLogEvent))
+                                                                                   .logGroupName(logGroupName).logStreamName(streamName)
+                                                                                   .sequenceToken(sequenceToken).build();
+
+            PutLogEventsResponse putLogEventsResponse = logsClient.putLogEvents(putLogEventsRequest);
+            sequenceToken = putLogEventsResponse.nextSequenceToken();
         });
     }
 

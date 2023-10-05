@@ -1,0 +1,478 @@
+{
+  "vulnerabilities": [
+    {
+      "id": "SNYK-JAVA-IONETTY-1042268",
+      "title": "Improper Certificate Validation",
+      "CVSSv3": "CVSS:3.1/AV:A/AC:H/PR:L/UI:R/S:U/C:H/I:L/A:L/E:U/RL:U/RC:R",
+      "credit": [
+        "Unknown"
+      ],
+      "semver": {
+        "vulnerable": [
+          "[4.1.0.Final,]"
+        ]
+      },
+      "exploit": "Unproven",
+      "fixedIn": [],
+      "patches": [],
+      "insights": {
+        "triageAdvice": "This vulnerability is only applicable when certificate hostname validation is disabled."
+      },
+      "language": "java",
+      "severity": "medium",
+      "cvssScore": 5.6,
+      "functions": [],
+      "malicious": false,
+      "isDisputed": false,
+      "moduleName": "io.netty:netty-handler",
+      "references": [
+        {
+          "url": "https://github.com/netty/netty/issues/10806",
+          "title": "GitHub Issue 1"
+        },
+        {
+          "url": "https://github.com/netty/netty/issues/8537",
+          "title": "GitHub Issue 2"
+        },
+        {
+          "url": "https://github.com/netty/netty/issues/9930",
+          "title": "GitHub Issue 3"
+        },
+        {
+          "url": "https://github.com/netty/netty/issues/10362",
+          "title": "GitHub Issue 4"
+        }
+      ],
+      "cvssDetails": [],
+      "description": "## Overview\n[io.netty:netty-handler](https://github.com/netty/netty.git/netty-handler) is a library that provides an asynchronous event-driven network application framework and tools for rapid development of maintainable high performance and high scalability protocol servers and clients. In other words, Netty is a NIO client server framework which enables quick and easy development of network applications such as protocol servers and clients. It greatly simplifies and streamlines network programming such as TCP and UDP socket server.\n\nAffected versions of this package are vulnerable to Improper Certificate Validation. Certificate hostname validation is disabled by default in `Netty 4.1.x` which makes it potentially susceptible to Man-in-the-Middle attacks.\n## Remediation\nThere is no fixed version for `io.netty:netty-handler`.\n## References\n- [GitHub Issue 1](https://github.com/netty/netty/issues/10806)\n- [GitHub Issue 2](https://github.com/netty/netty/issues/8537)\n- [GitHub Issue 3](https://github.com/netty/netty/issues/9930)\n- [GitHub Issue 4](https://github.com/netty/netty/issues/10362)\n",
+      "epssDetails": null,
+      "identifiers": {
+        "CVE": [],
+        "CWE": [
+          "CWE-295"
+        ]
+      },
+      "packageName": "io.netty:netty-handler",
+      "proprietary": false,
+      "creationTime": "2020-11-20T15:44:58.900719Z",
+      "functions_new": [],
+      "alternativeIds": [],
+      "disclosureTime": "2020-11-19T07:07:57Z",
+      "packageManager": "maven",
+      "mavenModuleName": {
+        "groupId": "io.netty",
+        "artifactId": "netty-handler"
+      },
+      "publicationTime": "2020-11-20T16:24:17Z",
+      "modificationTime": "2023-01-09T12:12:17.650857Z",
+      "socialTrendAlert": false,
+      "severityWithCritical": "medium",
+      "from": [
+        "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.8",
+        "software.amazon.awssdk:cloudwatchlogs@2.20.136",
+        "software.amazon.awssdk:netty-nio-client@2.20.136",
+        "io.netty:netty-handler@4.1.94.Final"
+      ],
+      "upgradePath": [],
+      "isUpgradable": false,
+      "isPatchable": false,
+      "name": "io.netty:netty-handler",
+      "version": "4.1.94.Final"
+    },
+    {
+      "id": "SNYK-JAVA-JAVAXSERVLET-30449",
+      "title": "XML External Entity (XXE) Injection",
+      "CVSSv3": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+      "credit": [
+        "David Jorm"
+      ],
+      "semver": {
+        "vulnerable": [
+          "[0,]"
+        ]
+      },
+      "exploit": "Not Defined",
+      "fixedIn": [],
+      "patches": [],
+      "insights": {
+        "triageAdvice": null
+      },
+      "language": "java",
+      "severity": "high",
+      "cvssScore": 7.3,
+      "functions": [],
+      "malicious": false,
+      "isDisputed": false,
+      "moduleName": "javax.servlet:jstl",
+      "references": [
+        {
+          "url": "http://mail-archives.us.apache.org/mod_mbox/www-announce/201502.mbox/%3C82207A16-6348-4DEE-877E-F7B87292576A@apache.org%3E",
+          "title": "Apache Mail Archive"
+        },
+        {
+          "url": "https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-0254",
+          "title": "NVD"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2015-0254",
+          "title": "RedHat CVE Database"
+        }
+      ],
+      "cvssDetails": [
+        {
+          "assigner": "NVD",
+          "severity": "high",
+          "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+          "cvssV3BaseScore": 7.3,
+          "modificationTime": "2023-02-09T11:23:41.455575Z"
+        },
+        {
+          "assigner": "Red Hat",
+          "severity": "high",
+          "cvssV3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:H/A:L",
+          "cvssV3BaseScore": 7.6,
+          "modificationTime": "2022-09-01T18:14:00.387759Z"
+        }
+      ],
+      "description": "## Overview\n[javax.servlet:jstl](https://mvnrepository.com/artifact/javax.servlet/jstl) is a collection of useful JSP tags which encapsulates the core functionality common to many JSP applications.\n\nAffected versions of this package are vulnerable to XML External Entity (XXE) Injection. Apache Standard Taglibs before 1.2.3 allows remote attackers to execute arbitrary code or conduct external XML entity (XXE) attacks via a crafted XSLT extension in a `<x:parse>` or `<x:transform>` JSTL XML tag.\n\n## Details\nXXE Injection is a type of attack against an application that parses XML input.\nXML is a markup language that defines a set of rules for encoding documents in a format that is both human-readable and machine-readable. By default, many XML processors allow specification of an external entity, a URI that is dereferenced and evaluated during XML processing. When an XML document is being parsed, the parser can make a request and include the content at the specified URI inside of the XML document.\n\nAttacks can include disclosing local files, which may contain sensitive data such as passwords or private user data, using file: schemes or relative paths in the system identifier.\n\nFor example, below is a sample XML document, containing an XML element- username.\n\n```\n<xml>\n<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n   <username>John</username>\n</xml>\n```\n\nAn external XML entity - `xxe`, is defined using a system identifier and present within a DOCTYPE header. These entities can access local or remote content. For example the below code contains an external XML entity that would fetch the content of  `/etc/passwd` and display it to the user rendered by `username`.\n\n```\n<xml>\n<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<!DOCTYPE foo [\n   <!ENTITY xxe SYSTEM \"file:///etc/passwd\" >]>\n   <username>&xxe;</username>\n</xml>\n```\n\nOther XXE Injection attacks can access local resources that may not stop returning data, possibly impacting application availability and leading to Denial of Service.\n\n## Remediation\nThere is no fixed version for `javax.servlet:jstl`.\n## References\n- [Apache Mail Archive](http://mail-archives.us.apache.org/mod_mbox/www-announce/201502.mbox/%3C82207A16-6348-4DEE-877E-F7B87292576A@apache.org%3E)\n- [NVD](https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-0254)\n- [RedHat CVE Database](https://access.redhat.com/security/cve/CVE-2015-0254)\n",
+      "epssDetails": {
+        "percentile": "0.92022",
+        "probability": "0.05434",
+        "modelVersion": "v2023.03.01"
+      },
+      "identifiers": {
+        "CVE": [
+          "CVE-2015-0254"
+        ],
+        "CWE": [
+          "CWE-94"
+        ],
+        "GHSA": [
+          "GHSA-6x4w-8w53-xrvv"
+        ]
+      },
+      "packageName": "javax.servlet:jstl",
+      "proprietary": false,
+      "creationTime": "2017-02-22T07:28:19.341000Z",
+      "functions_new": [],
+      "alternativeIds": [],
+      "disclosureTime": "2015-02-27T16:13:27Z",
+      "packageManager": "maven",
+      "mavenModuleName": {
+        "groupId": "javax.servlet",
+        "artifactId": "jstl"
+      },
+      "publicationTime": "2015-02-27T16:51:55Z",
+      "modificationTime": "2023-02-09T11:23:41.455575Z",
+      "socialTrendAlert": false,
+      "severityWithCritical": "high",
+      "from": [
+        "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.8",
+        "javax.servlet:jstl@1.2"
+      ],
+      "upgradePath": [],
+      "isUpgradable": false,
+      "isPatchable": false,
+      "name": "javax.servlet:jstl",
+      "version": "1.2"
+    }
+  ],
+  "ok": false,
+  "dependencyCount": 41,
+  "org": "e-switch-ch",
+  "policy": "# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.\nversion: v1.25.1\nignore: {}\npatch: {}\n",
+  "isPrivate": true,
+  "licensesPolicy": {
+    "severities": {},
+    "orgLicenseRules": {
+      "AGPL-1.0": {
+        "licenseType": "AGPL-1.0",
+        "severity": "high",
+        "instructions": ""
+      },
+      "AGPL-3.0": {
+        "licenseType": "AGPL-3.0",
+        "severity": "high",
+        "instructions": ""
+      },
+      "Artistic-1.0": {
+        "licenseType": "Artistic-1.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "Artistic-2.0": {
+        "licenseType": "Artistic-2.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "CDDL-1.0": {
+        "licenseType": "CDDL-1.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "CPOL-1.02": {
+        "licenseType": "CPOL-1.02",
+        "severity": "high",
+        "instructions": ""
+      },
+      "EPL-1.0": {
+        "licenseType": "EPL-1.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "GPL-2.0": {
+        "licenseType": "GPL-2.0",
+        "severity": "high",
+        "instructions": ""
+      },
+      "GPL-3.0": {
+        "licenseType": "GPL-3.0",
+        "severity": "high",
+        "instructions": ""
+      },
+      "LGPL-2.0": {
+        "licenseType": "LGPL-2.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "LGPL-2.1": {
+        "licenseType": "LGPL-2.1",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "LGPL-3.0": {
+        "licenseType": "LGPL-3.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "MPL-1.1": {
+        "licenseType": "MPL-1.1",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "MPL-2.0": {
+        "licenseType": "MPL-2.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "MS-RL": {
+        "licenseType": "MS-RL",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "SimPL-2.0": {
+        "licenseType": "SimPL-2.0",
+        "severity": "high",
+        "instructions": ""
+      }
+    }
+  },
+  "packageManager": "maven",
+  "ignoreSettings": {
+    "adminOnly": false,
+    "reasonRequired": false,
+    "disregardFilesystemIgnores": false
+  },
+  "summary": "2 vulnerable dependency paths",
+  "remediation": {
+    "unresolved": [
+      {
+        "id": "SNYK-JAVA-IONETTY-1042268",
+        "title": "Improper Certificate Validation",
+        "CVSSv3": "CVSS:3.1/AV:A/AC:H/PR:L/UI:R/S:U/C:H/I:L/A:L/E:U/RL:U/RC:R",
+        "credit": [
+          "Unknown"
+        ],
+        "semver": {
+          "vulnerable": [
+            "[4.1.0.Final,]"
+          ]
+        },
+        "exploit": "Unproven",
+        "fixedIn": [],
+        "patches": [],
+        "insights": {
+          "triageAdvice": "This vulnerability is only applicable when certificate hostname validation is disabled."
+        },
+        "language": "java",
+        "severity": "medium",
+        "cvssScore": 5.6,
+        "functions": [],
+        "malicious": false,
+        "isDisputed": false,
+        "moduleName": "io.netty:netty-handler",
+        "references": [
+          {
+            "url": "https://github.com/netty/netty/issues/10806",
+            "title": "GitHub Issue 1"
+          },
+          {
+            "url": "https://github.com/netty/netty/issues/8537",
+            "title": "GitHub Issue 2"
+          },
+          {
+            "url": "https://github.com/netty/netty/issues/9930",
+            "title": "GitHub Issue 3"
+          },
+          {
+            "url": "https://github.com/netty/netty/issues/10362",
+            "title": "GitHub Issue 4"
+          }
+        ],
+        "cvssDetails": [],
+        "description": "## Overview\n[io.netty:netty-handler](https://github.com/netty/netty.git/netty-handler) is a library that provides an asynchronous event-driven network application framework and tools for rapid development of maintainable high performance and high scalability protocol servers and clients. In other words, Netty is a NIO client server framework which enables quick and easy development of network applications such as protocol servers and clients. It greatly simplifies and streamlines network programming such as TCP and UDP socket server.\n\nAffected versions of this package are vulnerable to Improper Certificate Validation. Certificate hostname validation is disabled by default in `Netty 4.1.x` which makes it potentially susceptible to Man-in-the-Middle attacks.\n## Remediation\nThere is no fixed version for `io.netty:netty-handler`.\n## References\n- [GitHub Issue 1](https://github.com/netty/netty/issues/10806)\n- [GitHub Issue 2](https://github.com/netty/netty/issues/8537)\n- [GitHub Issue 3](https://github.com/netty/netty/issues/9930)\n- [GitHub Issue 4](https://github.com/netty/netty/issues/10362)\n",
+        "epssDetails": null,
+        "identifiers": {
+          "CVE": [],
+          "CWE": [
+            "CWE-295"
+          ]
+        },
+        "packageName": "io.netty:netty-handler",
+        "proprietary": false,
+        "creationTime": "2020-11-20T15:44:58.900719Z",
+        "functions_new": [],
+        "alternativeIds": [],
+        "disclosureTime": "2020-11-19T07:07:57Z",
+        "packageManager": "maven",
+        "mavenModuleName": {
+          "groupId": "io.netty",
+          "artifactId": "netty-handler"
+        },
+        "publicationTime": "2020-11-20T16:24:17Z",
+        "modificationTime": "2023-01-09T12:12:17.650857Z",
+        "socialTrendAlert": false,
+        "packagePopularityRank": 99,
+        "from": [
+          "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.8",
+          "software.amazon.awssdk:cloudwatchlogs@2.20.136",
+          "software.amazon.awssdk:netty-nio-client@2.20.136",
+          "io.netty:netty-handler@4.1.94.Final"
+        ],
+        "upgradePath": [],
+        "isUpgradable": false,
+        "isPatchable": false,
+        "isPinnable": false,
+        "isRuntime": false,
+        "name": "io.netty:netty-handler",
+        "version": "4.1.94.Final",
+        "severityWithCritical": "medium"
+      },
+      {
+        "id": "SNYK-JAVA-JAVAXSERVLET-30449",
+        "title": "XML External Entity (XXE) Injection",
+        "CVSSv3": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+        "credit": [
+          "David Jorm"
+        ],
+        "semver": {
+          "vulnerable": [
+            "[0,]"
+          ]
+        },
+        "exploit": "Not Defined",
+        "fixedIn": [],
+        "patches": [],
+        "insights": {
+          "triageAdvice": null
+        },
+        "language": "java",
+        "severity": "high",
+        "cvssScore": 7.3,
+        "functions": [],
+        "malicious": false,
+        "isDisputed": false,
+        "moduleName": "javax.servlet:jstl",
+        "references": [
+          {
+            "url": "http://mail-archives.us.apache.org/mod_mbox/www-announce/201502.mbox/%3C82207A16-6348-4DEE-877E-F7B87292576A@apache.org%3E",
+            "title": "Apache Mail Archive"
+          },
+          {
+            "url": "https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-0254",
+            "title": "NVD"
+          },
+          {
+            "url": "https://access.redhat.com/security/cve/CVE-2015-0254",
+            "title": "RedHat CVE Database"
+          }
+        ],
+        "cvssDetails": [
+          {
+            "assigner": "NVD",
+            "severity": "high",
+            "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+            "cvssV3BaseScore": 7.3,
+            "modificationTime": "2023-02-09T11:23:41.455575Z"
+          },
+          {
+            "assigner": "Red Hat",
+            "severity": "high",
+            "cvssV3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:H/A:L",
+            "cvssV3BaseScore": 7.6,
+            "modificationTime": "2022-09-01T18:14:00.387759Z"
+          }
+        ],
+        "description": "## Overview\n[javax.servlet:jstl](https://mvnrepository.com/artifact/javax.servlet/jstl) is a collection of useful JSP tags which encapsulates the core functionality common to many JSP applications.\n\nAffected versions of this package are vulnerable to XML External Entity (XXE) Injection. Apache Standard Taglibs before 1.2.3 allows remote attackers to execute arbitrary code or conduct external XML entity (XXE) attacks via a crafted XSLT extension in a `<x:parse>` or `<x:transform>` JSTL XML tag.\n\n## Details\nXXE Injection is a type of attack against an application that parses XML input.\nXML is a markup language that defines a set of rules for encoding documents in a format that is both human-readable and machine-readable. By default, many XML processors allow specification of an external entity, a URI that is dereferenced and evaluated during XML processing. When an XML document is being parsed, the parser can make a request and include the content at the specified URI inside of the XML document.\n\nAttacks can include disclosing local files, which may contain sensitive data such as passwords or private user data, using file: schemes or relative paths in the system identifier.\n\nFor example, below is a sample XML document, containing an XML element- username.\n\n```\n<xml>\n<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n   <username>John</username>\n</xml>\n```\n\nAn external XML entity - `xxe`, is defined using a system identifier and present within a DOCTYPE header. These entities can access local or remote content. For example the below code contains an external XML entity that would fetch the content of  `/etc/passwd` and display it to the user rendered by `username`.\n\n```\n<xml>\n<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<!DOCTYPE foo [\n   <!ENTITY xxe SYSTEM \"file:///etc/passwd\" >]>\n   <username>&xxe;</username>\n</xml>\n```\n\nOther XXE Injection attacks can access local resources that may not stop returning data, possibly impacting application availability and leading to Denial of Service.\n\n## Remediation\nThere is no fixed version for `javax.servlet:jstl`.\n## References\n- [Apache Mail Archive](http://mail-archives.us.apache.org/mod_mbox/www-announce/201502.mbox/%3C82207A16-6348-4DEE-877E-F7B87292576A@apache.org%3E)\n- [NVD](https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-0254)\n- [RedHat CVE Database](https://access.redhat.com/security/cve/CVE-2015-0254)\n",
+        "epssDetails": {
+          "percentile": "0.92022",
+          "probability": "0.05434",
+          "modelVersion": "v2023.03.01"
+        },
+        "identifiers": {
+          "CVE": [
+            "CVE-2015-0254"
+          ],
+          "CWE": [
+            "CWE-94"
+          ],
+          "GHSA": [
+            "GHSA-6x4w-8w53-xrvv"
+          ]
+        },
+        "packageName": "javax.servlet:jstl",
+        "proprietary": false,
+        "creationTime": "2017-02-22T07:28:19.341000Z",
+        "functions_new": [],
+        "alternativeIds": [],
+        "disclosureTime": "2015-02-27T16:13:27Z",
+        "packageManager": "maven",
+        "mavenModuleName": {
+          "groupId": "javax.servlet",
+          "artifactId": "jstl"
+        },
+        "publicationTime": "2015-02-27T16:51:55Z",
+        "modificationTime": "2023-02-09T11:23:41.455575Z",
+        "socialTrendAlert": false,
+        "packagePopularityRank": 99,
+        "from": [
+          "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.8",
+          "javax.servlet:jstl@1.2"
+        ],
+        "upgradePath": [],
+        "isUpgradable": false,
+        "isPatchable": false,
+        "isPinnable": false,
+        "isRuntime": false,
+        "name": "javax.servlet:jstl",
+        "version": "1.2",
+        "severityWithCritical": "high"
+      }
+    ],
+    "upgrade": {},
+    "patch": {},
+    "ignore": {},
+    "pin": {}
+  },
+  "filesystemPolicy": false,
+  "filtered": {
+    "ignore": [],
+    "patch": []
+  },
+  "uniqueCount": 2,
+  "projectName": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer",
+  "foundProjectCount": 1,
+  "displayTargetFile": "pom.xml",
+  "hasUnknownVersions": false,
+  "path": "C:\\mps\\xrb6\\tinylog\\tinylog-AWSCloudWatchLogsWriter"
+}

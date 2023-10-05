@@ -10,6 +10,8 @@ to [AWS CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/log
 [AWS SDK for Java 2.0](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/home.html) is used to send log
 events to AWS CloudWatch Logs
 
+### Message Formats
+
 Two different types of message formats are supported:
 
 - [Format Pattern](#FormatPatternID)
@@ -23,14 +25,14 @@ Two different types of message formats are supported:
 <dependency>
     <groupId>ch.eswitch.tinylog.writers</groupId>
     <artifactId>tinylog-aws-cloudwatch-logs-writer</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```
-compile(group: 'ch.eswitch.tinylog.writers', name: 'tinylog-aws-cloudwatch-logs-writer', version: '1.0.7', ext: 'pom')
+compile(group: 'ch.eswitch.tinylog.writers', name: 'tinylog-aws-cloudwatch-logs-writer', version: '1.0.8', ext: 'pom')
 ```
 
 ### Build Repository
@@ -124,6 +126,21 @@ writer_awscloudwatchlogsjson.aws.accessKeyId=AKIAxxxxxxxxxxxxxxxx
 writer_awscloudwatchlogsjson.aws.secretAccessKey=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
                                              
 ```
+
+### Log Event Size
+
+**Log event size is limited to 256kB by AWS CloudWatch** and can't be changed (
+see [CloudWatch Logs quotas](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html)).
+
+Boolean property `splitLargeMessages` controls how to handle larger messages (&gt; 256kB).
+
+If this property is not set (default behaviour), log message text is truncated.
+
+If this property is set, log messages are split into several messages with same timestamp.
+Each message is marked with context key `part` and value `[<part>/<total parts>]`.
+
+
+
 
 
 

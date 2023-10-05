@@ -6,7 +6,7 @@
 
     <groupId>ch.eswitch.tinylog.writers</groupId>
     <artifactId>tinylog-aws-cloudwatch-logs-writer</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
 
     <packaging>jar</packaging>
 
@@ -22,7 +22,8 @@
         <timestamp>${maven.build.timestamp}</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>11</java.version>
+        <java.version>1.8</java.version>
+        <tomcat.version>9.0.80</tomcat.version>
     </properties>
 
     <dependencies>
@@ -39,25 +40,86 @@
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>cloudwatchlogs</artifactId>
-            <version>2.20.97</version>
+            <version>2.20.136</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>apache-client</artifactId>
+            <version>2.20.136</version>
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>cloudwatch</artifactId>
-            <version>2.20.97</version>
+            <version>2.20.136</version>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.9.3</version>
-            <scope>test</scope>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.json</artifactId>
+            <version>2.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.9.3</version>
+            <version>5.10.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-servlet-api</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+            <version>1.2.6</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.servlet.jsp.jstl</groupId>
+                    <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+            <version>1.2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.el</artifactId>
+            <version>3.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jasper</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jasper-el</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jsp-api</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>test</scope>
+        </dependency><dependency><groupId>org.apache.tomcat</groupId><artifactId>tomcat-jsp-api</artifactId><version>9.0.78</version><scope>compile</scope></dependency>
+
     </dependencies>
 
     <build>
@@ -88,6 +150,7 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -109,6 +172,7 @@
                     </links>
                 </configuration>
             </plugin>
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -172,13 +236,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
             </plugin>
+            <!-- https://github.com/snyk/snyk-maven-plugin -->
+            <!-- https://docs.snyk.io/integrations/ci-cd-integrations/maven-plugin-integration -->
+            <!--
             <plugin>
-                <!-- https://github.com/snyk/snyk-maven-plugin -->
-                <!-- https://docs.snyk.io/integrations/ci-cd-integrations/maven-plugin-integration -->
-                <!-- command line:
-                C:\mps\xrb6\tinylog\tinylog-AWSCloudWatchLogsWriter>set PATH=%PATH%;C:\mps\lib\apache-maven-3.9.3\bin
-                C:\mps\xrb6\tinylog\tinylog-AWSCloudWatchLogsWriter>C:\Users\marti\AppData\Roaming\Snyk\snyk-win.exe test -d
-                -->
                 <groupId>io.snyk</groupId>
                 <artifactId>snyk-maven-plugin</artifactId>
                 <version>2.2.0</version>
@@ -200,12 +261,13 @@
                 <configuration>
                     <apiToken>${env.SNYK_TOKEN}</apiToken>
                     <args>
-                        <arg>--print-deps</arg>
-                        <arg>--fail-on=all</arg>
-                        <arg>--json-file-output=snyk-result.json</arg>
+                        <arg>-print-deps</arg>
+                        <arg>-fail-on=all</arg>
+                        <arg>-json-file-output=snyk-result.json</arg>
                     </args>
                 </configuration>
             </plugin>
+            -->
         </plugins>
     </build>
 
