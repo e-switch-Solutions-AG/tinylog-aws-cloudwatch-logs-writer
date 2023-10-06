@@ -139,7 +139,15 @@ If this property is not set (default behaviour), log message text is truncated.
 If this property is set, log messages are split into several messages with same timestamp.
 Each message is marked with context key `part` and value `[<part>/<total parts>]`.
 
+## AWS Log Viewer
 
+HTTP
+Servlet [`ch.eswitch.tinylog.writers.AwsCloudWatchLogsViewerServlet`](blob/main/src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsViewerServlet.java)
+provides web based access to AWS Log Event with various select options.
+
+This Servlet merges split Log Events into one.
+
+This Servlet is availble on URL ["web context"/awslogviewer](/awslogviewer).
 
 
 
