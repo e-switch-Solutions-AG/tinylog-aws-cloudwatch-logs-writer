@@ -130,7 +130,7 @@
         </div>
     </c:if>
 
-    <form action="/awslogviewer" method="post" id="writerForm" role="form">
+    <form action="awslogviewer" method="post" id="writerForm" role="form">
         <input type="hidden" id="idWriter" name="idWriter">
         <input type="hidden" id="action" name="action">
 

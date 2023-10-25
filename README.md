@@ -25,14 +25,14 @@ Two different types of message formats are supported:
 <dependency>
     <groupId>ch.eswitch.tinylog.writers</groupId>
     <artifactId>tinylog-aws-cloudwatch-logs-writer</artifactId>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```
-compile(group: 'ch.eswitch.tinylog.writers', name: 'tinylog-aws-cloudwatch-logs-writer', version: '1.0.8', ext: 'pom')
+compile(group: 'ch.eswitch.tinylog.writers', name: 'tinylog-aws-cloudwatch-logs-writer', version: '1.0.9', ext: 'pom')
 ```
 
 ### Build Repository
@@ -139,7 +139,7 @@ If this property is not set (default behaviour), log message text is truncated.
 If this property is set, log messages are split into several messages with same timestamp.
 Each message is marked with context key `part` and value `[<part>/<total parts>]`.
 
-### AWS Log Viewer
+## AWS Log Viewer
 
 HTTP
 Servlet [`ch.eswitch.tinylog.writers.AwsCloudWatchLogsViewerServlet`](blob/main/src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsViewerServlet.java)
@@ -148,7 +148,6 @@ provides web based access to AWS Log Event with various select options.
 This Servlet merges split Log Events into one.
 
 This Servlet is availble on URL ["web context"/awslogviewer](/awslogviewer).
-
 
 
 
