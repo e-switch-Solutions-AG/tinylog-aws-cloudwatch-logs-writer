@@ -22,7 +22,7 @@
         <timestamp>${maven.build.timestamp}</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <tomcat.version>9.0.81</tomcat.version>
+        <tomcat.version>9.0.82</tomcat.version>
     </properties>
 
     <profiles>
