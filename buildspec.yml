@@ -49,11 +49,11 @@ phases:
       - cd $CODEBUILD_SRC_DIR
       - ls -a
       - git status
-      - git add snyk-test-result.json
+      - git add snyk-result.json
       - git status
       - git config --global user.email "dev@e-switch.ch"
       - git config --global user.name "e-switch Solutions Developer"
-      - git commit -m "snyk-test-result.json" -m "AWS CodeBuild, build number $CODEBUILD_BUILD_NUMBER" -m "$CODEBUILD_BUILD_ARN"
+      - git commit -m "snyk-result.json" -m "AWS CodeBuild, build number $CODEBUILD_BUILD_NUMBER" -m "$CODEBUILD_BUILD_ARN"
       - git status
       - git add README.md
       - git status
