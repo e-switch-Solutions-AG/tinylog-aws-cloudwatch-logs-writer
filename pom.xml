@@ -6,7 +6,7 @@
 
     <groupId>ch.eswitch.tinylog.writers</groupId>
     <artifactId>tinylog-aws-cloudwatch-logs-writer</artifactId>
-    <version>1.0.9${artifact.classifier}</version>
+    <version>1.0.10${artifact.classifier}</version>
 
     <packaging>jar</packaging>
 
@@ -22,7 +22,8 @@
         <timestamp>${maven.build.timestamp}</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <tomcat.version>9.0.81</tomcat.version>
+        <tomcat.version>9.0.82</tomcat.version>
+        <aws.sdk.version>2.21.22</aws.sdk.version>
     </properties>
 
     <profiles>
@@ -41,7 +42,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.6.0</version>
+                        <version>3.6.2</version>
                         <executions>
                             <execution>
                                 <id>generate-javadocs</id>
@@ -89,17 +90,17 @@
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>cloudwatchlogs</artifactId>
-            <version>2.21.6</version>
+            <version>${aws.sdk.version}</version>
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>apache-client</artifactId>
-            <version>2.21.6</version>
+            <version>${aws.sdk.version}</version>
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>cloudwatch</artifactId>
-            <version>2.21.6</version>
+            <version>${aws.sdk.version}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish</groupId>
@@ -109,7 +110,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.0</version>
+            <version>5.10.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
