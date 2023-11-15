@@ -261,7 +261,6 @@
             </plugin>
             <!-- https://github.com/snyk/snyk-maven-plugin -->
             <!-- https://docs.snyk.io/integrations/ci-cd-integrations/maven-plugin-integration -->
-            <!--
             <plugin>
                 <groupId>io.snyk</groupId>
                 <artifactId>snyk-maven-plugin</artifactId>
@@ -290,7 +289,6 @@
                     </args>
                 </configuration>
             </plugin>
-            -->
         </plugins>
     </build>
 
