@@ -283,9 +283,9 @@
                 <configuration>
                     <apiToken>${env.SNYK_TOKEN}</apiToken>
                     <args>
-                        <arg>-print-deps</arg>
-                        <arg>-fail-on=all</arg>
-                        <arg>-json-file-output=snyk-result.json</arg>
+                        <arg>--print-deps</arg>
+                        <arg>--fail-on=all</arg>
+                        <arg>--json-file-output=snyk-result.json</arg>
                     </args>
                 </configuration>
             </plugin>
