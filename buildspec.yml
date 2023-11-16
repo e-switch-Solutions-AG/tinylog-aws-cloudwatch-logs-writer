@@ -54,18 +54,18 @@ phases:
       - git status
       - git config --global user.email "dev@e-switch.ch"
       - git config --global user.name "e-switch Solutions Developer"
-      - git commit -a -m "snyk-result.json" -m "AWS CodeBuild, build number $CODEBUILD_BUILD_NUMBER" -m "$CODEBUILD_BUILD_ARN"
+      - git commit -a -m "snyk-result.json" -m "AWS CodeBuild, build number $CODEBUILD_BUILD_NUMBER" -m "$CODEBUILD_BUILD_ARN" || true
       - git status
       - git add README.md
       - git status
-      - git commit -a -m "README.md" -m "AWS CodeBuild, build number $CODEBUILD_BUILD_NUMBER" -m "$CODEBUILD_BUILD_ARN"
+      - git commit -a -m "README.md" -m "AWS CodeBuild, build number $CODEBUILD_BUILD_NUMBER" -m "$CODEBUILD_BUILD_ARN" || true
       - git tag v$PROJECT_VERSION
       - git status
       - echo GITHUB_ACCESS_TOKEN $GITHUB_ACCESS_TOKEN
       - git remote add github_eswitch https://e-switch-ch:$GITHUB_ACCESS_TOKEN@github.com/e-switch-Solutions-AG/tinylog-aws-cloudwatch-logs-writer
       - git remote -v
-      - git push github_eswitch HEAD:main --force
-      - git push --tags github_eswitch
+      - git push github_eswitch HEAD:main --force || true
+      - git push --tags github_eswitch || true
     finally:
       - echo $(date +"%F %T.%N") post_build phase ended
 
