@@ -7,3 +7,13 @@ ignore:
     - "*":
         reason: No upgrade or patch available
         expires: 2024-02-01T00:00:00Z
+
+exclude:
+    global:
+        # [High] Regular expression injection
+        # Path: src/main/resources/META-INF/resources/jsp/list-***streams.jsp, line 242
+        - src/main/resources/META-INF/resources/jsp/list-awsstreams.jsp
+        
+        # [High] Regular expression injection
+        # Path: src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsViewerServlet.java, line 45
+        - src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsViewerServlet.java
