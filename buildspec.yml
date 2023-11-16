@@ -48,6 +48,7 @@ phases:
       - echo $(date +"%F %T.%N") post_build phase started
       - cd $CODEBUILD_SRC_DIR
       - ls -a
+      - rm .dccache
       - git status
       - git add snyk-result.json
       - git status
