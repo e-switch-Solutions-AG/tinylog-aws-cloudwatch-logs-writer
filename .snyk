@@ -17,3 +17,7 @@ exclude:
         # [High] Regular expression injection
         # Path: src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsViewerServlet.java, line 45
         - src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsViewerServlet.java
+
+        # [High] Regular expression injection
+        # [INFO]  src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsJsonWriter.java, line 446
+        - src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsJsonWriter.java
