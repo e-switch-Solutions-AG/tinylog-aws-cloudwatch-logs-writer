@@ -12,8 +12,11 @@ import software.amazon.awssdk.services.cloudwatchlogs.model.GetLogEventsRequest;
 import software.amazon.awssdk.services.cloudwatchlogs.model.OutputLogEvent;
 import software.amazon.awssdk.services.cloudwatchlogs.paginators.GetLogEventsIterable;
 
+import javax.servlet.http.HttpServletRequest;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -323,11 +326,10 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
      * get all combined Output Log Events from AWS CloudWatch for a specific writer name
      *
      * @param writer tinylog writer name
-     * @param startDateTime (optional) start date/time for Log Events
-     * @param endDateTime (optional) end date/time for Log Events
+     * @param request (optional) search parameters to filer for Log Events
      * @return combined Output Log Events
      */
-    public static List<OutputLogEvent> getCombinedOutputLogEvents(String writer, String startDateTime, String endDateTime, String searchTerm, String useRegExp)
+    public static List<OutputLogEvent> getCombinedOutputLogEvents(String writer, HttpServletRequest request)
     {
         setAwsSystemProperties(writer);
 
@@ -344,6 +346,64 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
                     .logGroupName(logGroupAndStreamName.logGroupName)
                     .logStreamName(logGroupAndStreamName.streamName).startFromHead(true)
                     .limit(1000);
+
+            // set start and end date/time and other search parameters
+            String startDateTime = null;
+            String endDateTime = null;
+            String searchTerm = null;
+            String useRegExp = null;
+            if (request != null)
+            {
+                String timeRadios = request.getParameter("timeRadios");
+                if (timeRadios != null)
+                {
+                    if (timeRadios.equals("absoluteRadio"))
+                    {
+                        startDateTime = request.getParameter("startDateTime");
+                        endDateTime = request.getParameter("endDateTime");
+                    }
+                    else if (timeRadios.equals("relativeRadio"))
+                    {
+                        String relativeTime = request.getParameter("relativeTime");
+                        String relativeUnit = request.getParameter("relativeUnit");
+
+                        if (relativeTime != null && relativeTime.length() > 0 && relativeUnit != null && relativeUnit.length() > 0)
+                        {
+                            int min = Integer.parseInt(relativeTime);
+                            switch (relativeUnit)
+                            {
+                                case "min":
+                                    // nothing to do
+                                    break;
+                                case "h":
+                                    min = min * 60;
+                                    break;
+                                case "d":
+                                    min = min * 60 * 24;
+                                    break;
+                            }
+
+                            ZonedDateTime zdt = ZonedDateTime.ofInstant(Instant.now(),
+                                                                        ZoneId.systemDefault());
+
+                            zdt = zdt.plusMinutes(-1 * min);
+                            startDateTime = zdt.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+                        }
+                    }
+                }
+
+                request.getParameterMap();
+
+                searchTerm = request.getParameter("searchTerm");
+                useRegExp = request.getParameter("useRegExp");
+            }
+
+            if (startDateTime == null)
+            {
+                ZonedDateTime zdt = ZonedDateTime.ofInstant(Instant.now(),
+                                                            ZoneId.systemDefault());
+                startDateTime = zdt.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+            }
 
             setTime(builder, startDateTime, true);
             setTime(builder, endDateTime, false);

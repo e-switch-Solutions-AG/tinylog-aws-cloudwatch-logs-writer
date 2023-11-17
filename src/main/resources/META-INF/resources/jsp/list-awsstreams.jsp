@@ -98,6 +98,48 @@
     <link rel="stylesheet" href="bootstrap/font/bootstrap-icons.css">
 
     <script type="text/javascript">
+
+        function timeRadiosChanged(element) {
+            var disableAbsolute = true;
+            var disableRelative = true;
+            if (element == null) {
+                if (document.getElementById('absoluteRadio').checked)
+                    element = document.getElementById('absoluteRadio');
+                else if (document.getElementById('relativeRadio').checked)
+                    element = document.getElementById('relativeRadio');
+            }
+
+            if (element != null) {
+                window.console.log(element.id + ": " + element.checked);
+                if (element.id == 'absoluteRadio') {
+                    disableAbsolute = !element.checked;
+                    disableRelative = !disableAbsolute;
+                } else if (element.id == 'relativeRadio') {
+                    disableRelative = !element.checked;
+                    disableAbsolute = !disableRelative;
+                }
+            }
+
+            document.getElementById('startDateTime').disabled = disableAbsolute;
+            document.getElementById('endDateTime').disabled = disableAbsolute;
+
+            document.getElementById('relativeTime').disabled = disableRelative;
+            document.getElementById('relativeUnit').disabled = disableRelative;
+        }
+
+        document.addEventListener('readystatechange', event => {
+            switch (document.readyState) {
+                case "loading":
+                    break;
+                case "interactive":
+                    break;
+                case "complete":
+                    timeRadiosChanged(null);
+                    break;
+            }
+        });
+
+
         function downloadData(ref) {
             var content = document.getElementById(ref).innerText;
 
@@ -149,6 +191,19 @@
             <div class="card card-body">
 
                 <h3 class="mt-3">Search Criteria</h3>
+
+                <h5 class="mt-5">Time Period</h5>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="timeRadios" id="absoluteRadio"
+                           value="absoluteRadio"
+                           <c:if test="${param.timeRadios.equals('absoluteRadio')}">checked="true"</c:if> required
+                           onchange="timeRadiosChanged(this)">
+                    <label class="form-check-label h6" for="absoluteRadio">
+                        Absolute Time Period (Start / End)
+                    </label>
+                </div>
+
                 <div class="row">
                     <div class="col">
                         <label for="startDateTime" class="form-label">Start</label>
@@ -164,8 +219,44 @@
                                value="${param.endDateTime}"/>
                     </div>
                 </div>
+
+                <br>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="timeRadios" id="relativeRadio"
+                           value="relativeRadio"
+                           <c:if test="${param.timeRadios.equals('relativeRadio')}">checked="true"</c:if> required
+                           onchange="timeRadiosChanged(this)">
+                    <label class="form-check-label h6" for="relativeRadio">
+                        Relative Time from Now
+                    </label>
+                </div>
+
+                <div class="row">
+                    <div class="col-8">
+                        <label class="visually-hidden" for="relativeTime">Time</label>
+                        <input type="number" class="form-control" width="auto" id="relativeTime" name="relativeTime"
+                               placeholder="Relative Time" min="1" max="60" value="${param.relativeTime}" required/>
+                    </div>
+                    <div class="col-4">
+                        <label class="visually-hidden" for="relativeUnit">Unit</label>
+                        <select class="form-select" id="relativeUnit" name="relativeUnit"
+                                placeholder="Unit" required>
+                            <option value="min" <c:if test="${param.relativeUnit.equals('min')}">selected="true"</c:if>>
+                                minutes
+                            </option>
+                            <option value="h" <c:if test="${param.relativeUnit.equals('h')}">selected="true"</c:if>>
+                                hours
+                            </option>
+                            <option value="d" <c:if test="${param.relativeUnit.equals('d')}">selected="true"</c:if>>
+                                days
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="mt-3">
-                    <label for="searchTerm" class="form-label">Search Term</label>
+                    <label for="searchTerm" class="h5">Search Term</label>
                     <input type="text" class="form-control" id="searchTerm" name="searchTerm"
                            aria-describedby="searchHelp"
                            placeholder="search term" value="${param.searchTerm}"/>
@@ -179,7 +270,7 @@
                     <label for="useRegExp" class="form-check-label">use RegExp</label>
                 </div>
                 <div class="mt-3">
-                    <label for="outputType" class="form-label">Output Type</label>
+                    <label for="outputType" class="h5">Output Type</label>
                     <select class="form-select" id="outputType" name="outputType">
                         <option value="html" <c:if test="${param.outputType.equals('html')}">selected="true"</c:if>>
                             HTML
@@ -241,10 +332,7 @@
 
                     List<OutputLogEvent> combinedOutputLogEvents = AwsCloudWatchLogsJsonWriter.getCombinedOutputLogEvents(
                             writerName,
-                            request.getParameter("startDateTime"),
-                            request.getParameter("endDateTime"),
-                            request.getParameter("searchTerm"),
-                            request.getParameter("useRegExp")
+                            request
                     );
 
                     if (combinedOutputLogEvents != null && combinedOutputLogEvents.size() > 0)

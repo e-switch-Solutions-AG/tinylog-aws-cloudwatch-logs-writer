@@ -44,10 +44,7 @@ public class AwsCloudWatchLogsViewerServlet extends HttpServlet
             selectedWriters.forEach(writerName -> {
                 List<OutputLogEvent> combinedOutputLogEvents = AwsCloudWatchLogsJsonWriter.getCombinedOutputLogEvents(
                         writerName,
-                        req.getParameter("startDateTime"),
-                        req.getParameter("endDateTime"),
-                        req.getParameter("searchTerm"),
-                        req.getParameter("useRegExp")
+                        req
                 );
 
                 try
