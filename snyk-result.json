@@ -3,7 +3,7 @@
   "ok": true,
   "dependencyCount": 52,
   "org": "e-switch-ch",
-  "policy": "# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.\n# ignores vulnerabilities until expiry date; change duration by modifying expiry date\nignore:\n  SNYK-JAVA-IONETTY-1042268:\n    - '*':\n        reason: No upgrade or patch available\n        expires: 2024-02-01T00:00:00.000Z\n        source: cli\nexclude:\n  global:\n    - src/main/resources/META-INF/resources/jsp/list-awsstreams.jsp\n    - >-\n      src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsViewerServlet.java\nversion: v1.25.1\npatch: {}\n",
+  "policy": "# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.\n# ignores vulnerabilities until expiry date; change duration by modifying expiry date\nignore:\n  SNYK-JAVA-IONETTY-1042268:\n    - '*':\n        reason: No upgrade or patch available\n        expires: 2024-02-01T00:00:00.000Z\n        source: cli\nexclude:\n  global:\n    - src/main/resources/META-INF/resources/jsp/list-awsstreams.jsp\n    - >-\n      src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsViewerServlet.java\n    - src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsJsonWriter.java\nversion: v1.25.1\npatch: {}\n",
   "isPrivate": true,
   "licensesPolicy": {
     "severities": {},
@@ -193,16 +193,13 @@
         "socialTrendAlert": false,
         "severityWithCritical": "medium",
         "from": [
-          "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.10",
+          "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.11",
           "software.amazon.awssdk:cloudwatchlogs@2.21.23",
           "software.amazon.awssdk:netty-nio-client@2.21.23",
           "io.netty:netty-handler@4.1.100.Final"
         ],
-        "upgradePath": [
-          false,
-          "software.amazon.awssdk:cloudwatchlogs@2.21.24"
-        ],
-        "isUpgradable": true,
+        "upgradePath": [],
+        "isUpgradable": false,
         "isPatchable": false,
         "name": "io.netty:netty-handler",
         "version": "4.1.100.Final",
@@ -226,5 +223,5 @@
   "projectName": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer",
   "displayTargetFile": "pom.xml",
   "hasUnknownVersions": false,
-  "path": "/codebuild/output/src4058032661/src/codestar-connections.eu-central-1.amazonaws.com/git-http/140096976191/eu-central-1/9665f533-81dd-446a-8dba-07cd6148e8c2/e-switch-Solutions-AG/tinylog-aws-cloudwatch-logs-writer"
+  "path": "/codebuild/output/src1132241332/src/codestar-connections.eu-central-1.amazonaws.com/git-http/140096976191/eu-central-1/9665f533-81dd-446a-8dba-07cd6148e8c2/e-switch-Solutions-AG/tinylog-aws-cloudwatch-logs-writer"
 }
