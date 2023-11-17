@@ -461,8 +461,12 @@ class TestServletRequest implements HttpServletRequest
     @Override
     public String getParameter(String name)
     {
-        if (name.equals("startDateTime"))
+        if (name.equals("timeRadios"))
+        {
+            return "absoluteRadio";
+        }
 
+        if (name.equals("startDateTime"))
         {
             return startDateTime;
         }
