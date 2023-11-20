@@ -22,8 +22,8 @@
         <timestamp>${maven.build.timestamp}</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <tomcat.version>9.0.82</tomcat.version>
-        <aws.sdk.version>2.21.23</aws.sdk.version>
+        <tomcat.version>9.0.83</tomcat.version>
+        <aws.sdk.version>2.21.26</aws.sdk.version>
     </properties>
 
     <profiles>
@@ -58,6 +58,99 @@
                             <links>
                                 <link>https://sdk.amazonaws.com/java/api/latest</link>
                             </links>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>3.3.0</version>
+                        <executions>
+                            <execution>
+                                <configuration>
+                                    <classifier>javadoc</classifier>
+                                    <classesDirectory>${project.build.directory}/site/apidocs</classesDirectory>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                </configuration>
+                                <id>pack-javadoc</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.3.0</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <executions>
+                            <execution>
+                                <id>copy-resources-md</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <overwrite>true</overwrite>
+                                    <outputDirectory>${basedir}</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>src/main/resources</directory>
+                                            <includes>
+                                                <include>README.md</include>
+                                            </includes>
+                                            <filtering>true</filtering>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.2.2</version>
+                    </plugin>
+                    <!-- https://github.com/snyk/snyk-maven-plugin -->
+                    <!-- https://docs.snyk.io/integrations/ci-cd-integrations/maven-plugin-integration -->
+                    <plugin>
+                        <groupId>io.snyk</groupId>
+                        <artifactId>snyk-maven-plugin</artifactId>
+                        <version>2.2.0</version>
+                        <inherited>false</inherited>
+                        <executions>
+                            <execution>
+                                <id>snyk-test</id>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>snyk-code-test</id>
+                                <goals>
+                                    <goal>code-test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <apiToken>${env.SNYK_TOKEN}</apiToken>
+                            <args>
+                                <arg>--print-deps</arg>
+                                <arg>--fail-on=all</arg>
+                                <arg>--json-file-output=snyk-result.json</arg>
+                            </args>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -167,9 +260,7 @@
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jsp-api</artifactId>
             <version>${tomcat.version}</version>
-            <scope>test</scope>
-        </dependency><dependency><groupId>org.apache.tomcat</groupId><artifactId>tomcat-jsp-api</artifactId><version>9.0.78</version><scope>compile</scope></dependency>
-
+        </dependency>
     </dependencies>
 
     <build>
@@ -195,99 +286,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <classifier>javadoc</classifier>
-                            <classesDirectory>${project.build.directory}/site/apidocs</classesDirectory>
-                            <outputDirectory>${project.build.directory}</outputDirectory>
-                        </configuration>
-                        <id>pack-javadoc</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.3.0</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.1</version>
-                <executions>
-                    <execution>
-                        <id>copy-resources-md</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <overwrite>true</overwrite>
-                            <outputDirectory>${basedir}</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>src/main/resources</directory>
-                                    <includes>
-                                        <include>README.md</include>
-                                    </includes>
-                                    <filtering>true</filtering>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.2</version>
-            </plugin>
-            <!-- https://github.com/snyk/snyk-maven-plugin -->
-            <!-- https://docs.snyk.io/integrations/ci-cd-integrations/maven-plugin-integration -->
-            <plugin>
-                <groupId>io.snyk</groupId>
-                <artifactId>snyk-maven-plugin</artifactId>
-                <version>2.2.0</version>
-                <inherited>false</inherited>
-                <executions>
-                    <execution>
-                        <id>snyk-test</id>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>snyk-code-test</id>
-                        <goals>
-                            <goal>code-test</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <apiToken>${env.SNYK_TOKEN}</apiToken>
-                    <args>
-                        <arg>--print-deps</arg>
-                        <arg>--fail-on=all</arg>
-                        <arg>--json-file-output=snyk-result.json</arg>
-                    </args>
-                </configuration>
             </plugin>
         </plugins>
     </build>
