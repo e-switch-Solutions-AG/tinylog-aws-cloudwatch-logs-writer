@@ -1,4 +1,5 @@
 <%@ page import="ch.eswitch.tinylog.writers.AwsCloudWatchLogsJsonWriter" %>
+<%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
 <%@ page import="software.amazon.awssdk.services.cloudwatchlogs.model.OutputLogEvent" %>
 <%@ page import="java.io.IOException" %>
 <%@ page import="java.time.Instant" %>
@@ -12,7 +13,7 @@
 <%!
     public static final String CSS_STYLE_WHITE_SPACE_NOWRAP = "white-space: nowrap;";
     private int collapseCell = 0;
-    private static final int MAX_TEXT_LENGTH = 200;
+    private static final int MAX_TEXT_LENGTH = 300;
 
     private void printColumn(JspWriter out, Long millis)
     {
@@ -157,6 +158,16 @@
             a.href = window.URL.createObjectURL(blob);
             a.download = 'logEntry.' + fileExtension;
             a.click();
+        }
+
+        function copyData(ref) {
+            var content = document.getElementById(ref).innerText;
+
+            navigator.clipboard.writeText(content);
+
+            var liveToastElement = document.getElementById('liveToast');
+            var liveToast = bootstrap.Toast.getOrCreateInstance(liveToastElement);
+            liveToast.show();
         }
     </script>
 </head>
@@ -360,7 +371,9 @@
 
                             String ref = writerName + refId++;
 
-                            printColumn(outFinal, e.message(), null, ref);
+                            printColumn(outFinal, StringEscapeUtils.escapeHtml4(e.message()), null, ref);
+                            printColumn(outFinal,
+                                        "<i class=\"bi bi-clipboard\" onClick=\"copyData('" + ref + "')\"></i>");
                             printColumn(outFinal,
                                         "<i class=\"bi bi-download\" onClick=\"downloadData('" + ref + "')\"></i>");
 
@@ -386,5 +399,17 @@
     %>
 
 </div>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                Message copied to Clipboard
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

@@ -1,7 +1,7 @@
 {
   "vulnerabilities": [],
   "ok": true,
-  "dependencyCount": 52,
+  "dependencyCount": 53,
   "org": "e-switch-ch",
   "policy": "# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.\n# ignores vulnerabilities until expiry date; change duration by modifying expiry date\nignore:\n  SNYK-JAVA-IONETTY-1042268:\n    - '*':\n        reason: No upgrade or patch available\n        expires: 2024-02-01T00:00:00.000Z\n        source: cli\nexclude:\n  global:\n    - src/main/resources/META-INF/resources/jsp/list-awsstreams.jsp\n    - >-\n      src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsViewerServlet.java\n    - src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsJsonWriter.java\nversion: v1.25.1\npatch: {}\n",
   "isPrivate": true,
@@ -96,132 +96,11 @@
     "reasonRequired": false,
     "disregardFilesystemIgnores": false
   },
-  "summary": "1 vulnerable dependency path",
-  "remediation": {
-    "unresolved": [],
-    "upgrade": {},
-    "patch": {},
-    "ignore": {},
-    "pin": {}
-  },
+  "summary": "No known vulnerabilities",
   "filesystemPolicy": true,
-  "filtered": {
-    "ignore": [
-      {
-        "id": "SNYK-JAVA-IONETTY-1042268",
-        "title": "Improper Certificate Validation",
-        "CVSSv3": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N/E:U/RL:U/RC:R",
-        "credit": [
-          "Unknown"
-        ],
-        "semver": {
-          "vulnerable": [
-            "[4.1.0.Final,]"
-          ]
-        },
-        "exploit": "Unproven",
-        "fixedIn": [],
-        "patches": [],
-        "insights": {
-          "triageAdvice": "This vulnerability is only applicable when certificate hostname validation is disabled."
-        },
-        "language": "java",
-        "severity": "medium",
-        "cvssScore": 5.3,
-        "functions": [],
-        "malicious": false,
-        "isDisputed": false,
-        "moduleName": "io.netty:netty-handler",
-        "references": [
-          {
-            "url": "https://github.com/netty/netty/issues/10806",
-            "title": "GitHub Issue 1"
-          },
-          {
-            "url": "https://github.com/netty/netty/issues/8537",
-            "title": "GitHub Issue 2"
-          },
-          {
-            "url": "https://github.com/netty/netty/issues/9930",
-            "title": "GitHub Issue 3"
-          },
-          {
-            "url": "https://github.com/netty/netty/issues/10362",
-            "title": "GitHub Issue 4"
-          },
-          {
-            "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2235564",
-            "title": "RedHat Bugzilla Bug"
-          }
-        ],
-        "cvssDetails": [
-          {
-            "assigner": "NVD",
-            "severity": "high",
-            "cvssV3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
-            "cvssV3BaseScore": 7.4,
-            "modificationTime": "2023-10-11T01:10:45.381171Z"
-          }
-        ],
-        "description": "## Overview\n[io.netty:netty-handler](https://github.com/netty/netty.git/netty-handler) is a library that provides an asynchronous event-driven network application framework and tools for rapid development of maintainable high performance and high scalability protocol servers and clients. In other words, Netty is a NIO client server framework which enables quick and easy development of network applications such as protocol servers and clients. It greatly simplifies and streamlines network programming such as TCP and UDP socket server.\n\nAffected versions of this package are vulnerable to Improper Certificate Validation. Certificate hostname validation is disabled by default in `Netty 4.1.x` which makes it potentially susceptible to Man-in-the-Middle attacks.\n## Remediation\nThere is no fixed version for `io.netty:netty-handler`.\n## References\n- [GitHub Issue 1](https://github.com/netty/netty/issues/10806)\n- [GitHub Issue 2](https://github.com/netty/netty/issues/8537)\n- [GitHub Issue 3](https://github.com/netty/netty/issues/9930)\n- [GitHub Issue 4](https://github.com/netty/netty/issues/10362)\n- [RedHat Bugzilla Bug](https://bugzilla.redhat.com/show_bug.cgi?id=2235564)\n",
-        "epssDetails": {
-          "percentile": "0.12509",
-          "probability": "0.00045",
-          "modelVersion": "v2023.03.01"
-        },
-        "identifiers": {
-          "CVE": [
-            "CVE-2023-4586"
-          ],
-          "CWE": [
-            "CWE-295"
-          ]
-        },
-        "packageName": "io.netty:netty-handler",
-        "proprietary": false,
-        "creationTime": "2020-11-20T15:44:58.900719Z",
-        "functions_new": [],
-        "alternativeIds": [],
-        "disclosureTime": "2020-11-19T07:07:57Z",
-        "packageManager": "maven",
-        "mavenModuleName": {
-          "groupId": "io.netty",
-          "artifactId": "netty-handler"
-        },
-        "publicationTime": "2020-11-20T16:24:17Z",
-        "modificationTime": "2023-10-11T01:10:45.381171Z",
-        "socialTrendAlert": false,
-        "severityWithCritical": "medium",
-        "from": [
-          "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.11",
-          "software.amazon.awssdk:cloudwatchlogs@2.21.23",
-          "software.amazon.awssdk:netty-nio-client@2.21.23",
-          "io.netty:netty-handler@4.1.100.Final"
-        ],
-        "upgradePath": [],
-        "isUpgradable": false,
-        "isPatchable": false,
-        "name": "io.netty:netty-handler",
-        "version": "4.1.100.Final",
-        "filtered": {
-          "ignored": [
-            {
-              "reason": "No upgrade or patch available",
-              "expires": "2024-02-01T00:00:00.000Z",
-              "source": "cli",
-              "path": [
-                "*"
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    "patch": []
-  },
   "uniqueCount": 0,
   "projectName": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer",
   "displayTargetFile": "pom.xml",
   "hasUnknownVersions": false,
-  "path": "/codebuild/output/src1132241332/src/codestar-connections.eu-central-1.amazonaws.com/git-http/140096976191/eu-central-1/9665f533-81dd-446a-8dba-07cd6148e8c2/e-switch-Solutions-AG/tinylog-aws-cloudwatch-logs-writer"
+  "path": "C:\\mps\\xrb6\\tinylog\\tinylog-AWSCloudWatchLogsWriter"
 }
