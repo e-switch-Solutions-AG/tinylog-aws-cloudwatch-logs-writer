@@ -67,6 +67,10 @@ Property `logGroupName` and `streamName` are mandatory and must be specified in 
 config.<br/>
 see [Working with log groups and log streams](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html)
 
+Log Group must exist.
+
+In case a Log Stream does not exist, it will be created (*since 1.0.13*).
+
 #### Authentication
 
 Class [software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/auth/credentials/DefaultCredentialsProvider.html)

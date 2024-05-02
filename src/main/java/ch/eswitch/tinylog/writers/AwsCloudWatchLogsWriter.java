@@ -141,22 +141,71 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
 
         try
         {
-            DescribeLogStreamsRequest logStreamRequest = DescribeLogStreamsRequest.builder().logGroupName(logGroupName)
-                                                                                            .logStreamNamePrefix(streamName).build();
-            DescribeLogStreamsResponse describeLogStreamsResponse = logsClient.describeLogStreams(logStreamRequest);
+            DescribeLogGroupsRequest logGroupsRequest = DescribeLogGroupsRequest.builder().logGroupNamePrefix(logGroupName).build();
+            DescribeLogGroupsResponse logGroupsResponse = logsClient.describeLogGroups(logGroupsRequest);
 
-            // Assume that a single stream is returned since a specific stream name was specified in the previous request.
-            LogStream logStream = describeLogStreamsResponse.logStreams().get(0);
+            if (logGroupsResponse.hasLogGroups())
+            {
+                if (!setSequenceToken())
+                {
+                    // log stream does not exist
+                    // try to create it
 
-            sequenceToken = logStream.uploadSequenceToken();
+                    CreateLogStreamRequest createLogStreamRequest = CreateLogStreamRequest.builder().logGroupName(logGroupName).logStreamName(streamName).build();
+                    CreateLogStreamResponse createLogStreamResponse = logsClient.createLogStream(createLogStreamRequest);
+
+                    if (createLogStreamResponse.sdkHttpResponse().isSuccessful())
+                    {
+                        if (!setSequenceToken())
+                        {
+                            String msg = String.format("log stream '%s' not found in log group name '%s'", streamName, logGroupName);
+                            System.err.println(AwsCloudWatchLogsWriter.class.getSimpleName() + ": " + msg);
+                            throw new Exception(msg);
+                        }
+                    }
+                    else
+                    {
+                        String msg = String.format("log stream '%s' could not be created in log group name '%s'", streamName, logGroupName);
+                        System.err.println(AwsCloudWatchLogsWriter.class.getSimpleName() + ": " + msg);
+                        throw new Exception(msg);
+                    }
+                }
+            }
+            else
+            {
+                // log group does not exist
+                String msg = String.format("log group '%s' not found", logGroupName);
+                System.err.println(AwsCloudWatchLogsWriter.class.getSimpleName() + ": " + msg);
+                throw new Exception(msg);
+            }
         }
         catch (CloudWatchException e)
         {
-            System.err.println(e.awsErrorDetails().errorMessage());
+            System.err.println(AwsCloudWatchLogsWriter.class.getSimpleName() + ": " + e + " - " + e.awsErrorDetails().errorMessage());
+            throw e;
         }
 
         cachedExecutor = Executors.newCachedThreadPool();
         singleExecutor = Executors.newSingleThreadExecutor();
+    }
+
+    private boolean setSequenceToken() throws Exception
+    {
+        DescribeLogStreamsRequest logStreamRequest = DescribeLogStreamsRequest.builder().logGroupName(logGroupName)
+                                                                                        .logStreamNamePrefix(streamName).build();
+        DescribeLogStreamsResponse describeLogStreamsResponse = logsClient.describeLogStreams(logStreamRequest);
+
+        if (describeLogStreamsResponse.logStreams() != null && describeLogStreamsResponse.logStreams().size() > 0)
+        {
+            // Assume that a single stream is returned since a specific stream name was specified in the previous request.
+            LogStream logStream = describeLogStreamsResponse.logStreams().get(0);
+
+            sequenceToken = logStream.uploadSequenceToken();
+
+            return true;
+        }
+
+        return false;
     }
 
     @Override

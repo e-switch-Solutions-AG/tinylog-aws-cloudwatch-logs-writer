@@ -1,4 +1,8 @@
 <%@ page import="ch.eswitch.tinylog.writers.AwsCloudWatchLogsJsonWriter" %>
+<%@ page import="com.google.gson.JsonElement" %>
+<%@ page import="com.google.gson.JsonObject" %>
+<%@ page import="com.google.gson.JsonParseException" %>
+<%@ page import="com.google.gson.JsonParser" %>
 <%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
 <%@ page import="software.amazon.awssdk.services.cloudwatchlogs.model.OutputLogEvent" %>
 <%@ page import="java.io.IOException" %>
@@ -7,35 +11,53 @@
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.Set" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<%!
+<%! public static final String JSON_TAG_MESSAGE = "message";
     public static final String CSS_STYLE_WHITE_SPACE_NOWRAP = "white-space: nowrap;";
     private int collapseCell = 0;
     private static final int MAX_TEXT_LENGTH = 300;
 
-    private void printColumn(JspWriter out, Long millis)
+    private void printFunctions(JspWriter out, String ref, boolean rowspan)
+    {
+        printColumn(out,
+                    "<i class=\"bi bi-clipboard\" onClick=\"copyData('" + ref + "')\"></i>", rowspan);
+        printColumn(out,
+                    "<i class=\"bi bi-download\" onClick=\"downloadData('" + ref + "')\"></i>", rowspan);
+    }
+
+    private void printColumn(JspWriter out, Long millis, boolean rowspan)
     {
         if (millis != null && millis > 0)
         {
             printColumn(out, DateTimeFormatter.ISO_DATE_TIME.format(Instant.ofEpochMilli(millis)
                                                                            .atZone(ZoneId.systemDefault())
                                                                            .toLocalDateTime()),
-                        CSS_STYLE_WHITE_SPACE_NOWRAP, null);
+                        CSS_STYLE_WHITE_SPACE_NOWRAP, null, rowspan, -1);
         }
     }
 
-    private void printColumn(JspWriter out, String text)
+    private void printColumn(JspWriter out, String text, boolean rowspan)
     {
-        printColumn(out, text, null, null);
+        printColumn(out, text, null, null, rowspan, -1);
     }
 
-    private void printColumn(JspWriter out, String text, String style, String ref)
+    private void printColumn(JspWriter out, String text, String style, String ref, boolean rowspan, int colspan)
     {
         try
         {
             out.print("<td");
+            if (rowspan)
+            {
+                out.print(" rowspan=\"2\"");
+            }
+            if (colspan > 1)
+            {
+                out.print(" colspan=\"" + colspan + "\"");
+            }
             if (style != null)
             {
                 out.print(" style=\"");
@@ -350,32 +372,99 @@
                     {
                         outFinal.println(combinedOutputLogEvents.size() + " Log Events found");
 
-                        outFinal.println("<table class=\"table table-striped\">\n"
-                                                 + "                    <thead>\n"
-                                                 + "                    <tr>\n"
-                                                 + "                        <th>Timestamp</th>\n"
-                                                 + "                        <th>Message</th>\n"
-                                                 + "                        <th></th>\n"
-                                                 + "                    </tr>\n"
-                                                 + "                    </thead>");
-
                         Iterator<OutputLogEvent> itEvents = combinedOutputLogEvents.iterator();
                         long refId = 0;
+                        boolean isJson = false;
+                        boolean printHeader = true;
                         while (itEvents.hasNext())
                         {
                             OutputLogEvent e = itEvents.next();
-
-                            outFinal.println("<tr>");
-
-                            printColumn(outFinal, e.timestamp());
-
                             String ref = writerName + refId++;
+                            try
+                            {
+                                JsonElement ele = JsonParser.parseString(e.message());
+                                if (ele.isJsonObject())
+                                {
+                                    JsonObject obj = ele.getAsJsonObject();
+                                    Set<Map.Entry<String, JsonElement>> entries = obj.entrySet();
+                                    isJson = true;
 
-                            printColumn(outFinal, StringEscapeUtils.escapeHtml4(e.message()), null, ref);
-                            printColumn(outFinal,
-                                        "<i class=\"bi bi-clipboard\" onClick=\"copyData('" + ref + "')\"></i>");
-                            printColumn(outFinal,
-                                        "<i class=\"bi bi-download\" onClick=\"downloadData('" + ref + "')\"></i>");
+                                    if (printHeader)
+                                    {
+                                        printHeader = false;
+
+                                        outFinal.println("<table class=\"table table-striped\">\n"
+                                                                 + "                    <thead>\n"
+                                                                 + "                    <tr>\n"
+                                                                 + "                        <th>Timestamp</th>\n");
+                                        for (Map.Entry<String, JsonElement> entry : entries)
+                                        {
+                                            if (entry.getKey()
+                                                     .equalsIgnoreCase(JSON_TAG_MESSAGE))
+                                            {
+                                                continue;
+                                            }
+
+                                            outFinal.println("                        <th>" + entry.getKey() + "</th>");
+                                        }
+                                        outFinal.println("                        <th></th>\n"
+                                                                 + "                    </tr>\n"
+                                                                 + "                    </thead>");
+
+                                        outFinal.println("<tr>");
+                                    }
+
+                                    printColumn(outFinal, e.timestamp(), true);
+                                    for (Map.Entry<String, JsonElement> entry : entries)
+                                    {
+                                        boolean isMessage = entry.getKey()
+                                                                 .equalsIgnoreCase(JSON_TAG_MESSAGE);
+
+                                        if (isMessage)
+                                        {
+                                            printFunctions(outFinal, ref, true);
+                                            outFinal.println("</tr>");
+                                            outFinal.println("<tr>");
+                                        }
+
+                                        printColumn(outFinal,
+                                                    StringEscapeUtils.escapeHtml4(entry.getValue()
+                                                                                       .getAsString()),
+                                                    null,
+                                                    isMessage ? ref : null,
+                                                    false,
+                                                    isMessage ? entries.size() - 1 : -1);
+                                    }
+
+                                }
+                            }
+                            catch (JsonParseException ex)
+                            {
+                            }
+
+                            if (!isJson)
+                            {
+                                if (printHeader)
+                                {
+                                    printHeader = false;
+
+                                    outFinal.println("<table class=\"table table-striped\">\n"
+                                                             + "                    <thead>\n"
+                                                             + "                    <tr>\n"
+                                                             + "                        <th>Timestamp</th>\n"
+                                                             + "                        <th>Message</th>\n"
+                                                             + "                        <th></th>\n"
+                                                             + "                    </tr>\n"
+                                                             + "                    </thead>");
+
+                                    outFinal.println("<tr>");
+                                }
+
+                                printColumn(outFinal, e.timestamp(), false);
+                                printColumn(outFinal, StringEscapeUtils.escapeHtml4(e.message()), null, ref, false, -1);
+
+                                printFunctions(outFinal, ref, false);
+                            }
 
                             outFinal.println("</tr>");
                         }
