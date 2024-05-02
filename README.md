@@ -25,14 +25,14 @@ Two different types of message formats are supported:
 <dependency>
     <groupId>ch.eswitch.tinylog.writers</groupId>
     <artifactId>tinylog-aws-cloudwatch-logs-writer</artifactId>
-    <version>1.0.12</version>
+    <version>1.0.13</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```
-compile(group: 'ch.eswitch.tinylog.writers', name: 'tinylog-aws-cloudwatch-logs-writer', version: '1.0.12', ext: 'pom')
+compile(group: 'ch.eswitch.tinylog.writers', name: 'tinylog-aws-cloudwatch-logs-writer', version: '1.0.13', ext: 'pom')
 ```
 
 ### Build Repository
@@ -66,6 +66,10 @@ see [Message Format - JSON Format](#JsonFormatID) for configuration
 Property `logGroupName` and `streamName` are mandatory and must be specified in tinylog configuration writer
 config.<br/>
 see [Working with log groups and log streams](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html)
+
+Log Group must exist.
+
+In case a Log Stream does not exist, it will be created (*since 1.0.13*).
 
 #### Authentication
 
