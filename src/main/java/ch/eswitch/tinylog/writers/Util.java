@@ -39,7 +39,7 @@ public class Util
     {
         final String msg = logEntry.getMessage();
 
-        final int totalParts = (int) Math.ceil((double) msg.length() / (double) AwsCloudWatchLogsWriter.MAX_MESSAGE_SIZE);
+        final int totalParts = (int) Math.floor((double) msg.length() / (double) AwsCloudWatchLogsWriter.MAX_MESSAGE_SIZE);
 
         ArrayList<LogEntry> logEntries = new ArrayList<>(totalParts);
         int start = 0;
