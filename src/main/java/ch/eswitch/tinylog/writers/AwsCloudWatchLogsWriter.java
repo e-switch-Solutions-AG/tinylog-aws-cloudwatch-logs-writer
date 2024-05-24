@@ -214,7 +214,7 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
         cachedExecutor.execute(() -> {
             try
             {
-                if (splitLargeMessages && logEntry.getMessage().length() > MAX_MESSAGE_SIZE)
+                if (splitLargeMessages && logEntry.getMessage() != null && logEntry.getMessage().length() > MAX_MESSAGE_SIZE)
                 {
                     List<LogEntry> logEntries = Util.splitLogEntries(logEntry);
                     final long ts = getTimestamp();
