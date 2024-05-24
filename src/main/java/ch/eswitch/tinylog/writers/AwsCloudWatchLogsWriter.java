@@ -46,7 +46,7 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
      * Log event size: 256 KB (maximum). This quota can't be changed.<br/>
      * see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html" target="_blank">CloudWatch Logs quotas</a>
      */
-    final static int MAX_MESSAGE_SIZE = 250 * 1024;
+    final static int MAX_MESSAGE_SIZE = 249 * 1024;
 
     /**
      * text which is appended to message, in case message is longer than {@link #MAX_MESSAGE_SIZE}
