@@ -76,7 +76,7 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
      * @param logEntry LogEntry with information for token
      * @param builder Target for the created the JSON object
      */
-    private void addJsonObject(final LogEntry logEntry, final StringBuilder builder)
+    private void addJsonObject(LogEntry logEntry, final StringBuilder builder)
     {
         if (!lineDelimitedJson)
         {
@@ -90,6 +90,10 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
         {
             builder.append(NEW_LINE);
         }
+
+        // make sure logEntry has context
+        if(logEntry.getContext() == null)
+            logEntry = Util.copyLogEntry(logEntry, logEntry.getMessage(), -1, -1);
 
         Token[] tokenEntries = fields.values()
                 .toArray(new Token[0]);

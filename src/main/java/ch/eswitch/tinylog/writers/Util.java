@@ -68,8 +68,12 @@ public class Util
      */
     static LogEntry copyLogEntry(LogEntry logEntry, String msgPart, int part, int totalParts)
     {
-        Map<String, String> context = new HashMap<>(logEntry.getContext());
-        context.put(AwsCloudWatchLogsWriter.CONTEXT_KEY_PART, String.format(AwsCloudWatchLogsWriter.CONTEXT_PART_FORMAT, part + 1, totalParts));
+        Map<String, String> context = new HashMap<>();
+        if(logEntry.getContext() != null)
+            context.putAll(logEntry.getContext());
+
+        if(part > 0 && totalParts > 0)
+            context.put(AwsCloudWatchLogsWriter.CONTEXT_KEY_PART, String.format(AwsCloudWatchLogsWriter.CONTEXT_PART_FORMAT, part + 1, totalParts));
 
         return new LogEntry(logEntry.getTimestamp(),
                             logEntry.getThread(),
