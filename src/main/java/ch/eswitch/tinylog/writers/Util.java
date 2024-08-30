@@ -72,7 +72,7 @@ public class Util
         if(logEntry.getContext() != null)
             context.putAll(logEntry.getContext());
 
-        if(part > 0 && totalParts > 0)
+        if(part >= 0 && totalParts >= 0)
             context.put(AwsCloudWatchLogsWriter.CONTEXT_KEY_PART, String.format(AwsCloudWatchLogsWriter.CONTEXT_PART_FORMAT, part + 1, totalParts));
 
         return new LogEntry(logEntry.getTimestamp(),
