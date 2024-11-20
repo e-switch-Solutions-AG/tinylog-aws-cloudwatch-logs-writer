@@ -94,7 +94,8 @@
   "ignoreSettings": {
     "adminOnly": false,
     "reasonRequired": false,
-    "disregardFilesystemIgnores": false
+    "disregardFilesystemIgnores": false,
+    "autoApproveIgnores": false
   },
   "summary": "No known vulnerabilities",
   "filesystemPolicy": true,
@@ -102,5 +103,5 @@
   "projectName": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer",
   "displayTargetFile": "pom.xml",
   "hasUnknownVersions": false,
-  "path": "/codebuild/output/src2734344244/src/codestar-connections.eu-central-1.amazonaws.com/git-http/140096976191/eu-central-1/9665f533-81dd-446a-8dba-07cd6148e8c2/e-switch-Solutions-AG/tinylog-aws-cloudwatch-logs-writer"
+  "path": "/codebuild/output/src899253547/src/codestar-connections.eu-central-1.amazonaws.com/git-http/140096976191/eu-central-1/9665f533-81dd-446a-8dba-07cd6148e8c2/e-switch-Solutions-AG/tinylog-aws-cloudwatch-logs-writer"
 }
