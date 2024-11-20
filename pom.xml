@@ -6,7 +6,7 @@
 
     <groupId>ch.eswitch.tinylog.writers</groupId>
     <artifactId>tinylog-aws-cloudwatch-logs-writer</artifactId>
-    <version>1.0.17${artifact.classifier}</version>
+    <version>1.0.18${artifact.classifier}</version>
 
     <packaging>jar</packaging>
 
@@ -22,8 +22,8 @@
         <timestamp>${maven.build.timestamp}</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <tomcat.version>9.0.93</tomcat.version>
-        <aws.sdk.version>2.27.14</aws.sdk.version>
+        <tomcat.version>9.0.97</tomcat.version>
+        <aws.sdk.version>2.29.17</aws.sdk.version>
     </properties>
 
     <profiles>
@@ -42,7 +42,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.10.0</version>
+                        <version>3.11.1</version>
                         <executions>
                             <execution>
                                 <id>generate-javadocs</id>
@@ -122,7 +122,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.5.0</version>
+                        <version>3.5.2</version>
                     </plugin>
                     <!-- https://github.com/snyk/snyk-maven-plugin -->
                     <!-- https://docs.snyk.io/integrations/ci-cd-integrations/maven-plugin-integration -->
@@ -204,7 +204,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.11.0</version>
+            <version>5.11.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -265,7 +265,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.16.0</version>
+            <version>3.17.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -284,7 +284,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>3.8.1</version>
                 <executions>
                     <execution>
                         <phase>install</phase>
