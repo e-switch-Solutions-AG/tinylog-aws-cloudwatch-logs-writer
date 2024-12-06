@@ -7,11 +7,13 @@ import software.amazon.awssdk.services.cloudwatch.model.CloudWatchException;
 import software.amazon.awssdk.services.cloudwatchlogs.CloudWatchLogsClient;
 import software.amazon.awssdk.services.cloudwatchlogs.model.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * tinylog 2 AWS CloudWatch Logs Writer based on Amazon SDK for Java 2.x<br/>
@@ -40,42 +42,38 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
      * property name in tinylog configuration for {@link #streamName}
      */
     public static final String PROPERTY_STREAM_NAME = "streamName";
-
+    /**
+     * writer property prefix for {@link software.amazon.awssdk.auth.credentials.SystemPropertyCredentialsProvider}<br/>
+     */
+    public static final String PROPERTY_AWS = "aws.";
     /**
      * maximum message size<br/>
      * Log event size: 256 KB (maximum). This quota can't be changed.<br/>
      * see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html" target="_blank">CloudWatch Logs quotas</a>
      */
     final static int MAX_MESSAGE_SIZE = 249 * 1024;
-
     /**
      * text which is appended to message, in case message is longer than {@link #MAX_MESSAGE_SIZE}
      */
     static final String MESSAGE_TRUNCATED = "... (total message size was %,d)";
-
     /**
      * JSON 'message' attribute name
      */
     static final String JSON_MESSAGE_ATTRIBUTE = "message";
-
     /**
      * JSON 'context' attribute name
      */
     static final String JSON_CONTEXT_ATTRIBUTE = "context";
-
     /**
      * key in log entry context for partial messages<br/>
      * {@link LogEntry#getContext()}
      */
     static final String CONTEXT_KEY_PART = "part";
-
     /**
      * format for value of {@value #CONTEXT_KEY_PART}
      */
     static final String CONTEXT_PART_FORMAT = "[%d/%d]";
-
-    private final CloudWatchLogsClient logsClient;
-
+    private static long lastTimestamp = 0;
     /**
      * The name of the log group<br/>
      * see {@link PutLogEventsRequest#logGroupName()}
@@ -86,24 +84,20 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
      * see {@link PutLogEventsRequest#logStreamName()}
      */
     public String streamName;
-
     /**
      * Boolean property to control large messages<br/>
      * If this property is set, large messages (&gt; 256kB) are split into several messages<br>
      * If this property is not set, large messages are truncated to allowed size (256kB)
      */
     public boolean splitLargeMessages;
-
-    /**
-     * writer property prefix for {@link software.amazon.awssdk.auth.credentials.SystemPropertyCredentialsProvider}<br/>
-     */
-    public static final String PROPERTY_AWS = "aws.";
-
+    private ExecutorService cachedExecutor;
+    private ExecutorService singleExecutor;
+    private CloudWatchLogsClient logsClient;
     private String sequenceToken;
+    private AtomicBoolean initLogsClient = new AtomicBoolean(false);
+    private AtomicBoolean initDone = new AtomicBoolean(false);
 
-    private final ExecutorService cachedExecutor;
-    private final ExecutorService singleExecutor;
-    private static long lastTimestamp = 0;
+    private ArrayList<LogEntry> intialLogMessages = new ArrayList<>();
 
     /**
      * @param properties Configuration for writer
@@ -134,10 +128,33 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
                 System.setProperty(key, value);
             }
         });
+    }
 
+    private synchronized static long getTimestamp()
+    {
+        long ts = System.currentTimeMillis();
+        while (ts <= lastTimestamp)
+        {
+            ts++;
+        }
+
+        lastTimestamp = ts;
+
+        return ts;
+    }
+
+    private void initLogsClient() throws Exception
+    {
         // example
         // https://docs.aws.amazon.com/code-samples/latest/catalog/javav2-cloudwatch-src-main-java-com-example-cloudwatch-PutLogEvents.java.html
-        logsClient = CloudWatchLogsClient.builder().credentialsProvider(DefaultCredentialsProvider.create()).build();
+        try
+        {
+            logsClient = CloudWatchLogsClient.builder().credentialsProvider(DefaultCredentialsProvider.create()).build();
+        }
+        catch (Throwable e)
+        {
+            e.printStackTrace();
+        }
 
         try
         {
@@ -187,6 +204,8 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
 
         cachedExecutor = Executors.newCachedThreadPool();
         singleExecutor = Executors.newSingleThreadExecutor();
+
+        initDone.set(true);
     }
 
     private boolean setSequenceToken() throws Exception
@@ -211,6 +230,47 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
     @Override
     public void write(final LogEntry logEntry) throws Exception
     {
+        if (initLogsClient.compareAndSet(false, true))
+        {
+            initLogsClient();
+        }
+
+        if (!initDone.get())
+        {
+            synchronized (intialLogMessages)
+            {
+                intialLogMessages.add(logEntry);
+            }
+        }
+        else
+        {
+            if (intialLogMessages != null)
+            {
+                synchronized (intialLogMessages)
+                {
+                    if (intialLogMessages != null)
+                    {
+                        intialLogMessages.forEach(e -> {
+                            try
+                            {
+                                writeLogEntry(e);
+                            }
+                            catch (Exception ex)
+                            {
+                                ex.printStackTrace();
+                            }
+                        });
+                        intialLogMessages = null;
+                    }
+                }
+            }
+
+            writeLogEntry(logEntry);
+        }
+    }
+
+    public void writeLogEntry(final LogEntry logEntry) throws Exception
+    {
         cachedExecutor.execute(() -> {
             try
             {
@@ -231,19 +291,7 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
                 System.err.println(e.awsErrorDetails().errorMessage());
             }
         });
-    }
 
-    private synchronized static long getTimestamp()
-    {
-        long ts = System.currentTimeMillis();
-        while (ts <= lastTimestamp)
-        {
-            ts++;
-        }
-
-        lastTimestamp = ts;
-
-        return ts;
     }
 
     private void putLogEntry(LogEntry logEntry, long timestamp)

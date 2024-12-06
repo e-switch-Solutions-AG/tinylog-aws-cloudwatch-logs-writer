@@ -76,7 +76,7 @@ public class AWSCloudWatchLogsTest
         // wait until all is processed in AWS CloudWatch
         try
         {
-            Thread.sleep(3000);
+            Thread.sleep(10000);
         }
         catch (InterruptedException ignored)
         {
@@ -145,7 +145,7 @@ public class AWSCloudWatchLogsTest
 
             Assertions.assertNotNull(combinedOutputLogEvents, "combinedOutputLogEvents are missing");
 
-            Assertions.assertTrue(combinedOutputLogEvents.size() >= 2, "combined outputLogEvents");
+            Assertions.assertTrue(combinedOutputLogEvents.size() >= 2, "less than 2 combined outputLogEvents");
 
             for (OutputLogEvent e : combinedOutputLogEvents)
             {

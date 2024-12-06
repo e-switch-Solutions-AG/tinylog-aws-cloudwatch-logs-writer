@@ -6,7 +6,7 @@
 
     <groupId>ch.eswitch.tinylog.writers</groupId>
     <artifactId>tinylog-aws-cloudwatch-logs-writer</artifactId>
-    <version>1.0.18${artifact.classifier}</version>
+    <version>1.0.19${artifact.classifier}</version>
 
     <packaging>jar</packaging>
 
@@ -23,7 +23,7 @@
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <tomcat.version>9.0.97</tomcat.version>
-        <aws.sdk.version>2.29.17</aws.sdk.version>
+        <aws.sdk.version>2.29.29</aws.sdk.version>
     </properties>
 
     <profiles>
@@ -272,6 +272,14 @@
             <artifactId>gson</artifactId>
             <version>2.11.0</version>
         </dependency>
+        <!--
+        <dependency>
+            <groupId>org.tinylog</groupId>
+            <artifactId>slf4j-tinylog</artifactId>
+            <version>2.7.0</version>
+            <scope>test</scope>
+        </dependency>
+        -->
     </dependencies>
 
     <build>
