@@ -286,6 +286,11 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
                     putLogEntry(logEntry, System.currentTimeMillis());
                 }
             }
+            catch (InvalidParameterException e)
+            {
+                System.out.println(AwsCloudWatchLogsWriter.class.getSimpleName() + ".writeLogEntry: " + e + ", message size: " + logEntry.getMessage().length() + ", message: " + logEntry.getMessage());
+                System.err.println(e.awsErrorDetails().errorMessage());
+            }
             catch (CloudWatchException e)
             {
                 System.err.println(e.awsErrorDetails().errorMessage());
@@ -308,15 +313,27 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
         InputLogEvent inputLogEvent = InputLogEvent.builder().message(msg).timestamp(timestamp).build();
 
         singleExecutor.execute(() -> {
-            // Specify the request parameters.
-            // Sequence token is required so that the log can be written to the
-            // latest location in the stream.
-            PutLogEventsRequest putLogEventsRequest = PutLogEventsRequest.builder().logEvents(Collections.singletonList(inputLogEvent))
-                                                                                   .logGroupName(logGroupName).logStreamName(streamName)
-                                                                                   .sequenceToken(sequenceToken).build();
+            try
+            {
+                // Specify the request parameters.
+                // Sequence token is required so that the log can be written to the
+                // latest location in the stream.
+                PutLogEventsRequest putLogEventsRequest = PutLogEventsRequest.builder().logEvents(Collections.singletonList(inputLogEvent))
+                                                                                       .logGroupName(logGroupName).logStreamName(streamName)
+                                                                                       .sequenceToken(sequenceToken).build();
 
-            PutLogEventsResponse putLogEventsResponse = logsClient.putLogEvents(putLogEventsRequest);
-            sequenceToken = putLogEventsResponse.nextSequenceToken();
+                PutLogEventsResponse putLogEventsResponse = logsClient.putLogEvents(putLogEventsRequest);
+                sequenceToken = putLogEventsResponse.nextSequenceToken();
+            }
+            catch (InvalidParameterException e)
+            {
+                System.out.println(AwsCloudWatchLogsWriter.class.getSimpleName() + ".putLogEntry: " + e + ", message size: " + logEntry.getMessage().length() + ", message: " + logEntry.getMessage());
+                System.err.println(e.awsErrorDetails().errorMessage());
+            }
+            catch (CloudWatchException e)
+            {
+                System.err.println(e.awsErrorDetails().errorMessage());
+            }
         });
     }
 
