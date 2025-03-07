@@ -57,14 +57,19 @@ phases:
       - git status
       - git add README.md
       - git status
-      - git commit -m "README.md" -m "AWS CodeBuild, build number $CODEBUILD_BUILD_NUMBER" -m "$CODEBUILD_BUILD_ARN"
-      - git tag v$PROJECT_VERSION
-      - git status
-      - echo GITHUB_ACCESS_TOKEN $GITHUB_ACCESS_TOKEN
-      - git remote add github_eswitch https://e-switch-ch:$GITHUB_ACCESS_TOKEN@github.com/e-switch-Solutions-AG/tinylog-aws-cloudwatch-logs-writer
-      - git remote -v
-      - git push github_eswitch HEAD:main --force
-      - git push --tags github_eswitch
+      - |
+         if git status | grep -q "README.md" > /dev/null; then
+            git commit -m "README.md" -m "AWS CodeBuild, build number $CODEBUILD_BUILD_NUMBER" -m "$CODEBUILD_BUILD_ARN"
+            git tag v$PROJECT_VERSION
+            git status
+            echo GITHUB_ACCESS_TOKEN $GITHUB_ACCESS_TOKEN
+            git remote add github_eswitch https://e-switch-ch:$GITHUB_ACCESS_TOKEN@github.com/e-switch-Solutions-AG/tinylog-aws-cloudwatch-logs-writer
+            git remote -v
+            git push github_eswitch HEAD:main --force
+            git push --tags github_eswitch
+         else
+            echo nothing to commit
+         fi
     finally:
       - echo $(date +"%F %T.%N") post_build phase ended
 
