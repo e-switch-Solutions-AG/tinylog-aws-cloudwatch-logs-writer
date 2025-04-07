@@ -23,7 +23,7 @@
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <tomcat.version>9.0.100</tomcat.version>
-        <aws.sdk.version>2.30.31</aws.sdk.version>
+        <aws.sdk.version>2.31.16</aws.sdk.version>
     </properties>
 
     <profiles>
