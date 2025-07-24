@@ -152,6 +152,17 @@
                                 <arg>--fail-on=all</arg>
                                 <arg>--json-file-output=snyk-result.json</arg>
                             </args>
+                            <!--
+                            set snyk CLI version to avoid error
+                            snyk-cli/1.1298.1/snyk-linux: /lib64/libm.so.6: version `GLIBC_2.27' not found / snyk-cli/1.1298.1/snyk-linux: /lib64/libc.so.6: version `GLIBC_2.28' not found
+                            on AWS CodeBuild
+                            see:
+                                https://updates.snyk.io/upcoming-changes-to-snyk-cli-glibc-requirements-for-linux-environments-316315
+                                https://github.com/snyk/cli/releases/tag/v1.1298.0
+                            -->
+                            <cli>
+                                <version>1.1297.3</version>
+                            </cli>
                         </configuration>
                     </plugin>
                 </plugins>
