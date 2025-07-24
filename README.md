@@ -25,14 +25,14 @@ Two different types of message formats are supported:
 <dependency>
     <groupId>ch.eswitch.tinylog.writers</groupId>
     <artifactId>tinylog-aws-cloudwatch-logs-writer</artifactId>
-    <version>1.0.22</version>
+    <version>1.0.23</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```
-compile(group: 'ch.eswitch.tinylog.writers', name: 'tinylog-aws-cloudwatch-logs-writer', version: '1.0.22', ext: 'pom')
+compile(group: 'ch.eswitch.tinylog.writers', name: 'tinylog-aws-cloudwatch-logs-writer', version: '1.0.23', ext: 'pom')
 ```
 
 ### Build Repository
