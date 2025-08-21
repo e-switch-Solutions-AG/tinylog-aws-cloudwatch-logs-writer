@@ -68,7 +68,7 @@
                             <execution>
                                 <configuration>
                                     <classifier>javadoc</classifier>
-                                    <classesDirectory>${project.build.directory}/site/apidocs</classesDirectory>
+                                    <classesDirectory>${project.build.directory}/reports/apidocs</classesDirectory>
                                     <outputDirectory>${project.build.directory}</outputDirectory>
                                 </configuration>
                                 <id>pack-javadoc</id>
