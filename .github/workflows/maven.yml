@@ -34,7 +34,7 @@ jobs:
     - name: ESWITCH_ARTIFACOTRY_USERNAME
       run: echo ESWITCH_ARTIFACOTRY_USERNAME $ESWITCH_ARTIFACOTRY_USERNAME
     - name: PROJECT_VERSION
-      run: echo "$(mvn org.apache.maven.plugins:maven-help-plugin:3.4.0:evaluate -Dexpression=project.version -q -DforceStdout)" >> $PROJECT_VERSION
+      run: echo "PROJECT_VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.4.0:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
     - name: PROJECT_VERSION
       run: echo PROJECT_VERSION $PROJECT_VERSION
     - name: Build with Maven
