@@ -29,9 +29,7 @@ jobs:
       run: |
         echo ESWITCH_ARTIFACOTRY_USERNAME: $ESWITCH_ARTIFACOTRY_USERNAME
         echo PROJECT_VERSION: $PROJECT_VERSION
-        echo run_attempt: ${{ github.run_attempt }}
-        echo 'run_attempt: ${{ github.run_attempt }}'
-        echo 'GITHUB_RUN_ATTEMPT: $GITHUB_RUN_ATTEMPT'
+        echo run_attempt: #${{ github.run_attempt }}
     - name: Build with Maven
       run: mvn --no-transfer-progress -s settings.xml clean deploy
     - name: Commit snyk-result
@@ -41,7 +39,7 @@ jobs:
         author_email: dev@e-switch.ch
         message: |
           snyk-result.json
-          GitHub run ${{ github.run_attempt }}
+          GitHub run #${{ github.run_attempt }}
         add: 'snyk-result.json'
     - name: Commit README.md
       uses: EndBug/add-and-commit@v9
@@ -50,7 +48,7 @@ jobs:
         author_email: dev@e-switch.ch
         message: |
           README.md
-          GitHub run ${{ github.run_attempt }}
+          GitHub run #${{ github.run_attempt }}
         add: 'README.md'
         tag: 'v${{ env.PROJECT_VERSION }}'
         tag_push: '--force'
