@@ -38,7 +38,7 @@ jobs:
         author_email: dev@e-switch.ch
         message: |
           snyk-result.json
-          GitHub run $GITHUB_RUN_ATTEMPT
+          GitHub run ${{env.GITHUB_RUN_ATTEMPT}}
         add: 'snyk-result.json'
 
 
