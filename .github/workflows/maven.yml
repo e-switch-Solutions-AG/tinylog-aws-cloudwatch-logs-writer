@@ -34,7 +34,11 @@ jobs:
     - name: Commit snyk-result
       uses: EndBug/add-and-commit@v9
       with:
-        message: 'snyk-result.json\nGitHub run $GITHUB_RUN_ATTEMPT'
+        author_name: e-switch Solutions Developer
+        author_email: dev@e-switch.ch
+        message: |
+          snyk-result.json
+          GitHub run $GITHUB_RUN_ATTEMPT
         add: 'snyk-result.json'
 
 
