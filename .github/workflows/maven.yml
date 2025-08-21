@@ -21,7 +21,7 @@ jobs:
       ESWITCH_ARTIFACOTRY_PASSWORD: ${{ secrets.ESWITCH_ARTIFACOTRY_PASSWORD }}
       CLOUDWATCH_ACCESS_KEY_ID: ${{ secrets.CLOUDWATCH_ACCESS_KEY_ID }}
       CLOUDWATCH_SECRET_ACCESS_KEY: ${{ secrets.CLOUDWATCH_SECRET_ACCESS_KEY }}
-    
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
     steps:
     - uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
     - name: ESWITCH_ARTIFACOTRY_USERNAME
       run: echo ESWITCH_ARTIFACOTRY_USERNAME $ESWITCH_ARTIFACOTRY_USERNAME
     - name: PROJECT_VERSION
-      run: PROJECT_VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.4.0:evaluate -Dexpression=project.version -q -DforceStdout)
+      run: echo "$(mvn org.apache.maven.plugins:maven-help-plugin:3.4.0:evaluate -Dexpression=project.version -q -DforceStdout)" >> $PROJECT_VERSION
     - name: PROJECT_VERSION
       run: echo PROJECT_VERSION $PROJECT_VERSION
     - name: Build with Maven
