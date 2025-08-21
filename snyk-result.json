@@ -104,10 +104,10 @@
     },
     "pkgs": [
       {
-        "id": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.24",
+        "id": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.25",
         "info": {
           "name": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer",
-          "version": "1.0.24"
+          "version": "1.0.25"
         }
       },
       {
@@ -522,7 +522,7 @@
       "nodes": [
         {
           "nodeId": "root-node",
-          "pkgId": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.24",
+          "pkgId": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.25",
           "deps": [
             {
               "nodeId": "org.tinylog:tinylog-api:jar:2.7.0:compile"
