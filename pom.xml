@@ -6,7 +6,7 @@
 
     <groupId>ch.eswitch.tinylog.writers</groupId>
     <artifactId>tinylog-aws-cloudwatch-logs-writer</artifactId>
-    <version>1.0.23${artifact.classifier}</version>
+    <version>1.0.24${artifact.classifier}</version>
 
     <packaging>jar</packaging>
 
@@ -22,8 +22,8 @@
         <timestamp>${maven.build.timestamp}</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <tomcat.version>9.0.107</tomcat.version>
-        <aws.sdk.version>2.32.7</aws.sdk.version>
+        <tomcat.version>9.0.108</tomcat.version>
+        <aws.sdk.version>2.32.26</aws.sdk.version>
     </properties>
 
     <profiles>
@@ -42,7 +42,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.11.2</version>
+                        <version>3.11.3</version>
                         <executions>
                             <execution>
                                 <id>generate-javadocs</id>
