@@ -9,19 +9,21 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
+      # Organization secrets
       ESWITCH_ARTIFACOTRY_USERNAME: ${{ secrets.ESWITCH_ARTIFACOTRY_USERNAME }}
       ESWITCH_ARTIFACOTRY_PASSWORD: ${{ secrets.ESWITCH_ARTIFACOTRY_PASSWORD }}
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      # Repository secrets
       CLOUDWATCH_ACCESS_KEY_ID: ${{ secrets.CLOUDWATCH_ACCESS_KEY_ID }}
       CLOUDWATCH_SECRET_ACCESS_KEY: ${{ secrets.CLOUDWATCH_SECRET_ACCESS_KEY }}
-      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
+    - uses: actions/checkout@v5
+    - name: Set up JDK
+      uses: actions/setup-java@v5
       with:
-        java-version: '17'
-        distribution: 'temurin'
+        java-version: '24'
+        distribution: 'zulu'
         cache: maven
     - name: set PROJECT_VERSION
       run: echo "PROJECT_VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.4.0:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
@@ -29,7 +31,7 @@ jobs:
       run: |
         echo ESWITCH_ARTIFACOTRY_USERNAME: $ESWITCH_ARTIFACOTRY_USERNAME
         echo PROJECT_VERSION: $PROJECT_VERSION
-        echo run_attempt: #${{ github.run_attempt }}
+        echo run_attempt: ${{ github.run_attempt }}
     - name: Build with Maven
       run: mvn --no-transfer-progress -s settings.xml clean deploy
     - name: Commit snyk-result
