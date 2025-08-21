@@ -27,8 +27,8 @@ jobs:
       run: echo "PROJECT_VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.4.0:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
     - name: env variables
       run: |
-        echo ESWITCH_ARTIFACOTRY_USERNAME $ESWITCH_ARTIFACOTRY_USERNAME
-        echo PROJECT_VERSION $PROJECT_VERSION
+        echo ESWITCH_ARTIFACOTRY_USERNAME: $ESWITCH_ARTIFACOTRY_USERNAME
+        echo PROJECT_VERSION: $PROJECT_VERSION
     - name: Build with Maven
       run: mvn --no-transfer-progress -s settings.xml clean deploy
     - name: Commit snyk-result
@@ -38,9 +38,19 @@ jobs:
         author_email: dev@e-switch.ch
         message: |
           snyk-result.json
-          GitHub run ${{env.GITHUB_RUN_ATTEMPT}}
+          GitHub run ${{github.GITHUB_RUN_ATTEMPT}}
         add: 'snyk-result.json'
-
+    - name: Commit README.md
+      uses: EndBug/add-and-commit@v9
+      with:
+        author_name: e-switch Solutions Developer
+        author_email: dev@e-switch.ch
+        tag: 'tag v${{env.PROJECT_VERSION}}'
+        tag_push: '--force'
+        message: |
+          README.md
+          GitHub run ${{github.GITHUB_RUN_ATTEMPT}}
+        add: 'README.md'
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
