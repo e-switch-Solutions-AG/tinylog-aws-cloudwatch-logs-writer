@@ -104,10 +104,10 @@
     },
     "pkgs": [
       {
-        "id": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.25",
+        "id": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.26",
         "info": {
           "name": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer",
-          "version": "1.0.25"
+          "version": "1.0.26"
         }
       },
       {
@@ -125,24 +125,24 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:cloudwatchlogs@2.32.26",
+        "id": "software.amazon.awssdk:cloudwatchlogs@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:cloudwatchlogs",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:apache-client@2.32.26",
+        "id": "software.amazon.awssdk:apache-client@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:apache-client",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:cloudwatch@2.32.26",
+        "id": "software.amazon.awssdk:cloudwatch@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:cloudwatch",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
@@ -209,129 +209,129 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:aws-json-protocol@2.32.26",
+        "id": "software.amazon.awssdk:aws-json-protocol@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:aws-json-protocol",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:protocol-core@2.32.26",
+        "id": "software.amazon.awssdk:protocol-core@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:protocol-core",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:http-auth-aws@2.32.26",
+        "id": "software.amazon.awssdk:http-auth-aws@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:http-auth-aws",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:sdk-core@2.32.26",
+        "id": "software.amazon.awssdk:sdk-core@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:sdk-core",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:auth@2.32.26",
+        "id": "software.amazon.awssdk:auth@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:auth",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:http-auth-spi@2.32.26",
+        "id": "software.amazon.awssdk:http-auth-spi@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:http-auth-spi",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:http-auth@2.32.26",
+        "id": "software.amazon.awssdk:http-auth@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:http-auth",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:identity-spi@2.32.26",
+        "id": "software.amazon.awssdk:identity-spi@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:identity-spi",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:http-client-spi@2.32.26",
+        "id": "software.amazon.awssdk:http-client-spi@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:http-client-spi",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:regions@2.32.26",
+        "id": "software.amazon.awssdk:regions@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:regions",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:annotations@2.32.26",
+        "id": "software.amazon.awssdk:annotations@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:annotations",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:utils@2.32.26",
+        "id": "software.amazon.awssdk:utils@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:utils",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:aws-core@2.32.26",
+        "id": "software.amazon.awssdk:aws-core@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:aws-core",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:metrics-spi@2.32.26",
+        "id": "software.amazon.awssdk:metrics-spi@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:metrics-spi",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:json-utils@2.32.26",
+        "id": "software.amazon.awssdk:json-utils@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:json-utils",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:endpoints-spi@2.32.26",
+        "id": "software.amazon.awssdk:endpoints-spi@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:endpoints-spi",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:retries-spi@2.32.26",
+        "id": "software.amazon.awssdk:retries-spi@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:retries-spi",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:netty-nio-client@2.32.26",
+        "id": "software.amazon.awssdk:netty-nio-client@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:netty-nio-client",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
@@ -356,10 +356,10 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:aws-query-protocol@2.32.26",
+        "id": "software.amazon.awssdk:aws-query-protocol@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:aws-query-protocol",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
@@ -377,38 +377,38 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:third-party-jackson-core@2.32.26",
+        "id": "software.amazon.awssdk:third-party-jackson-core@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:third-party-jackson-core",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:checksums-spi@2.32.26",
+        "id": "software.amazon.awssdk:checksums-spi@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:checksums-spi",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:checksums@2.32.26",
+        "id": "software.amazon.awssdk:checksums@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:checksums",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:profiles@2.32.26",
+        "id": "software.amazon.awssdk:profiles@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:profiles",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:retries@2.32.26",
+        "id": "software.amazon.awssdk:retries@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:retries",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
@@ -426,10 +426,10 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:http-auth-aws-eventstream@2.32.26",
+        "id": "software.amazon.awssdk:http-auth-aws-eventstream@2.33.0",
         "info": {
           "name": "software.amazon.awssdk:http-auth-aws-eventstream",
-          "version": "2.32.26"
+          "version": "2.33.0"
         }
       },
       {
@@ -522,7 +522,7 @@
       "nodes": [
         {
           "nodeId": "root-node",
-          "pkgId": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.25",
+          "pkgId": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.26",
           "deps": [
             {
               "nodeId": "org.tinylog:tinylog-api:jar:2.7.0:compile"
@@ -531,13 +531,13 @@
               "nodeId": "org.tinylog:tinylog-impl:jar:2.7.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:cloudwatchlogs:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:cloudwatchlogs:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:apache-client:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:apache-client:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:cloudwatch:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:cloudwatch:jar:2.33.0:compile"
             },
             {
               "nodeId": "org.glassfish:jakarta.json:jar:2.0.1:compile"
@@ -579,68 +579,68 @@
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:cloudwatchlogs:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:cloudwatchlogs@2.32.26",
+          "nodeId": "software.amazon.awssdk:cloudwatchlogs:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:cloudwatchlogs@2.33.0",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:aws-json-protocol:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:aws-json-protocol:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:protocol-core:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:protocol-core:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:http-auth-aws:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:http-auth-aws:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:sdk-core:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:sdk-core:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:auth:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:auth:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:http-auth-spi:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:http-auth-spi:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:http-auth:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:http-auth:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:identity-spi:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:identity-spi:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:http-client-spi:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:http-client-spi:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:regions:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:regions:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:annotations:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:annotations:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:utils:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:utils:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:aws-core:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:aws-core:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:metrics-spi:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:metrics-spi:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:json-utils:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:json-utils:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:endpoints-spi:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:endpoints-spi:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:retries-spi:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:retries-spi:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:netty-nio-client:jar:2.32.26:runtime"
+              "nodeId": "software.amazon.awssdk:netty-nio-client:jar:2.33.0:runtime"
             }
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:apache-client:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:apache-client@2.32.26",
+          "nodeId": "software.amazon.awssdk:apache-client:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:apache-client@2.33.0",
           "deps": [
             {
               "nodeId": "org.apache.httpcomponents:httpclient:jar:4.5.13:compile"
@@ -654,11 +654,11 @@
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:cloudwatch:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:cloudwatch@2.32.26",
+          "nodeId": "software.amazon.awssdk:cloudwatch:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:cloudwatch@2.33.0",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:aws-query-protocol:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:aws-query-protocol:jar:2.33.0:compile"
             }
           ]
         },
@@ -716,40 +716,40 @@
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:aws-json-protocol:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:aws-json-protocol@2.32.26",
+          "nodeId": "software.amazon.awssdk:aws-json-protocol:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:aws-json-protocol@2.33.0",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:third-party-jackson-core:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:third-party-jackson-core:jar:2.33.0:compile"
             }
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:protocol-core:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:protocol-core@2.32.26",
+          "nodeId": "software.amazon.awssdk:protocol-core:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:protocol-core@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:http-auth-aws:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:http-auth-aws@2.32.26",
+          "nodeId": "software.amazon.awssdk:http-auth-aws:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:http-auth-aws@2.33.0",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:checksums-spi:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:checksums-spi:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:checksums:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:checksums:jar:2.33.0:compile"
             }
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:sdk-core:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:sdk-core@2.32.26",
+          "nodeId": "software.amazon.awssdk:sdk-core:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:sdk-core@2.33.0",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:profiles:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:profiles:jar:2.33.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:retries:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:retries:jar:2.33.0:compile"
             },
             {
               "nodeId": "org.slf4j:slf4j-api:jar:1.7.36:compile"
@@ -760,11 +760,11 @@
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:auth:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:auth@2.32.26",
+          "nodeId": "software.amazon.awssdk:auth:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:auth@2.33.0",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:http-auth-aws-eventstream:jar:2.32.26:compile"
+              "nodeId": "software.amazon.awssdk:http-auth-aws-eventstream:jar:2.33.0:compile"
             },
             {
               "nodeId": "software.amazon.eventstream:eventstream:jar:1.0.1:compile"
@@ -772,68 +772,68 @@
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:http-auth-spi:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:http-auth-spi@2.32.26",
+          "nodeId": "software.amazon.awssdk:http-auth-spi:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:http-auth-spi@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:http-auth:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:http-auth@2.32.26",
+          "nodeId": "software.amazon.awssdk:http-auth:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:http-auth@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:identity-spi:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:identity-spi@2.32.26",
+          "nodeId": "software.amazon.awssdk:identity-spi:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:identity-spi@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:http-client-spi:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:http-client-spi@2.32.26",
+          "nodeId": "software.amazon.awssdk:http-client-spi:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:http-client-spi@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:regions:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:regions@2.32.26",
+          "nodeId": "software.amazon.awssdk:regions:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:regions@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:annotations:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:annotations@2.32.26",
+          "nodeId": "software.amazon.awssdk:annotations:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:annotations@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:utils:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:utils@2.32.26",
+          "nodeId": "software.amazon.awssdk:utils:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:utils@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:aws-core:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:aws-core@2.32.26",
+          "nodeId": "software.amazon.awssdk:aws-core:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:aws-core@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:metrics-spi:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:metrics-spi@2.32.26",
+          "nodeId": "software.amazon.awssdk:metrics-spi:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:metrics-spi@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:json-utils:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:json-utils@2.32.26",
+          "nodeId": "software.amazon.awssdk:json-utils:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:json-utils@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:endpoints-spi:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:endpoints-spi@2.32.26",
+          "nodeId": "software.amazon.awssdk:endpoints-spi:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:endpoints-spi@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:retries-spi:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:retries-spi@2.32.26",
+          "nodeId": "software.amazon.awssdk:retries-spi:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:retries-spi@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:netty-nio-client:jar:2.32.26:runtime",
-          "pkgId": "software.amazon.awssdk:netty-nio-client@2.32.26",
+          "nodeId": "software.amazon.awssdk:netty-nio-client:jar:2.33.0:runtime",
+          "pkgId": "software.amazon.awssdk:netty-nio-client@2.33.0",
           "deps": [
             {
               "nodeId": "io.netty:netty-codec-http:jar:4.1.124.Final:runtime"
@@ -884,8 +884,8 @@
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:aws-query-protocol:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:aws-query-protocol@2.32.26",
+          "nodeId": "software.amazon.awssdk:aws-query-protocol:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:aws-query-protocol@2.33.0",
           "deps": []
         },
         {
@@ -899,28 +899,28 @@
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:third-party-jackson-core:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:third-party-jackson-core@2.32.26",
+          "nodeId": "software.amazon.awssdk:third-party-jackson-core:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:third-party-jackson-core@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:checksums-spi:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:checksums-spi@2.32.26",
+          "nodeId": "software.amazon.awssdk:checksums-spi:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:checksums-spi@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:checksums:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:checksums@2.32.26",
+          "nodeId": "software.amazon.awssdk:checksums:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:checksums@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:profiles:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:profiles@2.32.26",
+          "nodeId": "software.amazon.awssdk:profiles:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:profiles@2.33.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:retries:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:retries@2.32.26",
+          "nodeId": "software.amazon.awssdk:retries:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:retries@2.33.0",
           "deps": []
         },
         {
@@ -934,8 +934,8 @@
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:http-auth-aws-eventstream:jar:2.32.26:compile",
-          "pkgId": "software.amazon.awssdk:http-auth-aws-eventstream@2.32.26",
+          "nodeId": "software.amazon.awssdk:http-auth-aws-eventstream:jar:2.33.0:compile",
+          "pkgId": "software.amazon.awssdk:http-auth-aws-eventstream@2.33.0",
           "deps": []
         },
         {
