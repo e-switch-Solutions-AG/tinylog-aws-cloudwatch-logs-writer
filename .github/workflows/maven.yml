@@ -10,9 +10,10 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
+      # Organization variables
+      ESWITCH_ARTIFACTORY_USERNAME: ${{ vars.ESWITCH_ARTIFACTORY_USERNAME }}
       # Organization secrets
-      ESWITCH_ARTIFACOTRY_USERNAME: ${{ secrets.ESWITCH_ARTIFACOTRY_USERNAME }}
-      ESWITCH_ARTIFACOTRY_PASSWORD: ${{ secrets.ESWITCH_ARTIFACOTRY_PASSWORD }}
+      ESWITCH_ARTIFACTORY_PASSWORD: ${{ secrets.ESWITCH_ARTIFACTORY_PASSWORD }}
       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       # Repository secrets
       CLOUDWATCH_ACCESS_KEY_ID: ${{ secrets.CLOUDWATCH_ACCESS_KEY_ID }}
@@ -30,7 +31,7 @@ jobs:
       run: echo "PROJECT_VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.4.0:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
     - name: env variables
       run: |
-        echo ESWITCH_ARTIFACOTRY_USERNAME: $ESWITCH_ARTIFACOTRY_USERNAME
+        echo ESWITCH_ARTIFACTORY_USERNAME: $ESWITCH_ARTIFACTORY_USERNAME
         echo PROJECT_VERSION: $PROJECT_VERSION
         echo run_attempt: ${{ github.run_attempt }}
     - name: Build with Maven
@@ -58,4 +59,4 @@ jobs:
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
-      uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+      uses: advanced-security/maven-dependency-submission-action@v5
