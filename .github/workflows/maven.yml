@@ -59,10 +59,14 @@ jobs:
       run: |
         rm target/*-sources.jar
 
+    - name: create libs.zip
+      run: |
+        zip -r libs.zip target/lib 
+
     - name: create Release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: 'target/*.jar'
+        artifacts: 'target/*.jar,libs.zip'
         tag: 'v${{ env.PROJECT_VERSION }}'
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
