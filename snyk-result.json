@@ -1,7 +1,261 @@
 {
-  "vulnerabilities": [],
-  "ok": true,
-  "dependencyCount": 60,
+  "vulnerabilities": [
+    {
+      "id": "SNYK-JAVA-ORGAPACHEHTTPCOMPONENTSCORE5-17817217",
+      "title": "Allocation of Resources Without Limits or Throttling",
+      "CVSSv3": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+      "credit": [
+        "Unknown"
+      ],
+      "semver": {
+        "vulnerable": [
+          "[,5.4.2)",
+          "[5.5-alpha1,5.5-beta1)"
+        ]
+      },
+      "exploit": "Not Defined",
+      "fixedIn": [
+        "5.4.2",
+        "5.5-beta1"
+      ],
+      "patches": [],
+      "insights": {
+        "triageAdvice": null
+      },
+      "language": "java",
+      "severity": "high",
+      "cvssScore": 7.1,
+      "functions": [],
+      "malicious": false,
+      "isDisputed": false,
+      "moduleName": "org.apache.httpcomponents.core5:httpcore5-h2",
+      "references": [
+        {
+          "url": "https://lists.apache.org/thread/5zjp8vczvxq19pw2rvhs21q446bhl0sd",
+          "title": "Apache Mailing List"
+        }
+      ],
+      "cvssDetails": [],
+      "cvssSources": [
+        {
+          "type": "primary",
+          "vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+          "assigner": "Snyk",
+          "severity": "high",
+          "baseScore": 7.1,
+          "cvssVersion": "4.0",
+          "modificationTime": "2026-07-04T17:56:16.621617Z"
+        },
+        {
+          "type": "secondary",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+          "assigner": "Snyk",
+          "severity": "medium",
+          "baseScore": 6.5,
+          "cvssVersion": "3.1",
+          "modificationTime": "2026-07-04T17:56:16.621617Z"
+        }
+      ],
+      "description": "## Overview\n\nAffected versions of this package are vulnerable to Allocation of Resources Without Limits or Throttling due to the lack of enforced limits in the `HPackDecoder` process. An attacker can exhaust system memory by sending oversized compressed header blocks before the HTTP/2 SETTINGS acknowledgement applies the configured header list size limit.\n## Remediation\nUpgrade `org.apache.httpcomponents.core5:httpcore5-h2` to version 5.4.2, 5.5-beta1 or higher.\n## References\n- [Apache Mailing List](https://lists.apache.org/thread/5zjp8vczvxq19pw2rvhs21q446bhl0sd)\n",
+      "epssDetails": {
+        "percentile": "0.32843",
+        "probability": "0.00410",
+        "modelVersion": "v2026.06.15"
+      },
+      "identifiers": {
+        "CVE": [
+          "CVE-2026-54428"
+        ],
+        "CWE": [
+          "CWE-770"
+        ]
+      },
+      "packageName": "org.apache.httpcomponents.core5:httpcore5-h2",
+      "proprietary": false,
+      "creationTime": "2026-07-04T17:56:16.269797Z",
+      "functions_new": [],
+      "alternativeIds": [],
+      "disclosureTime": "2026-07-01T19:24:15.442000Z",
+      "exploitDetails": {
+        "sources": [],
+        "maturityLevels": [
+          {
+            "type": "secondary",
+            "level": "Not Defined",
+            "format": "CVSSv3"
+          },
+          {
+            "type": "primary",
+            "level": "Not Defined",
+            "format": "CVSSv4"
+          }
+        ]
+      },
+      "packageManager": "maven",
+      "mavenModuleName": {
+        "groupId": "org.apache.httpcomponents.core5",
+        "artifactId": "httpcore5-h2"
+      },
+      "publicationTime": "2026-07-04T17:56:16.449002Z",
+      "severityBasedOn": "CVSS",
+      "modificationTime": "2026-07-04T17:56:16.621617Z",
+      "socialTrendAlert": false,
+      "severityWithCritical": "high",
+      "from": [
+        "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.29",
+        "software.amazon.awssdk:cloudwatchlogs@2.47.0",
+        "software.amazon.awssdk:apache5-client@2.47.0",
+        "org.apache.httpcomponents.client5:httpclient5@5.6.1",
+        "org.apache.httpcomponents.core5:httpcore5-h2@5.4"
+      ],
+      "upgradePath": [
+        false,
+        "software.amazon.awssdk:cloudwatchlogs@2.47.0",
+        "software.amazon.awssdk:apache5-client@2.47.0"
+      ],
+      "isUpgradable": true,
+      "isPatchable": false,
+      "name": "org.apache.httpcomponents.core5:httpcore5-h2",
+      "version": "5.4"
+    },
+    {
+      "id": "SNYK-JAVA-ORGAPACHEHTTPCOMPONENTSCORE5-17817218",
+      "title": "Allocation of Resources Without Limits or Throttling",
+      "CVSSv3": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+      "credit": [
+        "Henry Huang"
+      ],
+      "semver": {
+        "vulnerable": [
+          "[,5.4.2)",
+          "[5.5-alpha1,5.5-beta1)"
+        ]
+      },
+      "exploit": "Not Defined",
+      "fixedIn": [
+        "5.4.2",
+        "5.5-beta1"
+      ],
+      "patches": [],
+      "insights": {
+        "triageAdvice": null
+      },
+      "language": "java",
+      "severity": "high",
+      "cvssScore": 7.1,
+      "functions": [],
+      "malicious": false,
+      "isDisputed": false,
+      "moduleName": "org.apache.httpcomponents.core5:httpcore5-h2",
+      "references": [
+        {
+          "url": "https://lists.apache.org/thread/zmxh1pl2zohov5ntdh4lt85gfrlchgpy",
+          "title": "Apache Mailing List"
+        }
+      ],
+      "cvssDetails": [
+        {
+          "assigner": "Red Hat",
+          "severity": "high",
+          "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "cvssV3BaseScore": 7.5,
+          "modificationTime": "2026-07-06T13:33:15.083261Z"
+        }
+      ],
+      "cvssSources": [
+        {
+          "type": "primary",
+          "vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+          "assigner": "Snyk",
+          "severity": "high",
+          "baseScore": 7.1,
+          "cvssVersion": "4.0",
+          "modificationTime": "2026-07-06T13:33:15.834318Z"
+        },
+        {
+          "type": "secondary",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+          "assigner": "Snyk",
+          "severity": "medium",
+          "baseScore": 6.5,
+          "cvssVersion": "3.1",
+          "modificationTime": "2026-07-06T13:33:15.834318Z"
+        },
+        {
+          "type": "secondary",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "assigner": "Red Hat",
+          "severity": "high",
+          "baseScore": 7.5,
+          "cvssVersion": "3.1",
+          "modificationTime": "2026-07-06T13:33:15.083261Z"
+        }
+      ],
+      "description": "## Overview\n\nAffected versions of this package are vulnerable to Allocation of Resources Without Limits or Throttling via the HTTP/1.1 message parsing process. An attacker can exhaust system memory by sending messages with an excessive number of headers or excessively long headers.\n## Remediation\nUpgrade `org.apache.httpcomponents.core5:httpcore5-h2` to version 5.4.2, 5.5-beta1 or higher.\n## References\n- [Apache Mailing List](https://lists.apache.org/thread/zmxh1pl2zohov5ntdh4lt85gfrlchgpy)\n",
+      "epssDetails": {
+        "percentile": "0.32844",
+        "probability": "0.00410",
+        "modelVersion": "v2026.06.15"
+      },
+      "identifiers": {
+        "CVE": [
+          "CVE-2026-54399"
+        ],
+        "CWE": [
+          "CWE-770"
+        ]
+      },
+      "packageName": "org.apache.httpcomponents.core5:httpcore5-h2",
+      "proprietary": false,
+      "creationTime": "2026-07-04T17:57:33.331237Z",
+      "functions_new": [],
+      "alternativeIds": [],
+      "disclosureTime": "2026-07-01T18:19:13.225000Z",
+      "exploitDetails": {
+        "sources": [],
+        "maturityLevels": [
+          {
+            "type": "secondary",
+            "level": "Not Defined",
+            "format": "CVSSv3"
+          },
+          {
+            "type": "primary",
+            "level": "Not Defined",
+            "format": "CVSSv4"
+          }
+        ]
+      },
+      "packageManager": "maven",
+      "mavenModuleName": {
+        "groupId": "org.apache.httpcomponents.core5",
+        "artifactId": "httpcore5-h2"
+      },
+      "publicationTime": "2026-07-04T17:57:33.504687Z",
+      "severityBasedOn": "CVSS",
+      "modificationTime": "2026-07-06T13:33:15.834318Z",
+      "socialTrendAlert": false,
+      "severityWithCritical": "high",
+      "from": [
+        "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.29",
+        "software.amazon.awssdk:cloudwatchlogs@2.47.0",
+        "software.amazon.awssdk:apache5-client@2.47.0",
+        "org.apache.httpcomponents.client5:httpclient5@5.6.1",
+        "org.apache.httpcomponents.core5:httpcore5-h2@5.4"
+      ],
+      "upgradePath": [
+        false,
+        "software.amazon.awssdk:cloudwatchlogs@2.47.0",
+        "software.amazon.awssdk:apache5-client@2.47.0"
+      ],
+      "isUpgradable": true,
+      "isPatchable": false,
+      "name": "org.apache.httpcomponents.core5:httpcore5-h2",
+      "version": "5.4"
+    }
+  ],
+  "ok": false,
+  "dependencyCount": 64,
   "org": "e-switch-ch",
   "policy": "# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.\n# ignores vulnerabilities until expiry date; change duration by modifying expiry date\nignore:\n  SNYK-JAVA-IONETTY-1042268:\n    - '*':\n        reason: No upgrade or patch available\n        expires: 2024-02-01T00:00:00.000Z\n        source: cli\nexclude:\n  global:\n    - src/main/resources/META-INF/resources/jsp/list-awsstreams.jsp\n    - >-\n      src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsViewerServlet.java\n    - src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsJsonWriter.java\nversion: v1.25.1\npatch: {}\n",
   "isPrivate": true,
@@ -96,7 +350,274 @@
     "reasonRequired": false,
     "disregardFilesystemIgnores": false
   },
-  "summary": "No known vulnerabilities",
+  "summary": "2 vulnerable dependency paths",
+  "remediation": {
+    "unresolved": [
+      {
+        "id": "SNYK-JAVA-ORGAPACHEHTTPCOMPONENTSCORE5-17817217",
+        "title": "Allocation of Resources Without Limits or Throttling",
+        "CVSSv3": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+        "credit": [
+          "Unknown"
+        ],
+        "semver": {
+          "vulnerable": [
+            "[,5.4.2)",
+            "[5.5-alpha1,5.5-beta1)"
+          ]
+        },
+        "exploit": "Not Defined",
+        "fixedIn": [
+          "5.4.2",
+          "5.5-beta1"
+        ],
+        "patches": [],
+        "insights": {
+          "triageAdvice": null
+        },
+        "language": "java",
+        "severity": "high",
+        "cvssScore": 7.1,
+        "functions": [],
+        "malicious": false,
+        "isDisputed": false,
+        "moduleName": "org.apache.httpcomponents.core5:httpcore5-h2",
+        "references": [
+          {
+            "url": "https://lists.apache.org/thread/5zjp8vczvxq19pw2rvhs21q446bhl0sd",
+            "title": "Apache Mailing List"
+          }
+        ],
+        "cvssDetails": [],
+        "cvssSources": [
+          {
+            "type": "primary",
+            "vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+            "assigner": "Snyk",
+            "severity": "high",
+            "baseScore": 7.1,
+            "cvssVersion": "4.0",
+            "modificationTime": "2026-07-04T17:56:16.621617Z"
+          },
+          {
+            "type": "secondary",
+            "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+            "assigner": "Snyk",
+            "severity": "medium",
+            "baseScore": 6.5,
+            "cvssVersion": "3.1",
+            "modificationTime": "2026-07-04T17:56:16.621617Z"
+          }
+        ],
+        "description": "## Overview\n\nAffected versions of this package are vulnerable to Allocation of Resources Without Limits or Throttling due to the lack of enforced limits in the `HPackDecoder` process. An attacker can exhaust system memory by sending oversized compressed header blocks before the HTTP/2 SETTINGS acknowledgement applies the configured header list size limit.\n## Remediation\nUpgrade `org.apache.httpcomponents.core5:httpcore5-h2` to version 5.4.2, 5.5-beta1 or higher.\n## References\n- [Apache Mailing List](https://lists.apache.org/thread/5zjp8vczvxq19pw2rvhs21q446bhl0sd)\n",
+        "epssDetails": {
+          "percentile": "0.32843",
+          "probability": "0.00410",
+          "modelVersion": "v2026.06.15"
+        },
+        "identifiers": {
+          "CVE": [
+            "CVE-2026-54428"
+          ],
+          "CWE": [
+            "CWE-770"
+          ]
+        },
+        "packageName": "org.apache.httpcomponents.core5:httpcore5-h2",
+        "proprietary": false,
+        "creationTime": "2026-07-04T17:56:16.269797Z",
+        "functions_new": [],
+        "alternativeIds": [],
+        "disclosureTime": "2026-07-01T19:24:15.442000Z",
+        "exploitDetails": {
+          "sources": [],
+          "maturityLevels": [
+            {
+              "type": "secondary",
+              "level": "Not Defined",
+              "format": "CVSSv3"
+            },
+            {
+              "type": "primary",
+              "level": "Not Defined",
+              "format": "CVSSv4"
+            }
+          ]
+        },
+        "packageManager": "maven",
+        "mavenModuleName": {
+          "groupId": "org.apache.httpcomponents.core5",
+          "artifactId": "httpcore5-h2"
+        },
+        "publicationTime": "2026-07-04T17:56:16.449002Z",
+        "severityBasedOn": "CVSS",
+        "modificationTime": "2026-07-04T17:56:16.621617Z",
+        "socialTrendAlert": false,
+        "packagePopularityRank": 99,
+        "from": [
+          "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.29",
+          "software.amazon.awssdk:cloudwatchlogs@2.47.0",
+          "software.amazon.awssdk:apache5-client@2.47.0",
+          "org.apache.httpcomponents.client5:httpclient5@5.6.1",
+          "org.apache.httpcomponents.core5:httpcore5-h2@5.4"
+        ],
+        "upgradePath": [
+          false,
+          "software.amazon.awssdk:cloudwatchlogs@2.47.0",
+          "software.amazon.awssdk:apache5-client@2.47.0"
+        ],
+        "isUpgradable": true,
+        "isPatchable": false,
+        "isPinnable": false,
+        "isRuntime": false,
+        "name": "org.apache.httpcomponents.core5:httpcore5-h2",
+        "version": "5.4",
+        "severityWithCritical": "high"
+      },
+      {
+        "id": "SNYK-JAVA-ORGAPACHEHTTPCOMPONENTSCORE5-17817218",
+        "title": "Allocation of Resources Without Limits or Throttling",
+        "CVSSv3": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+        "credit": [
+          "Henry Huang"
+        ],
+        "semver": {
+          "vulnerable": [
+            "[,5.4.2)",
+            "[5.5-alpha1,5.5-beta1)"
+          ]
+        },
+        "exploit": "Not Defined",
+        "fixedIn": [
+          "5.4.2",
+          "5.5-beta1"
+        ],
+        "patches": [],
+        "insights": {
+          "triageAdvice": null
+        },
+        "language": "java",
+        "severity": "high",
+        "cvssScore": 7.1,
+        "functions": [],
+        "malicious": false,
+        "isDisputed": false,
+        "moduleName": "org.apache.httpcomponents.core5:httpcore5-h2",
+        "references": [
+          {
+            "url": "https://lists.apache.org/thread/zmxh1pl2zohov5ntdh4lt85gfrlchgpy",
+            "title": "Apache Mailing List"
+          }
+        ],
+        "cvssDetails": [
+          {
+            "assigner": "Red Hat",
+            "severity": "high",
+            "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+            "cvssV3BaseScore": 7.5,
+            "modificationTime": "2026-07-06T13:33:15.083261Z"
+          }
+        ],
+        "cvssSources": [
+          {
+            "type": "primary",
+            "vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+            "assigner": "Snyk",
+            "severity": "high",
+            "baseScore": 7.1,
+            "cvssVersion": "4.0",
+            "modificationTime": "2026-07-06T13:33:15.834318Z"
+          },
+          {
+            "type": "secondary",
+            "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+            "assigner": "Snyk",
+            "severity": "medium",
+            "baseScore": 6.5,
+            "cvssVersion": "3.1",
+            "modificationTime": "2026-07-06T13:33:15.834318Z"
+          },
+          {
+            "type": "secondary",
+            "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+            "assigner": "Red Hat",
+            "severity": "high",
+            "baseScore": 7.5,
+            "cvssVersion": "3.1",
+            "modificationTime": "2026-07-06T13:33:15.083261Z"
+          }
+        ],
+        "description": "## Overview\n\nAffected versions of this package are vulnerable to Allocation of Resources Without Limits or Throttling via the HTTP/1.1 message parsing process. An attacker can exhaust system memory by sending messages with an excessive number of headers or excessively long headers.\n## Remediation\nUpgrade `org.apache.httpcomponents.core5:httpcore5-h2` to version 5.4.2, 5.5-beta1 or higher.\n## References\n- [Apache Mailing List](https://lists.apache.org/thread/zmxh1pl2zohov5ntdh4lt85gfrlchgpy)\n",
+        "epssDetails": {
+          "percentile": "0.32844",
+          "probability": "0.00410",
+          "modelVersion": "v2026.06.15"
+        },
+        "identifiers": {
+          "CVE": [
+            "CVE-2026-54399"
+          ],
+          "CWE": [
+            "CWE-770"
+          ]
+        },
+        "packageName": "org.apache.httpcomponents.core5:httpcore5-h2",
+        "proprietary": false,
+        "creationTime": "2026-07-04T17:57:33.331237Z",
+        "functions_new": [],
+        "alternativeIds": [],
+        "disclosureTime": "2026-07-01T18:19:13.225000Z",
+        "exploitDetails": {
+          "sources": [],
+          "maturityLevels": [
+            {
+              "type": "secondary",
+              "level": "Not Defined",
+              "format": "CVSSv3"
+            },
+            {
+              "type": "primary",
+              "level": "Not Defined",
+              "format": "CVSSv4"
+            }
+          ]
+        },
+        "packageManager": "maven",
+        "mavenModuleName": {
+          "groupId": "org.apache.httpcomponents.core5",
+          "artifactId": "httpcore5-h2"
+        },
+        "publicationTime": "2026-07-04T17:57:33.504687Z",
+        "severityBasedOn": "CVSS",
+        "modificationTime": "2026-07-06T13:33:15.834318Z",
+        "socialTrendAlert": false,
+        "packagePopularityRank": 99,
+        "from": [
+          "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.29",
+          "software.amazon.awssdk:cloudwatchlogs@2.47.0",
+          "software.amazon.awssdk:apache5-client@2.47.0",
+          "org.apache.httpcomponents.client5:httpclient5@5.6.1",
+          "org.apache.httpcomponents.core5:httpcore5-h2@5.4"
+        ],
+        "upgradePath": [
+          false,
+          "software.amazon.awssdk:cloudwatchlogs@2.47.0",
+          "software.amazon.awssdk:apache5-client@2.47.0"
+        ],
+        "isUpgradable": true,
+        "isPatchable": false,
+        "isPinnable": false,
+        "isRuntime": false,
+        "name": "org.apache.httpcomponents.core5:httpcore5-h2",
+        "version": "5.4",
+        "severityWithCritical": "high"
+      }
+    ],
+    "upgrade": {},
+    "patch": {},
+    "ignore": {},
+    "pin": {}
+  },
   "depGraph": {
     "schemaVersion": "1.3.0",
     "pkgManager": {
@@ -104,10 +625,10 @@
     },
     "pkgs": [
       {
-        "id": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.27",
+        "id": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.29",
         "info": {
           "name": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer",
-          "version": "1.0.27"
+          "version": "1.0.29"
         }
       },
       {
@@ -125,24 +646,24 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:cloudwatchlogs@2.41.10",
+        "id": "software.amazon.awssdk:cloudwatchlogs@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:cloudwatchlogs",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:apache-client@2.41.10",
+        "id": "software.amazon.awssdk:apache-client@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:apache-client",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:cloudwatch@2.41.10",
+        "id": "software.amazon.awssdk:cloudwatch@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:cloudwatch",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
@@ -153,10 +674,10 @@
         }
       },
       {
-        "id": "org.apache.tomcat:tomcat-servlet-api@9.0.113",
+        "id": "org.apache.tomcat:tomcat-servlet-api@9.0.119",
         "info": {
           "name": "org.apache.tomcat:tomcat-servlet-api",
-          "version": "9.0.113"
+          "version": "9.0.119"
         }
       },
       {
@@ -181,17 +702,17 @@
         }
       },
       {
-        "id": "org.apache.tomcat:tomcat-jasper@9.0.113",
+        "id": "org.apache.tomcat:tomcat-jasper@9.0.119",
         "info": {
           "name": "org.apache.tomcat:tomcat-jasper",
-          "version": "9.0.113"
+          "version": "9.0.119"
         }
       },
       {
-        "id": "org.apache.tomcat:tomcat-jsp-api@9.0.113",
+        "id": "org.apache.tomcat:tomcat-jsp-api@9.0.119",
         "info": {
           "name": "org.apache.tomcat:tomcat-jsp-api",
-          "version": "9.0.113"
+          "version": "9.0.119"
         }
       },
       {
@@ -202,136 +723,143 @@
         }
       },
       {
-        "id": "com.google.code.gson:gson@2.13.2",
+        "id": "com.google.code.gson:gson@2.14.0",
         "info": {
           "name": "com.google.code.gson:gson",
-          "version": "2.13.2"
+          "version": "2.14.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:aws-json-protocol@2.41.10",
+        "id": "software.amazon.awssdk:aws-json-protocol@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:aws-json-protocol",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:protocol-core@2.41.10",
+        "id": "software.amazon.awssdk:protocol-core@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:protocol-core",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:http-auth-aws@2.41.10",
+        "id": "software.amazon.awssdk:http-auth-aws@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:http-auth-aws",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:sdk-core@2.41.10",
+        "id": "software.amazon.awssdk:sdk-core@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:sdk-core",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:auth@2.41.10",
+        "id": "software.amazon.awssdk:auth@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:auth",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:http-auth-spi@2.41.10",
+        "id": "software.amazon.awssdk:http-auth-spi@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:http-auth-spi",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:http-auth@2.41.10",
+        "id": "software.amazon.awssdk:http-auth@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:http-auth",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:identity-spi@2.41.10",
+        "id": "software.amazon.awssdk:identity-spi@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:identity-spi",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:http-client-spi@2.41.10",
+        "id": "software.amazon.awssdk:http-client-spi@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:http-client-spi",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:regions@2.41.10",
+        "id": "software.amazon.awssdk:regions@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:regions",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:annotations@2.41.10",
+        "id": "software.amazon.awssdk:annotations@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:annotations",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:utils@2.41.10",
+        "id": "software.amazon.awssdk:utils@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:utils",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:aws-core@2.41.10",
+        "id": "software.amazon.awssdk:aws-core@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:aws-core",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:metrics-spi@2.41.10",
+        "id": "software.amazon.awssdk:metrics-spi@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:metrics-spi",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:json-utils@2.41.10",
+        "id": "software.amazon.awssdk:json-utils@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:json-utils",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:endpoints-spi@2.41.10",
+        "id": "software.amazon.awssdk:endpoints-spi@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:endpoints-spi",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:retries-spi@2.41.10",
+        "id": "software.amazon.awssdk:retries-spi@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:retries-spi",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:netty-nio-client@2.41.10",
+        "id": "software.amazon.awssdk:apache5-client@2.47.0",
+        "info": {
+          "name": "software.amazon.awssdk:apache5-client",
+          "version": "2.47.0"
+        }
+      },
+      {
+        "id": "software.amazon.awssdk:netty-nio-client@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:netty-nio-client",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
@@ -356,59 +884,59 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:smithy-rpcv2-protocol@2.41.10",
+        "id": "software.amazon.awssdk:smithy-rpcv2-protocol@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:smithy-rpcv2-protocol",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "org.apache.tomcat:tomcat-el-api@9.0.113",
+        "id": "org.apache.tomcat:tomcat-el-api@9.0.119",
         "info": {
           "name": "org.apache.tomcat:tomcat-el-api",
-          "version": "9.0.113"
+          "version": "9.0.119"
         }
       },
       {
-        "id": "com.google.errorprone:error_prone_annotations@2.41.0",
+        "id": "com.google.errorprone:error_prone_annotations@2.48.0",
         "info": {
           "name": "com.google.errorprone:error_prone_annotations",
-          "version": "2.41.0"
+          "version": "2.48.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:third-party-jackson-core@2.41.10",
+        "id": "software.amazon.awssdk:third-party-jackson-core@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:third-party-jackson-core",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:checksums-spi@2.41.10",
+        "id": "software.amazon.awssdk:checksums-spi@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:checksums-spi",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:checksums@2.41.10",
+        "id": "software.amazon.awssdk:checksums@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:checksums",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:profiles@2.41.10",
+        "id": "software.amazon.awssdk:profiles@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:profiles",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "software.amazon.awssdk:retries@2.41.10",
+        "id": "software.amazon.awssdk:retries@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:retries",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
@@ -426,10 +954,10 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:http-auth-aws-eventstream@2.41.10",
+        "id": "software.amazon.awssdk:http-auth-aws-eventstream@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:http-auth-aws-eventstream",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
@@ -440,73 +968,87 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:utils-lite@2.41.10",
+        "id": "software.amazon.awssdk:utils-lite@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:utils-lite",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "io.netty:netty-codec-http@4.1.130.Final",
+        "id": "org.apache.httpcomponents.client5:httpclient5@5.6.1",
+        "info": {
+          "name": "org.apache.httpcomponents.client5:httpclient5",
+          "version": "5.6.1"
+        }
+      },
+      {
+        "id": "org.apache.httpcomponents.core5:httpcore5@5.4.3",
+        "info": {
+          "name": "org.apache.httpcomponents.core5:httpcore5",
+          "version": "5.4.3"
+        }
+      },
+      {
+        "id": "io.netty:netty-codec-http@4.1.135.Final",
         "info": {
           "name": "io.netty:netty-codec-http",
-          "version": "4.1.130.Final"
+          "version": "4.1.135.Final"
         }
       },
       {
-        "id": "io.netty:netty-codec-http2@4.1.130.Final",
+        "id": "io.netty:netty-codec-http2@4.1.135.Final",
         "info": {
           "name": "io.netty:netty-codec-http2",
-          "version": "4.1.130.Final"
+          "version": "4.1.135.Final"
         }
       },
       {
-        "id": "io.netty:netty-codec@4.1.130.Final",
+        "id": "io.netty:netty-codec@4.1.135.Final",
         "info": {
           "name": "io.netty:netty-codec",
-          "version": "4.1.130.Final"
+          "version": "4.1.135.Final"
         }
       },
       {
-        "id": "io.netty:netty-transport@4.1.130.Final",
+        "id": "io.netty:netty-transport@4.1.135.Final",
         "info": {
           "name": "io.netty:netty-transport",
-          "version": "4.1.130.Final"
+          "version": "4.1.135.Final"
         }
       },
       {
-        "id": "io.netty:netty-common@4.1.130.Final",
+        "id": "io.netty:netty-common@4.1.135.Final",
         "info": {
           "name": "io.netty:netty-common",
-          "version": "4.1.130.Final"
+          "version": "4.1.135.Final"
         }
       },
       {
-        "id": "io.netty:netty-buffer@4.1.130.Final",
+        "id": "io.netty:netty-buffer@4.1.135.Final",
         "info": {
           "name": "io.netty:netty-buffer",
-          "version": "4.1.130.Final"
+          "version": "4.1.135.Final"
         }
       },
       {
-        "id": "io.netty:netty-handler@4.1.130.Final",
+        "id": "io.netty:netty-handler@4.1.135.Final",
         "info": {
           "name": "io.netty:netty-handler",
-          "version": "4.1.130.Final"
+          "version": "4.1.135.Final"
         }
       },
       {
-        "id": "io.netty:netty-transport-classes-epoll@4.1.130.Final",
+        "id": "io.netty:netty-transport-classes-epoll@4.1.135.Final",
         "info": {
           "name": "io.netty:netty-transport-classes-epoll",
-          "version": "4.1.130.Final"
+          "version": "4.1.135.Final"
         }
       },
       {
-        "id": "io.netty:netty-resolver@4.1.130.Final",
+        "id": "io.netty:netty-resolver@4.1.135.Final",
         "info": {
           "name": "io.netty:netty-resolver",
-          "version": "4.1.130.Final"
+          "version": "4.1.135.Final"
         }
       },
       {
@@ -517,17 +1059,24 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:third-party-jackson-dataformat-cbor@2.41.10",
+        "id": "software.amazon.awssdk:third-party-jackson-dataformat-cbor@2.47.0",
         "info": {
           "name": "software.amazon.awssdk:third-party-jackson-dataformat-cbor",
-          "version": "2.41.10"
+          "version": "2.47.0"
         }
       },
       {
-        "id": "io.netty:netty-transport-native-unix-common@4.1.130.Final",
+        "id": "org.apache.httpcomponents.core5:httpcore5-h2@5.4",
+        "info": {
+          "name": "org.apache.httpcomponents.core5:httpcore5-h2",
+          "version": "5.4"
+        }
+      },
+      {
+        "id": "io.netty:netty-transport-native-unix-common@4.1.135.Final",
         "info": {
           "name": "io.netty:netty-transport-native-unix-common",
-          "version": "4.1.130.Final"
+          "version": "4.1.135.Final"
         }
       }
     ],
@@ -536,7 +1085,7 @@
       "nodes": [
         {
           "nodeId": "root-node",
-          "pkgId": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.27",
+          "pkgId": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.29",
           "deps": [
             {
               "nodeId": "org.tinylog:tinylog-api:jar:2.7.0:compile"
@@ -545,19 +1094,19 @@
               "nodeId": "org.tinylog:tinylog-impl:jar:2.7.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:cloudwatchlogs:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:cloudwatchlogs:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:apache-client:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:apache-client:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:cloudwatch:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:cloudwatch:jar:2.47.0:compile"
             },
             {
               "nodeId": "org.glassfish:jakarta.json:jar:2.0.1:compile"
             },
             {
-              "nodeId": "org.apache.tomcat:tomcat-servlet-api:jar:9.0.113:compile"
+              "nodeId": "org.apache.tomcat:tomcat-servlet-api:jar:9.0.119:compile"
             },
             {
               "nodeId": "org.glassfish.web:jakarta.servlet.jsp.jstl:jar:1.2.6:compile"
@@ -569,16 +1118,16 @@
               "nodeId": "org.glassfish:jakarta.el:jar:3.0.4:compile"
             },
             {
-              "nodeId": "org.apache.tomcat:tomcat-jasper:jar:9.0.113:test"
+              "nodeId": "org.apache.tomcat:tomcat-jasper:jar:9.0.119:test"
             },
             {
-              "nodeId": "org.apache.tomcat:tomcat-jsp-api:jar:9.0.113:compile"
+              "nodeId": "org.apache.tomcat:tomcat-jsp-api:jar:9.0.119:compile"
             },
             {
               "nodeId": "org.apache.commons:commons-lang3:jar:3.20.0:compile"
             },
             {
-              "nodeId": "com.google.code.gson:gson:jar:2.13.2:compile"
+              "nodeId": "com.google.code.gson:gson:jar:2.14.0:compile"
             }
           ]
         },
@@ -593,68 +1142,71 @@
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:cloudwatchlogs:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:cloudwatchlogs@2.41.10",
+          "nodeId": "software.amazon.awssdk:cloudwatchlogs:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:cloudwatchlogs@2.47.0",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:aws-json-protocol:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:aws-json-protocol:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:protocol-core:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:protocol-core:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:http-auth-aws:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:http-auth-aws:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:sdk-core:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:sdk-core:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:auth:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:auth:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:http-auth-spi:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:http-auth-spi:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:http-auth:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:http-auth:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:identity-spi:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:identity-spi:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:http-client-spi:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:http-client-spi:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:regions:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:regions:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:annotations:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:annotations:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:utils:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:utils:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:aws-core:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:aws-core:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:metrics-spi:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:metrics-spi:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:json-utils:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:json-utils:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:endpoints-spi:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:endpoints-spi:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:retries-spi:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:retries-spi:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:netty-nio-client:jar:2.41.10:runtime"
+              "nodeId": "software.amazon.awssdk:apache5-client:jar:2.47.0:runtime"
+            },
+            {
+              "nodeId": "software.amazon.awssdk:netty-nio-client:jar:2.47.0:runtime"
             }
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:apache-client:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:apache-client@2.41.10",
+          "nodeId": "software.amazon.awssdk:apache-client:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:apache-client@2.47.0",
           "deps": [
             {
               "nodeId": "org.apache.httpcomponents:httpclient:jar:4.5.13:compile"
@@ -668,11 +1220,11 @@
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:cloudwatch:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:cloudwatch@2.41.10",
+          "nodeId": "software.amazon.awssdk:cloudwatch:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:cloudwatch@2.47.0",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:smithy-rpcv2-protocol:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:smithy-rpcv2-protocol:jar:2.47.0:compile"
             }
           ]
         },
@@ -682,8 +1234,8 @@
           "deps": []
         },
         {
-          "nodeId": "org.apache.tomcat:tomcat-servlet-api:jar:9.0.113:compile",
-          "pkgId": "org.apache.tomcat:tomcat-servlet-api@9.0.113",
+          "nodeId": "org.apache.tomcat:tomcat-servlet-api:jar:9.0.119:compile",
+          "pkgId": "org.apache.tomcat:tomcat-servlet-api@9.0.119",
           "deps": []
         },
         {
@@ -702,17 +1254,17 @@
           "deps": []
         },
         {
-          "nodeId": "org.apache.tomcat:tomcat-jasper:jar:9.0.113:test",
-          "pkgId": "org.apache.tomcat:tomcat-jasper@9.0.113",
+          "nodeId": "org.apache.tomcat:tomcat-jasper:jar:9.0.119:test",
+          "pkgId": "org.apache.tomcat:tomcat-jasper@9.0.119",
           "deps": [
             {
-              "nodeId": "org.apache.tomcat:tomcat-el-api:jar:9.0.113:compile"
+              "nodeId": "org.apache.tomcat:tomcat-el-api:jar:9.0.119:compile"
             }
           ]
         },
         {
-          "nodeId": "org.apache.tomcat:tomcat-jsp-api:jar:9.0.113:compile",
-          "pkgId": "org.apache.tomcat:tomcat-jsp-api@9.0.113",
+          "nodeId": "org.apache.tomcat:tomcat-jsp-api:jar:9.0.119:compile",
+          "pkgId": "org.apache.tomcat:tomcat-jsp-api@9.0.119",
           "deps": []
         },
         {
@@ -721,49 +1273,49 @@
           "deps": []
         },
         {
-          "nodeId": "com.google.code.gson:gson:jar:2.13.2:compile",
-          "pkgId": "com.google.code.gson:gson@2.13.2",
+          "nodeId": "com.google.code.gson:gson:jar:2.14.0:compile",
+          "pkgId": "com.google.code.gson:gson@2.14.0",
           "deps": [
             {
-              "nodeId": "com.google.errorprone:error_prone_annotations:jar:2.41.0:compile"
+              "nodeId": "com.google.errorprone:error_prone_annotations:jar:2.48.0:compile"
             }
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:aws-json-protocol:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:aws-json-protocol@2.41.10",
+          "nodeId": "software.amazon.awssdk:aws-json-protocol:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:aws-json-protocol@2.47.0",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:third-party-jackson-core:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:third-party-jackson-core:jar:2.47.0:compile"
             }
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:protocol-core:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:protocol-core@2.41.10",
+          "nodeId": "software.amazon.awssdk:protocol-core:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:protocol-core@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:http-auth-aws:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:http-auth-aws@2.41.10",
+          "nodeId": "software.amazon.awssdk:http-auth-aws:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:http-auth-aws@2.47.0",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:checksums-spi:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:checksums-spi:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:checksums:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:checksums:jar:2.47.0:compile"
             }
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:sdk-core:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:sdk-core@2.41.10",
+          "nodeId": "software.amazon.awssdk:sdk-core:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:sdk-core@2.47.0",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:profiles:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:profiles:jar:2.47.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:retries:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:retries:jar:2.47.0:compile"
             },
             {
               "nodeId": "org.slf4j:slf4j-api:jar:1.7.36:compile"
@@ -774,11 +1326,11 @@
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:auth:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:auth@2.41.10",
+          "nodeId": "software.amazon.awssdk:auth:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:auth@2.47.0",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:http-auth-aws-eventstream:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:http-auth-aws-eventstream:jar:2.47.0:compile"
             },
             {
               "nodeId": "software.amazon.eventstream:eventstream:jar:1.0.1:compile"
@@ -786,99 +1338,111 @@
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:http-auth-spi:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:http-auth-spi@2.41.10",
+          "nodeId": "software.amazon.awssdk:http-auth-spi:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:http-auth-spi@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:http-auth:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:http-auth@2.41.10",
+          "nodeId": "software.amazon.awssdk:http-auth:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:http-auth@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:identity-spi:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:identity-spi@2.41.10",
+          "nodeId": "software.amazon.awssdk:identity-spi:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:identity-spi@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:http-client-spi:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:http-client-spi@2.41.10",
+          "nodeId": "software.amazon.awssdk:http-client-spi:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:http-client-spi@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:regions:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:regions@2.41.10",
+          "nodeId": "software.amazon.awssdk:regions:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:regions@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:annotations:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:annotations@2.41.10",
+          "nodeId": "software.amazon.awssdk:annotations:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:annotations@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:utils:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:utils@2.41.10",
+          "nodeId": "software.amazon.awssdk:utils:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:utils@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:aws-core:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:aws-core@2.41.10",
+          "nodeId": "software.amazon.awssdk:aws-core:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:aws-core@2.47.0",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:utils-lite:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:utils-lite:jar:2.47.0:compile"
             }
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:metrics-spi:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:metrics-spi@2.41.10",
+          "nodeId": "software.amazon.awssdk:metrics-spi:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:metrics-spi@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:json-utils:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:json-utils@2.41.10",
+          "nodeId": "software.amazon.awssdk:json-utils:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:json-utils@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:endpoints-spi:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:endpoints-spi@2.41.10",
+          "nodeId": "software.amazon.awssdk:endpoints-spi:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:endpoints-spi@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:retries-spi:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:retries-spi@2.41.10",
+          "nodeId": "software.amazon.awssdk:retries-spi:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:retries-spi@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:netty-nio-client:jar:2.41.10:runtime",
-          "pkgId": "software.amazon.awssdk:netty-nio-client@2.41.10",
+          "nodeId": "software.amazon.awssdk:apache5-client:jar:2.47.0:runtime",
+          "pkgId": "software.amazon.awssdk:apache5-client@2.47.0",
           "deps": [
             {
-              "nodeId": "io.netty:netty-codec-http:jar:4.1.130.Final:runtime"
+              "nodeId": "org.apache.httpcomponents.client5:httpclient5:jar:5.6.1:runtime"
             },
             {
-              "nodeId": "io.netty:netty-codec-http2:jar:4.1.130.Final:runtime"
+              "nodeId": "org.apache.httpcomponents.core5:httpcore5:jar:5.4.3:runtime"
+            }
+          ]
+        },
+        {
+          "nodeId": "software.amazon.awssdk:netty-nio-client:jar:2.47.0:runtime",
+          "pkgId": "software.amazon.awssdk:netty-nio-client@2.47.0",
+          "deps": [
+            {
+              "nodeId": "io.netty:netty-codec-http:jar:4.1.135.Final:runtime"
             },
             {
-              "nodeId": "io.netty:netty-codec:jar:4.1.130.Final:runtime"
+              "nodeId": "io.netty:netty-codec-http2:jar:4.1.135.Final:runtime"
             },
             {
-              "nodeId": "io.netty:netty-transport:jar:4.1.130.Final:runtime"
+              "nodeId": "io.netty:netty-codec:jar:4.1.135.Final:runtime"
             },
             {
-              "nodeId": "io.netty:netty-common:jar:4.1.130.Final:runtime"
+              "nodeId": "io.netty:netty-transport:jar:4.1.135.Final:runtime"
             },
             {
-              "nodeId": "io.netty:netty-buffer:jar:4.1.130.Final:runtime"
+              "nodeId": "io.netty:netty-common:jar:4.1.135.Final:runtime"
             },
             {
-              "nodeId": "io.netty:netty-handler:jar:4.1.130.Final:runtime"
+              "nodeId": "io.netty:netty-buffer:jar:4.1.135.Final:runtime"
             },
             {
-              "nodeId": "io.netty:netty-transport-classes-epoll:jar:4.1.130.Final:runtime"
+              "nodeId": "io.netty:netty-handler:jar:4.1.135.Final:runtime"
             },
             {
-              "nodeId": "io.netty:netty-resolver:jar:4.1.130.Final:runtime"
+              "nodeId": "io.netty:netty-transport-classes-epoll:jar:4.1.135.Final:runtime"
+            },
+            {
+              "nodeId": "io.netty:netty-resolver:jar:4.1.135.Final:runtime"
             }
           ]
         },
@@ -902,47 +1466,47 @@
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:smithy-rpcv2-protocol:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:smithy-rpcv2-protocol@2.41.10",
+          "nodeId": "software.amazon.awssdk:smithy-rpcv2-protocol:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:smithy-rpcv2-protocol@2.47.0",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:third-party-jackson-dataformat-cbor:jar:2.41.10:compile"
+              "nodeId": "software.amazon.awssdk:third-party-jackson-dataformat-cbor:jar:2.47.0:compile"
             }
           ]
         },
         {
-          "nodeId": "org.apache.tomcat:tomcat-el-api:jar:9.0.113:compile",
-          "pkgId": "org.apache.tomcat:tomcat-el-api@9.0.113",
+          "nodeId": "org.apache.tomcat:tomcat-el-api:jar:9.0.119:compile",
+          "pkgId": "org.apache.tomcat:tomcat-el-api@9.0.119",
           "deps": []
         },
         {
-          "nodeId": "com.google.errorprone:error_prone_annotations:jar:2.41.0:compile",
-          "pkgId": "com.google.errorprone:error_prone_annotations@2.41.0",
+          "nodeId": "com.google.errorprone:error_prone_annotations:jar:2.48.0:compile",
+          "pkgId": "com.google.errorprone:error_prone_annotations@2.48.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:third-party-jackson-core:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:third-party-jackson-core@2.41.10",
+          "nodeId": "software.amazon.awssdk:third-party-jackson-core:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:third-party-jackson-core@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:checksums-spi:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:checksums-spi@2.41.10",
+          "nodeId": "software.amazon.awssdk:checksums-spi:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:checksums-spi@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:checksums:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:checksums@2.41.10",
+          "nodeId": "software.amazon.awssdk:checksums:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:checksums@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:profiles:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:profiles@2.41.10",
+          "nodeId": "software.amazon.awssdk:profiles:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:profiles@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:retries:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:retries@2.41.10",
+          "nodeId": "software.amazon.awssdk:retries:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:retries@2.47.0",
           "deps": []
         },
         {
@@ -956,8 +1520,8 @@
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:http-auth-aws-eventstream:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:http-auth-aws-eventstream@2.41.10",
+          "nodeId": "software.amazon.awssdk:http-auth-aws-eventstream:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:http-auth-aws-eventstream@2.47.0",
           "deps": []
         },
         {
@@ -966,57 +1530,71 @@
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:utils-lite:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:utils-lite@2.41.10",
+          "nodeId": "software.amazon.awssdk:utils-lite:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:utils-lite@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "io.netty:netty-codec-http:jar:4.1.130.Final:runtime",
-          "pkgId": "io.netty:netty-codec-http@4.1.130.Final",
-          "deps": []
-        },
-        {
-          "nodeId": "io.netty:netty-codec-http2:jar:4.1.130.Final:runtime",
-          "pkgId": "io.netty:netty-codec-http2@4.1.130.Final",
-          "deps": []
-        },
-        {
-          "nodeId": "io.netty:netty-codec:jar:4.1.130.Final:runtime",
-          "pkgId": "io.netty:netty-codec@4.1.130.Final",
-          "deps": []
-        },
-        {
-          "nodeId": "io.netty:netty-transport:jar:4.1.130.Final:runtime",
-          "pkgId": "io.netty:netty-transport@4.1.130.Final",
-          "deps": []
-        },
-        {
-          "nodeId": "io.netty:netty-common:jar:4.1.130.Final:runtime",
-          "pkgId": "io.netty:netty-common@4.1.130.Final",
-          "deps": []
-        },
-        {
-          "nodeId": "io.netty:netty-buffer:jar:4.1.130.Final:runtime",
-          "pkgId": "io.netty:netty-buffer@4.1.130.Final",
-          "deps": []
-        },
-        {
-          "nodeId": "io.netty:netty-handler:jar:4.1.130.Final:runtime",
-          "pkgId": "io.netty:netty-handler@4.1.130.Final",
+          "nodeId": "org.apache.httpcomponents.client5:httpclient5:jar:5.6.1:runtime",
+          "pkgId": "org.apache.httpcomponents.client5:httpclient5@5.6.1",
           "deps": [
             {
-              "nodeId": "io.netty:netty-transport-native-unix-common:jar:4.1.130.Final:runtime"
+              "nodeId": "org.apache.httpcomponents.core5:httpcore5-h2:jar:5.4:runtime"
             }
           ]
         },
         {
-          "nodeId": "io.netty:netty-transport-classes-epoll:jar:4.1.130.Final:runtime",
-          "pkgId": "io.netty:netty-transport-classes-epoll@4.1.130.Final",
+          "nodeId": "org.apache.httpcomponents.core5:httpcore5:jar:5.4.3:runtime",
+          "pkgId": "org.apache.httpcomponents.core5:httpcore5@5.4.3",
           "deps": []
         },
         {
-          "nodeId": "io.netty:netty-resolver:jar:4.1.130.Final:runtime",
-          "pkgId": "io.netty:netty-resolver@4.1.130.Final",
+          "nodeId": "io.netty:netty-codec-http:jar:4.1.135.Final:runtime",
+          "pkgId": "io.netty:netty-codec-http@4.1.135.Final",
+          "deps": []
+        },
+        {
+          "nodeId": "io.netty:netty-codec-http2:jar:4.1.135.Final:runtime",
+          "pkgId": "io.netty:netty-codec-http2@4.1.135.Final",
+          "deps": []
+        },
+        {
+          "nodeId": "io.netty:netty-codec:jar:4.1.135.Final:runtime",
+          "pkgId": "io.netty:netty-codec@4.1.135.Final",
+          "deps": []
+        },
+        {
+          "nodeId": "io.netty:netty-transport:jar:4.1.135.Final:runtime",
+          "pkgId": "io.netty:netty-transport@4.1.135.Final",
+          "deps": []
+        },
+        {
+          "nodeId": "io.netty:netty-common:jar:4.1.135.Final:runtime",
+          "pkgId": "io.netty:netty-common@4.1.135.Final",
+          "deps": []
+        },
+        {
+          "nodeId": "io.netty:netty-buffer:jar:4.1.135.Final:runtime",
+          "pkgId": "io.netty:netty-buffer@4.1.135.Final",
+          "deps": []
+        },
+        {
+          "nodeId": "io.netty:netty-handler:jar:4.1.135.Final:runtime",
+          "pkgId": "io.netty:netty-handler@4.1.135.Final",
+          "deps": [
+            {
+              "nodeId": "io.netty:netty-transport-native-unix-common:jar:4.1.135.Final:runtime"
+            }
+          ]
+        },
+        {
+          "nodeId": "io.netty:netty-transport-classes-epoll:jar:4.1.135.Final:runtime",
+          "pkgId": "io.netty:netty-transport-classes-epoll@4.1.135.Final",
+          "deps": []
+        },
+        {
+          "nodeId": "io.netty:netty-resolver:jar:4.1.135.Final:runtime",
+          "pkgId": "io.netty:netty-resolver@4.1.135.Final",
           "deps": []
         },
         {
@@ -1025,20 +1603,29 @@
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:third-party-jackson-dataformat-cbor:jar:2.41.10:compile",
-          "pkgId": "software.amazon.awssdk:third-party-jackson-dataformat-cbor@2.41.10",
+          "nodeId": "software.amazon.awssdk:third-party-jackson-dataformat-cbor:jar:2.47.0:compile",
+          "pkgId": "software.amazon.awssdk:third-party-jackson-dataformat-cbor@2.47.0",
           "deps": []
         },
         {
-          "nodeId": "io.netty:netty-transport-native-unix-common:jar:4.1.130.Final:runtime",
-          "pkgId": "io.netty:netty-transport-native-unix-common@4.1.130.Final",
+          "nodeId": "org.apache.httpcomponents.core5:httpcore5-h2:jar:5.4:runtime",
+          "pkgId": "org.apache.httpcomponents.core5:httpcore5-h2@5.4",
+          "deps": []
+        },
+        {
+          "nodeId": "io.netty:netty-transport-native-unix-common:jar:4.1.135.Final:runtime",
+          "pkgId": "io.netty:netty-transport-native-unix-common@4.1.135.Final",
           "deps": []
         }
       ]
     }
   },
   "filesystemPolicy": true,
-  "uniqueCount": 0,
+  "filtered": {
+    "ignore": [],
+    "patch": []
+  },
+  "uniqueCount": 2,
   "projectName": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer",
   "displayTargetFile": "pom.xml",
   "hasUnknownVersions": false,
