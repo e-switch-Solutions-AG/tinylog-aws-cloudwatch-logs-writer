@@ -32,7 +32,7 @@ jobs:
         distribution: 'zulu'
         cache: maven
     - name: set PROJECT_VERSION
-      run: echo "PROJECT_VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.4.0:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
+      run: echo "PROJECT_VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.5.2:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
     - name: env variables
       run: |
         echo ESWITCH_ARTIFACTORY_USERNAME: $ESWITCH_ARTIFACTORY_USERNAME
