@@ -6,5 +6,10 @@
 			<username>${env.ESWITCH_ARTIFACTORY_USERNAME}</username>
 			<password>${env.ESWITCH_ARTIFACTORY_PASSWORD}</password>
 		</server>
+		<server>
+            <id>github_packages</id>
+            <username>${env.GITHUB_ACTOR}</username>
+            <password>${env.GITHUB_TOKEN}</password>
+        </server>
 	</servers>
 </settings>
