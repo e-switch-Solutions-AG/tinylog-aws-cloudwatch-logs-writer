@@ -5,6 +5,10 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+  packages: write
+
 jobs:
   build:
 
@@ -36,6 +40,8 @@ jobs:
         echo run_number: ${{ github.run_number }}, run_attempt: ${{ github.run_attempt }}
     - name: Build with Maven
       run: mvn --no-transfer-progress --activate-profiles snyk -s settings.xml clean deploy
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Commit snyk-result
       uses: EndBug/add-and-commit@v9
       with:
