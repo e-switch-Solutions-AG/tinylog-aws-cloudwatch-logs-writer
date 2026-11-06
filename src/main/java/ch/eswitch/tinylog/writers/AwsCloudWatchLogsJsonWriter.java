@@ -12,7 +12,7 @@ import software.amazon.awssdk.services.cloudwatchlogs.model.GetLogEventsRequest;
 import software.amazon.awssdk.services.cloudwatchlogs.model.OutputLogEvent;
 import software.amazon.awssdk.services.cloudwatchlogs.paginators.GetLogEventsIterable;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
  */
 public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
 {
-    private static final String NEW_LINE = System.getProperty("line.separator");
+    private static final String NEW_LINE = System.lineSeparator();
     private static final String FIELD_PREFIX = "field.";
     public static final String WRITER_PREFIX = "writer_";
 
@@ -212,21 +212,17 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
     public static List<String> getAllWriterNames()
     {
         Map<String, String> writerConfig = Configuration.getSiblings(WRITER_PREFIX);
-        Util.log(Level.DEBUG, "%s - writerConfig size: %d", AwsCloudWatchLogsJsonWriter.class.getSimpleName(), writerConfig.keySet().size());
-        if (writerConfig != null)
-        {
-            Util.log(Level.DEBUG, "%s - writer name: %s", AwsCloudWatchLogsJsonWriter.class.getSimpleName(), getWriterName());
-            List<String> writerNames = writerConfig.entrySet()
-                    .stream()
-                    .filter(w -> w.getValue().equalsIgnoreCase(getWriterName()))
-                    .map(Map.Entry::getKey)
-                    .collect(Collectors.toList());
+        Util.log(Level.DEBUG, "%s - writerConfig size: %d", AwsCloudWatchLogsJsonWriter.class.getSimpleName(), writerConfig.size());
+        Util.log(Level.DEBUG, "%s - writer name: %s", AwsCloudWatchLogsJsonWriter.class.getSimpleName(), getWriterName());
+        List<String> writerNames = writerConfig.entrySet()
+                .stream()
+                .filter(w -> w.getValue().equalsIgnoreCase(getWriterName()))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
 
-            Util.log(Level.DEBUG, "%s - writerNames size: %d", AwsCloudWatchLogsJsonWriter.class.getSimpleName(), writerNames.size());
-            return writerNames;
-        }
+        Util.log(Level.DEBUG, "%s - writerNames size: %d", AwsCloudWatchLogsJsonWriter.class.getSimpleName(), writerNames.size());
+        return writerNames;
 
-        return null;
     }
 
     /**
@@ -254,15 +250,12 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
     public static LogGroupAndStreamName getLogGroupAndStreamName(String writerName)
     {
         Map<String, String> writerConfig = AwsCloudWatchLogsJsonWriter.getWriterConfig(writerName);
-        if (writerConfig != null)
-        {
-            String logGroupName = writerConfig.get(AwsCloudWatchLogsWriter.PROPERTY_LOG_GROUP_NAME);
-            String streamName = writerConfig.get(AwsCloudWatchLogsWriter.PROPERTY_STREAM_NAME);
+        String logGroupName = writerConfig.get(AwsCloudWatchLogsWriter.PROPERTY_LOG_GROUP_NAME);
+        String streamName = writerConfig.get(AwsCloudWatchLogsWriter.PROPERTY_STREAM_NAME);
 
-            if ((logGroupName != null && !logGroupName.isEmpty()) || (streamName != null && !streamName.isEmpty()))
-            {
-                return new LogGroupAndStreamName(logGroupName, streamName);
-            }
+        if ((logGroupName != null && !logGroupName.isEmpty()) || (streamName != null && !streamName.isEmpty()))
+        {
+            return new LogGroupAndStreamName(logGroupName, streamName);
         }
 
         return null;
@@ -271,13 +264,10 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
     public static void setAwsSystemProperties(String writerName)
     {
         Map<String, String> writerConfig = AwsCloudWatchLogsJsonWriter.getWriterConfig(writerName);
-        if (writerConfig != null)
-        {
-            writerConfig.entrySet()
-                    .stream()
-                    .filter(c -> c.getKey().startsWith(PROPERTY_AWS))
-                    .forEach(c -> System.setProperty(c.getKey(), c.getValue()));
-        }
+        writerConfig.entrySet()
+                .stream()
+                .filter(c -> c.getKey().startsWith(PROPERTY_AWS))
+                .forEach(c -> System.setProperty(c.getKey(), c.getValue()));
     }
 
     /**
@@ -337,10 +327,6 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
     {
         setAwsSystemProperties(writer);
 
-        CloudWatchLogsClient logsClient = CloudWatchLogsClient.builder()
-                .credentialsProvider(DefaultCredentialsProvider.create())
-                .build();
-
         LogGroupAndStreamName logGroupAndStreamName = AwsCloudWatchLogsJsonWriter.getLogGroupAndStreamName(
                 writer);
 
@@ -371,7 +357,7 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
                         String relativeTime = request.getParameter("relativeTime");
                         String relativeUnit = request.getParameter("relativeUnit");
 
-                        if (relativeTime != null && relativeTime.length() > 0 && relativeUnit != null && relativeUnit.length() > 0)
+                        if (relativeTime != null && !relativeTime.isEmpty() && relativeUnit != null && !relativeUnit.isEmpty())
                         {
                             int min = Integer.parseInt(relativeTime);
                             switch (relativeUnit)
@@ -414,18 +400,23 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
 
             GetLogEventsRequest logEventsRequest = builder.build();
 
-            GetLogEventsIterable responses = logsClient.getLogEventsPaginator(logEventsRequest);
             final List<OutputLogEvent> outputLogEvents = new ArrayList<>();
-            responses.stream()
-                    .forEach(responsePage -> {
-                        if (responsePage.hasEvents())
-                        {
-                            outputLogEvents.addAll(responsePage.events());
-                            int logEvents = responsePage.events().size();
+            try (CloudWatchLogsClient logsClient = CloudWatchLogsClient.builder()
+                    .credentialsProvider(DefaultCredentialsProvider.create())
+                    .build())
+            {
+                GetLogEventsIterable responses = logsClient.getLogEventsPaginator(logEventsRequest);
+                responses.stream()
+                        .forEach(responsePage -> {
+                            if (responsePage.hasEvents())
+                            {
+                                outputLogEvents.addAll(responsePage.events());
+                                int logEvents = responsePage.events().size();
 
-                            Util.log(Level.DEBUG, "log events: %d", logEvents);
-                        }
-                    });
+                                Util.log(Level.DEBUG, "log events: %d", logEvents);
+                            }
+                        });
+            }
 
             DateTimeFormatter.ISO_DATE_TIME.format(LocalDateTime.now());
 

@@ -5,7 +5,7 @@ import org.apache.catalina.LifecycleException;
 import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.startup.Tomcat;
 
-import javax.servlet.annotation.WebServlet;
+import jakarta.servlet.annotation.WebServlet;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -20,7 +20,7 @@ public class TomcatServerMain
         String contextPath = "/";
         String appBase = ".";
         Tomcat tomcat = new Tomcat();
-        tomcat.setBaseDir("apache-tomcat-9");
+        tomcat.setBaseDir("apache-tomcat-11");
         //tomcat.setPort(Integer.valueOf(PORT.orElse("8080")));
         //tomcat.setHostname(HOSTNAME.orElse("localhost"));
         tomcat.getHost().setAppBase(appBase);
@@ -28,7 +28,7 @@ public class TomcatServerMain
 
         // add servlet
         final String servletName = AwsCloudWatchLogsViewerServlet.class.getSimpleName();
-        tomcat.addServlet(ctx, servletName, new AwsCloudWatchLogsViewerServlet());
+        Tomcat.addServlet(ctx, servletName, new AwsCloudWatchLogsViewerServlet());
         WebServlet webServletAnnotation = AwsCloudWatchLogsViewerServlet.class.getAnnotation(WebServlet.class);
         Arrays.stream(webServletAnnotation.urlPatterns())
                 .forEach(u -> ctx.addServletMappingDecoded(u, servletName)
@@ -36,7 +36,7 @@ public class TomcatServerMain
 
         System.out.println("start Tomcat");
         tomcat.start();
-        System.out.println(String.format("Tomcat started on %s://%s:%d", tomcat.getConnector().getScheme(), tomcat.getServer().getAddress(), tomcat.getConnector().getPort()));
+        System.out.printf("Tomcat started on %s://%s:%d%n", tomcat.getConnector().getScheme(), tomcat.getServer().getAddress(), tomcat.getConnector().getPort());
         tomcat.getServer().await();
         System.out.println("Tomcat stopped");
     }

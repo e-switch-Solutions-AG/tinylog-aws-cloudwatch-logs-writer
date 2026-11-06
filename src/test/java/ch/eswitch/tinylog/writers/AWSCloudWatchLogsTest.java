@@ -9,8 +9,8 @@ import org.tinylog.configuration.Configuration;
 import software.amazon.awssdk.services.cloudwatch.model.CloudWatchException;
 import software.amazon.awssdk.services.cloudwatchlogs.model.OutputLogEvent;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -108,7 +108,7 @@ public class AWSCloudWatchLogsTest
 
             final List<OutputLogEvent> outputLogEvents = AwsCloudWatchLogsJsonWriter.getCombinedOutputLogEvents(writerName, new TestServletRequest(startDateTime));
 
-            int logLimit = outputLogEvents.size();
+            int logLimit = outputLogEvents == null ? 0 : outputLogEvents.size();
 
             System.out.println("outputLogEvents: " + logLimit);
 
@@ -369,12 +369,6 @@ class TestServletRequest implements HttpServletRequest
     }
 
     @Override
-    public boolean isRequestedSessionIdFromUrl()
-    {
-        return false;
-    }
-
-    @Override
     public boolean authenticate(HttpServletResponse response) throws IOException, ServletException
     {
         return false;
@@ -571,12 +565,6 @@ class TestServletRequest implements HttpServletRequest
     }
 
     @Override
-    public String getRealPath(String path)
-    {
-        return null;
-    }
-
-    @Override
     public int getRemotePort()
     {
         return 0;
@@ -602,6 +590,24 @@ class TestServletRequest implements HttpServletRequest
 
     @Override
     public ServletContext getServletContext()
+    {
+        return null;
+    }
+
+    @Override
+    public String getRequestId()
+    {
+        return null;
+    }
+
+    @Override
+    public String getProtocolRequestId()
+    {
+        return null;
+    }
+
+    @Override
+    public ServletConnection getServletConnection()
     {
         return null;
     }
