@@ -6,7 +6,9 @@
 
     <groupId>ch.eswitch.tinylog.writers</groupId>
     <artifactId>tinylog-aws-cloudwatch-logs-writer</artifactId>
-    <version>1.0.29${artifact.classifier}</version>
+    <!-- Jakarta EE / Tomcat 11 line: the "-jakartaee" suffix keeps it apart from the javax line (main, Tomcat 9),
+         same scheme as xrb (e.g. xrb-11.6.0-jakartaee). -->
+    <version>1.0.30-jakartaee</version>
 
     <packaging>jar</packaging>
 
@@ -24,9 +26,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
         <maven.compiler.release>${java.version}</maven.compiler.release>
-        <artifact.classifier/>
         <tomcat.version>11.0.27</tomcat.version>
         <aws.sdk.version>2.57.10</aws.sdk.version>
+        <!-- HTTP5 and slf4j-api: same versions as xrb / the host webapp (e-companion WEB-INF/lib) -->
+        <httpclient5.version>5.6.5</httpclient5.version>
+        <httpcore5.version>5.4.4</httpcore5.version>
+        <slf4j.version>2.0.11</slf4j.version>
+        <tinylog.version>2.8.1</tinylog.version>
     </properties>
 
     <profiles>
@@ -165,6 +171,34 @@
     </profiles>
 
 
+    <dependencyManagement>
+        <dependencies>
+            <!-- HTTP5: apache5-client 2.57.10 brings httpclient5 5.6.4 / httpcore5 5.4.3.
+                 < 5.6.3 leaks connections on Content-Encoding decode errors (GHSA-hjcp-jmpx-g3qm). -->
+            <dependency>
+                <groupId>org.apache.httpcomponents.client5</groupId>
+                <artifactId>httpclient5</artifactId>
+                <version>${httpclient5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents.core5</groupId>
+                <artifactId>httpcore5</artifactId>
+                <version>${httpcore5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents.core5</groupId>
+                <artifactId>httpcore5-h2</artifactId>
+                <version>${httpcore5.version}</version>
+            </dependency>
+            <!-- AWS SDK and httpclient5 bring slf4j-api 1.7.36; the host webapp ships 2.x -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- Compile dependencies -->
         <dependency>
@@ -176,6 +210,18 @@
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
             <version>3.0.2</version>
+            <!-- Servlet and EL API are provided by Tomcat (tomcat-servlet-api / tomcat-jsp-api below);
+                 they must not end up in target/lib (WEB-INF/lib). -->
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.servlet</groupId>
+                    <artifactId>jakarta.servlet-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>jakarta.el</groupId>
+                    <artifactId>jakarta.el-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -201,40 +247,42 @@
         <dependency>
             <groupId>org.tinylog</groupId>
             <artifactId>tinylog-api</artifactId>
-            <version>2.8.1</version>
+            <version>${tinylog.version}</version>
         </dependency>
         <dependency>
             <groupId>org.tinylog</groupId>
             <artifactId>tinylog-impl</artifactId>
-            <version>2.8.1</version>
+            <version>${tinylog.version}</version>
         </dependency>
+        <!-- Sync HTTP client of the AWS SDK: Apache HttpClient 5 (HTTP5) only.
+             HTTP4 (apache-client, httpclient 4.x, httpcore 4.x) is banned by the enforcer rule below. -->
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
-            <artifactId>apache-client</artifactId>
+            <artifactId>apache5-client</artifactId>
             <version>${aws.sdk.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-codec</groupId>
-                    <artifactId>commons-codec</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>cloudwatch</artifactId>
             <version>${aws.sdk.version}</version>
+            <exclusions>
+                <!-- async HTTP client (netty) is not used, only the sync CloudWatchLogsClient -->
+                <exclusion>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>netty-nio-client</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>cloudwatchlogs</artifactId>
             <version>${aws.sdk.version}</version>
-        </dependency>
-        <!-- Source: https://mvnrepository.com/artifact/commons-codec/commons-codec -->
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.23.0</version>
-            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>netty-nio-client</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Provided dependencies -->
@@ -301,6 +349,44 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.7.0</version>
+                <executions>
+                    <execution>
+                        <id>enforce-http5-only</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <bannedDependencies>
+                                    <message>Only HTTP5 (org.apache.httpcomponents.client5/core5) is allowed. HTTP3/HTTP4 and the AWS SDK apache-client must not come back, also not transitively.</message>
+                                    <excludes>
+                                        <exclude>commons-httpclient:*</exclude>
+                                        <exclude>org.apache.httpcomponents:*</exclude>
+                                        <exclude>software.amazon.awssdk:apache-client</exclude>
+                                    </excludes>
+                                </bannedDependencies>
+                                <bannedDependencies>
+                                    <message>Container (Tomcat) APIs must stay in provided scope, they must not be copied to target/lib.</message>
+                                    <excludes>
+                                        <exclude>jakarta.servlet:*:*:*:compile</exclude>
+                                        <exclude>jakarta.servlet:*:*:*:runtime</exclude>
+                                        <exclude>jakarta.servlet.jsp:*:*:*:compile</exclude>
+                                        <exclude>jakarta.servlet.jsp:*:*:*:runtime</exclude>
+                                        <exclude>jakarta.el:*:*:*:compile</exclude>
+                                        <exclude>jakarta.el:*:*:*:runtime</exclude>
+                                        <exclude>org.apache.tomcat*:*:*:*:compile</exclude>
+                                        <exclude>org.apache.tomcat*:*:*:*:runtime</exclude>
+                                    </excludes>
+                                </bannedDependencies>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.11.0</version>
                 <executions>
@@ -311,7 +397,9 @@
                         </goals>
                         <configuration>
                             <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                            <includeScope>compile</includeScope>
+                            <!-- runtime = compile + runtime scope: full copy of everything the writer needs at runtime,
+                                 without provided (Tomcat) and test jars. ("compile" would include provided jars.) -->
+                            <includeScope>runtime</includeScope>
                         </configuration>
                     </execution>
                 </executions>

@@ -19,20 +19,33 @@ Two different types of message formats are supported:
 
 ## Installation
 
+### Requirements
+
+- Java 17, Jakarta EE (built against Tomcat 11.0.27). Versions with suffix `-jakartaee` are
+  the Jakarta EE line; the javax line (Tomcat 9) is built from branch `main`.
+- HTTP: the AWS SDK uses its sync HTTP client `apache5-client` (Apache HttpClient 5, httpclient5 5.6.5,
+  httpcore5 5.4.4). Apache HttpClient 4 (`apache-client`, `httpclient` 4.x, `httpcore` 4.x) is neither
+  used nor shipped (*since 1.0.30-jakartaee*).
+
+### Deployment (WEB-INF/lib)
+
+`mvn install` copies all runtime dependencies (compile and runtime scope) to `target/lib`. Servlet, JSP and EL API
+are provided by Tomcat and are not included.
+
 ### Maven
 
 ```
 <dependency>
     <groupId>ch.eswitch.tinylog.writers</groupId>
     <artifactId>tinylog-aws-cloudwatch-logs-writer</artifactId>
-    <version>1.0.29</version>
+    <version>1.0.30-jakartaee</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```
-compile(group: 'ch.eswitch.tinylog.writers', name: 'tinylog-aws-cloudwatch-logs-writer', version: '1.0.29', ext: 'pom')
+compile(group: 'ch.eswitch.tinylog.writers', name: 'tinylog-aws-cloudwatch-logs-writer', version: '1.0.30-jakartaee', ext: 'pom')
 ```
 
 ### Build Repository

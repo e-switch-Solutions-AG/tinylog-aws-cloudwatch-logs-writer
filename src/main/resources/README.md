@@ -19,6 +19,19 @@ Two different types of message formats are supported:
 
 ## Installation
 
+### Requirements
+
+- Java ${maven.compiler.release}, Jakarta EE (built against Tomcat ${tomcat.version}). Versions with suffix `-jakartaee` are
+  the Jakarta EE line; the javax line (Tomcat 9) is built from branch `main`.
+- HTTP: the AWS SDK uses its sync HTTP client `apache5-client` (Apache HttpClient 5, httpclient5 ${httpclient5.version},
+  httpcore5 ${httpcore5.version}). Apache HttpClient 4 (`apache-client`, `httpclient` 4.x, `httpcore` 4.x) is neither
+  used nor shipped (*since 1.0.30-jakartaee*).
+
+### Deployment (WEB-INF/lib)
+
+`mvn install` copies all runtime dependencies (compile and runtime scope) to `target/lib`. Servlet, JSP and EL API
+are provided by Tomcat and are not included.
+
 ### Maven
 
 ```
