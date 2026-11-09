@@ -10,13 +10,7 @@ ignore:
 
 exclude:
     global:
-        # [High] Regular expression injection
-        # Path: src/main/resources/META-INF/resources/jsp/list-***streams.jsp, line 242
-        - src/main/resources/META-INF/resources/jsp/list-awsstreams.jsp
-
-        # [High] Regular expression injection
-        # Path: src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsViewerServlet.java, line 45
-        - src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsViewerServlet.java
+        # The log viewer (list-awsstreams.jsp, AwsCloudWatchLogsViewerServlet) was removed in 1.0.31-jakartaee.
 
         # [High] Regular expression injection
         # [INFO]  src/main/java/ch/eswitch/tinylog/writers/AwsCloudWatchLogsJsonWriter.java, line 446
