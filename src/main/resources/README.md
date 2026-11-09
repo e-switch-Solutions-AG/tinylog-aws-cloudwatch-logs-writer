@@ -32,6 +32,10 @@ Two different types of message formats are supported:
 `mvn install` copies all runtime dependencies (compile and runtime scope) to `target/lib`. Servlet, JSP and EL API
 are provided by Tomcat and are not included.
 
+`target/lib-xrb` contains the same, minus the libraries the xrb Jakarta WAR already ships (e.g. httpclient5,
+tinylog, gson); use it for an xrb webapp's `WEB-INF/lib`. The excluded libraries are listed in
+`src/assembly/lib-xrb.xml`, regenerated with `scripts/update-lib-xrb.sh` (see there).
+
 ### Maven
 
 ```

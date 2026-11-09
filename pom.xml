@@ -404,6 +404,30 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <!-- target/lib-xrb: like target/lib, but without the libraries the xrb WAR already ships,
+                     see src/assembly/lib-xrb.xml (groupId:artifactId matching, which copy-dependencies cannot do) -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.8.0</version>
+                <executions>
+                    <execution>
+                        <id>lib-xrb</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/assembly/lib-xrb.xml</descriptor>
+                            </descriptors>
+                            <finalName>lib-xrb</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <attach>false</attach>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
