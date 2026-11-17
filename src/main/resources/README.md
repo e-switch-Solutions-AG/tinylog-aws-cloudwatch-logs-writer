@@ -19,7 +19,27 @@ Two different types of message formats are supported:
 
 ## Installation
 
-### Maven
+### Jakarta EE
+
+#### Maven
+
+```
+<dependency>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>${project.artifactId}</artifactId>
+    <version>${project.version}-jakartaee</version>
+</dependency>
+```
+
+#### Gradle
+
+```
+compile(group: '${project.groupId}', name: '${project.artifactId}', version: '${project.version}-jakartaee', ext: 'pom')
+```
+
+### Java EE
+
+#### Maven
 
 ```
 <dependency>
@@ -29,7 +49,7 @@ Two different types of message formats are supported:
 </dependency>
 ```
 
-### Gradle
+#### Gradle
 
 ```
 compile(group: '${project.groupId}', name: '${project.artifactId}', version: '${project.version}', ext: 'pom')
