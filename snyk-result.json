@@ -106,10 +106,10 @@
     },
     "pkgs": [
       {
-        "id": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.29",
+        "id": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.30",
         "info": {
           "name": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer",
-          "version": "1.0.29"
+          "version": "1.0.30"
         }
       },
       {
@@ -127,24 +127,24 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:cloudwatchlogs@2.54.18",
+        "id": "software.amazon.awssdk:cloudwatchlogs@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:cloudwatchlogs",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:apache-client@2.54.18",
+        "id": "software.amazon.awssdk:apache-client@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:apache-client",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:cloudwatch@2.54.18",
+        "id": "software.amazon.awssdk:cloudwatch@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:cloudwatch",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
@@ -155,10 +155,10 @@
         }
       },
       {
-        "id": "org.apache.tomcat:tomcat-servlet-api@9.0.121",
+        "id": "org.apache.tomcat:tomcat-servlet-api@9.0.123",
         "info": {
           "name": "org.apache.tomcat:tomcat-servlet-api",
-          "version": "9.0.121"
+          "version": "9.0.123"
         }
       },
       {
@@ -183,17 +183,17 @@
         }
       },
       {
-        "id": "org.apache.tomcat:tomcat-jasper@9.0.121",
+        "id": "org.apache.tomcat:tomcat-jasper@9.0.123",
         "info": {
           "name": "org.apache.tomcat:tomcat-jasper",
-          "version": "9.0.121"
+          "version": "9.0.123"
         }
       },
       {
-        "id": "org.apache.tomcat:tomcat-jsp-api@9.0.121",
+        "id": "org.apache.tomcat:tomcat-jsp-api@9.0.123",
         "info": {
           "name": "org.apache.tomcat:tomcat-jsp-api",
-          "version": "9.0.121"
+          "version": "9.0.123"
         }
       },
       {
@@ -211,136 +211,136 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:aws-json-protocol@2.54.18",
+        "id": "software.amazon.awssdk:aws-json-protocol@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:aws-json-protocol",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:protocol-core@2.54.18",
+        "id": "software.amazon.awssdk:protocol-core@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:protocol-core",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:http-auth-aws@2.54.18",
+        "id": "software.amazon.awssdk:http-auth-aws@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:http-auth-aws",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:sdk-core@2.54.18",
+        "id": "software.amazon.awssdk:sdk-core@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:sdk-core",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:auth@2.54.18",
+        "id": "software.amazon.awssdk:auth@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:auth",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:http-auth-spi@2.54.18",
+        "id": "software.amazon.awssdk:http-auth-spi@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:http-auth-spi",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:http-auth@2.54.18",
+        "id": "software.amazon.awssdk:http-auth@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:http-auth",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:identity-spi@2.54.18",
+        "id": "software.amazon.awssdk:identity-spi@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:identity-spi",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:http-client-spi@2.54.18",
+        "id": "software.amazon.awssdk:http-client-spi@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:http-client-spi",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:regions@2.54.18",
+        "id": "software.amazon.awssdk:regions@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:regions",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:annotations@2.54.18",
+        "id": "software.amazon.awssdk:annotations@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:annotations",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:utils@2.54.18",
+        "id": "software.amazon.awssdk:utils@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:utils",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:aws-core@2.54.18",
+        "id": "software.amazon.awssdk:aws-core@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:aws-core",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:metrics-spi@2.54.18",
+        "id": "software.amazon.awssdk:metrics-spi@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:metrics-spi",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:json-utils@2.54.18",
+        "id": "software.amazon.awssdk:json-utils@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:json-utils",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:endpoints-spi@2.54.18",
+        "id": "software.amazon.awssdk:endpoints-spi@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:endpoints-spi",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:retries-spi@2.54.18",
+        "id": "software.amazon.awssdk:retries-spi@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:retries-spi",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:apache5-client@2.54.18",
+        "id": "software.amazon.awssdk:apache5-client@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:apache5-client",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:netty-nio-client@2.54.18",
+        "id": "software.amazon.awssdk:netty-nio-client@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:netty-nio-client",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
@@ -365,17 +365,17 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:smithy-rpcv2-protocol@2.54.18",
+        "id": "software.amazon.awssdk:smithy-rpcv2-protocol@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:smithy-rpcv2-protocol",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "org.apache.tomcat:tomcat-el-api@9.0.121",
+        "id": "org.apache.tomcat:tomcat-el-api@9.0.123",
         "info": {
           "name": "org.apache.tomcat:tomcat-el-api",
-          "version": "9.0.121"
+          "version": "9.0.123"
         }
       },
       {
@@ -386,38 +386,38 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:third-party-jackson-core@2.54.18",
+        "id": "software.amazon.awssdk:third-party-jackson-core@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:third-party-jackson-core",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:checksums-spi@2.54.18",
+        "id": "software.amazon.awssdk:checksums-spi@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:checksums-spi",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:checksums@2.54.18",
+        "id": "software.amazon.awssdk:checksums@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:checksums",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:profiles@2.54.18",
+        "id": "software.amazon.awssdk:profiles@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:profiles",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:retries@2.54.18",
+        "id": "software.amazon.awssdk:retries@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:retries",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
@@ -435,24 +435,24 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:http-auth-aws-eventstream@2.54.18",
+        "id": "software.amazon.awssdk:http-auth-aws-eventstream@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:http-auth-aws-eventstream",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.eventstream:eventstream@1.0.1",
+        "id": "software.amazon.awssdk:eventstream@2.59.1",
         "info": {
-          "name": "software.amazon.eventstream:eventstream",
-          "version": "1.0.1"
+          "name": "software.amazon.awssdk:eventstream",
+          "version": "2.59.1"
         }
       },
       {
-        "id": "software.amazon.awssdk:utils-lite@2.54.18",
+        "id": "software.amazon.awssdk:utils-lite@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:utils-lite",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
@@ -540,10 +540,10 @@
         }
       },
       {
-        "id": "software.amazon.awssdk:third-party-jackson-dataformat-cbor@2.54.18",
+        "id": "software.amazon.awssdk:third-party-jackson-dataformat-cbor@2.59.1",
         "info": {
           "name": "software.amazon.awssdk:third-party-jackson-dataformat-cbor",
-          "version": "2.54.18"
+          "version": "2.59.1"
         }
       },
       {
@@ -566,7 +566,7 @@
       "nodes": [
         {
           "nodeId": "root-node",
-          "pkgId": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.29",
+          "pkgId": "ch.eswitch.tinylog.writers:tinylog-aws-cloudwatch-logs-writer@1.0.30",
           "deps": [
             {
               "nodeId": "org.tinylog:tinylog-api:jar:2.8.0:compile"
@@ -575,19 +575,19 @@
               "nodeId": "org.tinylog:tinylog-impl:jar:2.8.0:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:cloudwatchlogs:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:cloudwatchlogs:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:apache-client:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:apache-client:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:cloudwatch:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:cloudwatch:jar:2.59.1:compile"
             },
             {
               "nodeId": "org.glassfish:jakarta.json:jar:2.0.1:compile"
             },
             {
-              "nodeId": "org.apache.tomcat:tomcat-servlet-api:jar:9.0.121:compile"
+              "nodeId": "org.apache.tomcat:tomcat-servlet-api:jar:9.0.123:compile"
             },
             {
               "nodeId": "org.glassfish.web:jakarta.servlet.jsp.jstl:jar:1.2.6:compile"
@@ -599,10 +599,10 @@
               "nodeId": "org.glassfish:jakarta.el:jar:3.0.4:compile"
             },
             {
-              "nodeId": "org.apache.tomcat:tomcat-jasper:jar:9.0.121:test"
+              "nodeId": "org.apache.tomcat:tomcat-jasper:jar:9.0.123:test"
             },
             {
-              "nodeId": "org.apache.tomcat:tomcat-jsp-api:jar:9.0.121:compile"
+              "nodeId": "org.apache.tomcat:tomcat-jsp-api:jar:9.0.123:compile"
             },
             {
               "nodeId": "org.apache.commons:commons-lang3:jar:3.20.0:compile"
@@ -623,71 +623,71 @@
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:cloudwatchlogs:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:cloudwatchlogs@2.54.18",
+          "nodeId": "software.amazon.awssdk:cloudwatchlogs:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:cloudwatchlogs@2.59.1",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:aws-json-protocol:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:aws-json-protocol:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:protocol-core:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:protocol-core:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:http-auth-aws:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:http-auth-aws:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:sdk-core:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:sdk-core:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:auth:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:auth:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:http-auth-spi:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:http-auth-spi:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:http-auth:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:http-auth:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:identity-spi:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:identity-spi:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:http-client-spi:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:http-client-spi:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:regions:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:regions:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:annotations:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:annotations:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:utils:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:utils:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:aws-core:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:aws-core:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:metrics-spi:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:metrics-spi:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:json-utils:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:json-utils:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:endpoints-spi:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:endpoints-spi:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:retries-spi:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:retries-spi:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:apache5-client:jar:2.54.18:runtime"
+              "nodeId": "software.amazon.awssdk:apache5-client:jar:2.59.1:runtime"
             },
             {
-              "nodeId": "software.amazon.awssdk:netty-nio-client:jar:2.54.18:runtime"
+              "nodeId": "software.amazon.awssdk:netty-nio-client:jar:2.59.1:runtime"
             }
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:apache-client:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:apache-client@2.54.18",
+          "nodeId": "software.amazon.awssdk:apache-client:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:apache-client@2.59.1",
           "deps": [
             {
               "nodeId": "org.apache.httpcomponents:httpclient:jar:4.5.13:compile"
@@ -701,11 +701,11 @@
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:cloudwatch:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:cloudwatch@2.54.18",
+          "nodeId": "software.amazon.awssdk:cloudwatch:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:cloudwatch@2.59.1",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:smithy-rpcv2-protocol:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:smithy-rpcv2-protocol:jar:2.59.1:compile"
             }
           ]
         },
@@ -715,8 +715,8 @@
           "deps": []
         },
         {
-          "nodeId": "org.apache.tomcat:tomcat-servlet-api:jar:9.0.121:compile",
-          "pkgId": "org.apache.tomcat:tomcat-servlet-api@9.0.121",
+          "nodeId": "org.apache.tomcat:tomcat-servlet-api:jar:9.0.123:compile",
+          "pkgId": "org.apache.tomcat:tomcat-servlet-api@9.0.123",
           "deps": []
         },
         {
@@ -735,17 +735,17 @@
           "deps": []
         },
         {
-          "nodeId": "org.apache.tomcat:tomcat-jasper:jar:9.0.121:test",
-          "pkgId": "org.apache.tomcat:tomcat-jasper@9.0.121",
+          "nodeId": "org.apache.tomcat:tomcat-jasper:jar:9.0.123:test",
+          "pkgId": "org.apache.tomcat:tomcat-jasper@9.0.123",
           "deps": [
             {
-              "nodeId": "org.apache.tomcat:tomcat-el-api:jar:9.0.121:compile"
+              "nodeId": "org.apache.tomcat:tomcat-el-api:jar:9.0.123:compile"
             }
           ]
         },
         {
-          "nodeId": "org.apache.tomcat:tomcat-jsp-api:jar:9.0.121:compile",
-          "pkgId": "org.apache.tomcat:tomcat-jsp-api@9.0.121",
+          "nodeId": "org.apache.tomcat:tomcat-jsp-api:jar:9.0.123:compile",
+          "pkgId": "org.apache.tomcat:tomcat-jsp-api@9.0.123",
           "deps": []
         },
         {
@@ -763,40 +763,40 @@
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:aws-json-protocol:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:aws-json-protocol@2.54.18",
+          "nodeId": "software.amazon.awssdk:aws-json-protocol:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:aws-json-protocol@2.59.1",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:third-party-jackson-core:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:third-party-jackson-core:jar:2.59.1:compile"
             }
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:protocol-core:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:protocol-core@2.54.18",
+          "nodeId": "software.amazon.awssdk:protocol-core:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:protocol-core@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:http-auth-aws:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:http-auth-aws@2.54.18",
+          "nodeId": "software.amazon.awssdk:http-auth-aws:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:http-auth-aws@2.59.1",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:checksums-spi:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:checksums-spi:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:checksums:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:checksums:jar:2.59.1:compile"
             }
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:sdk-core:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:sdk-core@2.54.18",
+          "nodeId": "software.amazon.awssdk:sdk-core:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:sdk-core@2.59.1",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:profiles:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:profiles:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.awssdk:retries:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:retries:jar:2.59.1:compile"
             },
             {
               "nodeId": "org.slf4j:slf4j-api:jar:1.7.36:compile"
@@ -807,84 +807,84 @@
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:auth:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:auth@2.54.18",
+          "nodeId": "software.amazon.awssdk:auth:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:auth@2.59.1",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:http-auth-aws-eventstream:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:http-auth-aws-eventstream:jar:2.59.1:compile"
             },
             {
-              "nodeId": "software.amazon.eventstream:eventstream:jar:1.0.1:compile"
+              "nodeId": "software.amazon.awssdk:eventstream:jar:2.59.1:compile"
             }
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:http-auth-spi:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:http-auth-spi@2.54.18",
+          "nodeId": "software.amazon.awssdk:http-auth-spi:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:http-auth-spi@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:http-auth:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:http-auth@2.54.18",
+          "nodeId": "software.amazon.awssdk:http-auth:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:http-auth@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:identity-spi:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:identity-spi@2.54.18",
+          "nodeId": "software.amazon.awssdk:identity-spi:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:identity-spi@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:http-client-spi:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:http-client-spi@2.54.18",
+          "nodeId": "software.amazon.awssdk:http-client-spi:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:http-client-spi@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:regions:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:regions@2.54.18",
+          "nodeId": "software.amazon.awssdk:regions:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:regions@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:annotations:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:annotations@2.54.18",
+          "nodeId": "software.amazon.awssdk:annotations:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:annotations@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:utils:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:utils@2.54.18",
+          "nodeId": "software.amazon.awssdk:utils:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:utils@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:aws-core:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:aws-core@2.54.18",
+          "nodeId": "software.amazon.awssdk:aws-core:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:aws-core@2.59.1",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:utils-lite:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:utils-lite:jar:2.59.1:compile"
             }
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:metrics-spi:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:metrics-spi@2.54.18",
+          "nodeId": "software.amazon.awssdk:metrics-spi:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:metrics-spi@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:json-utils:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:json-utils@2.54.18",
+          "nodeId": "software.amazon.awssdk:json-utils:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:json-utils@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:endpoints-spi:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:endpoints-spi@2.54.18",
+          "nodeId": "software.amazon.awssdk:endpoints-spi:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:endpoints-spi@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:retries-spi:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:retries-spi@2.54.18",
+          "nodeId": "software.amazon.awssdk:retries-spi:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:retries-spi@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:apache5-client:jar:2.54.18:runtime",
-          "pkgId": "software.amazon.awssdk:apache5-client@2.54.18",
+          "nodeId": "software.amazon.awssdk:apache5-client:jar:2.59.1:runtime",
+          "pkgId": "software.amazon.awssdk:apache5-client@2.59.1",
           "deps": [
             {
               "nodeId": "org.apache.httpcomponents.client5:httpclient5:jar:5.6.4:runtime"
@@ -895,8 +895,8 @@
           ]
         },
         {
-          "nodeId": "software.amazon.awssdk:netty-nio-client:jar:2.54.18:runtime",
-          "pkgId": "software.amazon.awssdk:netty-nio-client@2.54.18",
+          "nodeId": "software.amazon.awssdk:netty-nio-client:jar:2.59.1:runtime",
+          "pkgId": "software.amazon.awssdk:netty-nio-client@2.59.1",
           "deps": [
             {
               "nodeId": "io.netty:netty-codec-http:jar:4.1.138.Final:runtime"
@@ -947,17 +947,17 @@
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:smithy-rpcv2-protocol:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:smithy-rpcv2-protocol@2.54.18",
+          "nodeId": "software.amazon.awssdk:smithy-rpcv2-protocol:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:smithy-rpcv2-protocol@2.59.1",
           "deps": [
             {
-              "nodeId": "software.amazon.awssdk:third-party-jackson-dataformat-cbor:jar:2.54.18:compile"
+              "nodeId": "software.amazon.awssdk:third-party-jackson-dataformat-cbor:jar:2.59.1:compile"
             }
           ]
         },
         {
-          "nodeId": "org.apache.tomcat:tomcat-el-api:jar:9.0.121:compile",
-          "pkgId": "org.apache.tomcat:tomcat-el-api@9.0.121",
+          "nodeId": "org.apache.tomcat:tomcat-el-api:jar:9.0.123:compile",
+          "pkgId": "org.apache.tomcat:tomcat-el-api@9.0.123",
           "deps": []
         },
         {
@@ -966,28 +966,28 @@
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:third-party-jackson-core:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:third-party-jackson-core@2.54.18",
+          "nodeId": "software.amazon.awssdk:third-party-jackson-core:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:third-party-jackson-core@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:checksums-spi:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:checksums-spi@2.54.18",
+          "nodeId": "software.amazon.awssdk:checksums-spi:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:checksums-spi@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:checksums:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:checksums@2.54.18",
+          "nodeId": "software.amazon.awssdk:checksums:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:checksums@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:profiles:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:profiles@2.54.18",
+          "nodeId": "software.amazon.awssdk:profiles:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:profiles@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:retries:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:retries@2.54.18",
+          "nodeId": "software.amazon.awssdk:retries:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:retries@2.59.1",
           "deps": []
         },
         {
@@ -1001,18 +1001,18 @@
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:http-auth-aws-eventstream:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:http-auth-aws-eventstream@2.54.18",
+          "nodeId": "software.amazon.awssdk:http-auth-aws-eventstream:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:http-auth-aws-eventstream@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.eventstream:eventstream:jar:1.0.1:compile",
-          "pkgId": "software.amazon.eventstream:eventstream@1.0.1",
+          "nodeId": "software.amazon.awssdk:eventstream:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:eventstream@2.59.1",
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:utils-lite:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:utils-lite@2.54.18",
+          "nodeId": "software.amazon.awssdk:utils-lite:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:utils-lite@2.59.1",
           "deps": []
         },
         {
@@ -1084,8 +1084,8 @@
           "deps": []
         },
         {
-          "nodeId": "software.amazon.awssdk:third-party-jackson-dataformat-cbor:jar:2.54.18:compile",
-          "pkgId": "software.amazon.awssdk:third-party-jackson-dataformat-cbor@2.54.18",
+          "nodeId": "software.amazon.awssdk:third-party-jackson-dataformat-cbor:jar:2.59.1:compile",
+          "pkgId": "software.amazon.awssdk:third-party-jackson-dataformat-cbor@2.59.1",
           "deps": []
         },
         {
