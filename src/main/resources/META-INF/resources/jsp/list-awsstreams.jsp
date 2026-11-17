@@ -16,6 +16,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
+<%
+    if (request.getUserPrincipal() == null)
+    {
+        response.sendError(401);
+        return;
+    }
+%>
+
 <%! public static final String JSON_TAG_MESSAGE = "message";
     public static final String CSS_STYLE_WHITE_SPACE_NOWRAP = "white-space: nowrap;";
     private int collapseCell = 0;

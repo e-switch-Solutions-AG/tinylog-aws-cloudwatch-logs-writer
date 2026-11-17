@@ -28,6 +28,12 @@ public class AwsCloudWatchLogsViewerServlet extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
+        if (req.getUserPrincipal() == null)
+        {
+            resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
+
         String nextJSP = "/jsp/list-awsstreams.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         List<String> writers = AwsCloudWatchLogsJsonWriter.getAllWriterNames();
