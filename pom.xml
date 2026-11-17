@@ -202,7 +202,22 @@
             </build>
             <dependencies>
                 <!-- required to parse 'response transformed' in MPS-Listener for Session Handling -->
-
+                <dependency>
+                    <groupId>org.glassfish.web</groupId>
+                    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+                    <version>1.2.6</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>jakarta.servlet.jsp.jstl</groupId>
+                            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+                <dependency>
+                    <groupId>jakarta.servlet.jsp.jstl</groupId>
+                    <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+                    <version>1.2.7</version>
+                </dependency>
             </dependencies>
         </profile>
         <profile>
@@ -218,6 +233,24 @@
                 <tomcat.version>11.0.27</tomcat.version>
                 <artifact.classifier>-jakartaee</artifact.classifier>
             </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.glassfish.web</groupId>
+                    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+                    <version>3.0.1</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>jakarta.servlet.jsp.jstl</groupId>
+                            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+                <dependency>
+                    <groupId>jakarta.servlet.jsp.jstl</groupId>
+                    <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+                    <version>3.0.0</version>
+                </dependency>
+            </dependencies>
             <build>
                 <plugins>
                     <plugin>
@@ -285,22 +318,6 @@
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-servlet-api</artifactId>
             <version>${tomcat.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.web</groupId>
-            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-            <version>1.2.6</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>jakarta.servlet.jsp.jstl</groupId>
-                    <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.servlet.jsp.jstl</groupId>
-            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-            <version>1.2.7</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish</groupId>
