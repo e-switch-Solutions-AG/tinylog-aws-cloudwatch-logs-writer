@@ -171,9 +171,10 @@ provides web based access to AWS Log Event with various select options.
 
 This Servlet merges split Log Events into one.
 
-This Servlet is availble on URL ["web context"/awslogviewer](/awslogviewer).
+This Servlet is available on URL ["web context"/awslogviewer](/awslogviewer).
 
-
+The servlet endpoint and JSP require a container-authenticated user principal by default and return HTTP 401 otherwise.
+Configure authentication for the application in the servlet container to allow access.
 
 
 
