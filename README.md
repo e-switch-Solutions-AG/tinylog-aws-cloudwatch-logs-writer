@@ -19,7 +19,9 @@ Two different types of message formats are supported:
 
 ## Installation
 
-### Maven
+### Jakarta EE
+
+#### Maven
 
 ```
 <dependency>
@@ -29,10 +31,28 @@ Two different types of message formats are supported:
 </dependency>
 ```
 
-### Gradle
+#### Gradle
 
 ```
 compile(group: 'ch.eswitch.tinylog.writers', name: 'tinylog-aws-cloudwatch-logs-writer', version: '1.0.30-jakartaee', ext: 'pom')
+```
+
+### Java EE
+
+#### Maven
+
+```
+<dependency>
+    <groupId>ch.eswitch.tinylog.writers</groupId>
+    <artifactId>tinylog-aws-cloudwatch-logs-writer</artifactId>
+    <version>1.0.30</version>
+</dependency>
+```
+
+#### Gradle
+
+```
+compile(group: 'ch.eswitch.tinylog.writers', name: 'tinylog-aws-cloudwatch-logs-writer', version: '1.0.30', ext: 'pom')
 ```
 
 ### Build Repository
