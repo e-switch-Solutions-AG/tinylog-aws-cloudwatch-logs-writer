@@ -6,7 +6,7 @@
 
     <groupId>ch.eswitch.tinylog.writers</groupId>
     <artifactId>tinylog-aws-cloudwatch-logs-writer</artifactId>
-    <version>1.0.29${artifact.classifier}</version>
+    <version>1.0.30${artifact.classifier}</version>
 
     <packaging>jar</packaging>
 
@@ -22,8 +22,8 @@
         <timestamp>${maven.build.timestamp}</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <tomcat.version>9.0.121</tomcat.version>
-        <aws.sdk.version>2.55.0</aws.sdk.version>
+        <tomcat.version>9.0.123</tomcat.version>
+        <aws.sdk.version>2.59.1</aws.sdk.version>
     </properties>
 
     <profiles>
@@ -174,8 +174,75 @@
                 </plugins>
             </build>
         </profile>
-    </profiles>
+        <profile>
+            <!-- Tomcat 9 and before -->
+            <id>javax</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <version>3.6.1</version>
+                        <executions>
+                            <execution>
+                                <id>src-javax</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>src/main/javax</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <dependencies>
+                <!-- required to parse 'response transformed' in MPS-Listener for Session Handling -->
 
+            </dependencies>
+        </profile>
+        <profile>
+            <!-- Tomcat 10 / 11+ -->
+            <id>jakartaee</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>jakartaee.profile</name>
+                </property>
+            </activation>
+            <properties>
+                <tomcat.version>11.0.27</tomcat.version>
+                <artifact.classifier>-jakartaee</artifact.classifier>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <version>3.6.1</version>
+                        <executions>
+                            <execution>
+                                <id>src-jakartaee</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>src/main/jakartaee</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>

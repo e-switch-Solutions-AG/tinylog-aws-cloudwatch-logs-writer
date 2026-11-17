@@ -12,7 +12,6 @@ import software.amazon.awssdk.services.cloudwatchlogs.model.GetLogEventsRequest;
 import software.amazon.awssdk.services.cloudwatchlogs.model.OutputLogEvent;
 import software.amazon.awssdk.services.cloudwatchlogs.paginators.GetLogEventsIterable;
 
-import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -36,7 +35,7 @@ import java.util.stream.Collectors;
  */
 public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
 {
-    private static final String NEW_LINE = System.getProperty("line.separator");
+    private static final String NEW_LINE = System.lineSeparator();
     private static final String FIELD_PREFIX = "field.";
     public static final String WRITER_PREFIX = "writer_";
 
@@ -330,11 +329,17 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
      * get all combined Output Log Events from AWS CloudWatch for a specific writer name
      *
      * @param writer tinylog writer name
-     * @param request (optional) search parameters to filer for Log Events
+     * @param parameterMap (optional) search parameters to filter for Log Events
      * @return combined Output Log Events
      */
-    public static List<OutputLogEvent> getCombinedOutputLogEvents(String writer, HttpServletRequest request)
+    public static List<OutputLogEvent> getCombinedOutputLogEvents(String writer, Map<String,String[]> parameterMap)
     {
+        Map<String, String> parameters = null;
+        if(parameterMap != null && !parameterMap.isEmpty())
+        {
+            parameters = parameterMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue()[0]));
+        }
+
         setAwsSystemProperties(writer);
 
         CloudWatchLogsClient logsClient = CloudWatchLogsClient.builder()
@@ -356,22 +361,22 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
             String endDateTime = null;
             String searchTerm = null;
             String useRegExp = null;
-            if (request != null)
+            if (parameters != null)
             {
-                String timeRadios = request.getParameter("timeRadios");
+                String timeRadios = parameters.get("timeRadios");
                 if (timeRadios != null)
                 {
                     if (timeRadios.equals("absoluteRadio"))
                     {
-                        startDateTime = request.getParameter("startDateTime");
-                        endDateTime = request.getParameter("endDateTime");
+                        startDateTime = parameters.get("startDateTime");
+                        endDateTime = parameters.get("endDateTime");
                     }
                     else if (timeRadios.equals("relativeRadio"))
                     {
-                        String relativeTime = request.getParameter("relativeTime");
-                        String relativeUnit = request.getParameter("relativeUnit");
+                        String relativeTime = parameters.get("relativeTime");
+                        String relativeUnit = parameters.get("relativeUnit");
 
-                        if (relativeTime != null && relativeTime.length() > 0 && relativeUnit != null && relativeUnit.length() > 0)
+                        if (relativeTime != null && !relativeTime.isEmpty() && relativeUnit != null && !relativeUnit.isEmpty())
                         {
                             int min = Integer.parseInt(relativeTime);
                             switch (relativeUnit)
@@ -396,10 +401,8 @@ public class AwsCloudWatchLogsJsonWriter extends AwsCloudWatchLogsWriter
                     }
                 }
 
-                request.getParameterMap();
-
-                searchTerm = request.getParameter("searchTerm");
-                useRegExp = request.getParameter("useRegExp");
+                searchTerm = parameters.get("searchTerm");
+                useRegExp = parameters.get("useRegExp");
             }
 
             if (startDateTime == null)

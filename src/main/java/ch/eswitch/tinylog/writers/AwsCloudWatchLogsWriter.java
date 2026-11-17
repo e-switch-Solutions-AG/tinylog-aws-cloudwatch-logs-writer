@@ -214,7 +214,7 @@ public class AwsCloudWatchLogsWriter extends AbstractFormatPatternWriter
                                                                                         .logStreamNamePrefix(streamName).build();
         DescribeLogStreamsResponse describeLogStreamsResponse = logsClient.describeLogStreams(logStreamRequest);
 
-        if (describeLogStreamsResponse.logStreams() != null && describeLogStreamsResponse.logStreams().size() > 0)
+        if (describeLogStreamsResponse.logStreams() != null && !describeLogStreamsResponse.logStreams().isEmpty())
         {
             // Assume that a single stream is returned since a specific stream name was specified in the previous request.
             LogStream logStream = describeLogStreamsResponse.logStreams().get(0);

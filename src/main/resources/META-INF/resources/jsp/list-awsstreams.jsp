@@ -365,7 +365,7 @@
 
                     List<OutputLogEvent> combinedOutputLogEvents = AwsCloudWatchLogsJsonWriter.getCombinedOutputLogEvents(
                             writerName,
-                            request
+                            request.getParameterMap()
                     );
 
                     if (combinedOutputLogEvents != null && combinedOutputLogEvents.size() > 0)

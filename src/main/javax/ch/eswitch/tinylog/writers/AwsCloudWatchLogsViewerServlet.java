@@ -36,7 +36,7 @@ public class AwsCloudWatchLogsViewerServlet extends HttpServlet
         List<String> selectedWriters = getSelectedWriters(req.getParameterMap());
 
         String outputType = req.getParameter("outputType");
-        if (outputType != null && outputType.equals("file") && selectedWriters != null && selectedWriters.size() > 0)
+        if (outputType != null && outputType.equals("file") && selectedWriters != null && !selectedWriters.isEmpty())
         {
             resp.setContentType("text/plain");
             final ServletOutputStream out = resp.getOutputStream();
@@ -44,13 +44,13 @@ public class AwsCloudWatchLogsViewerServlet extends HttpServlet
             selectedWriters.forEach(writerName -> {
                 List<OutputLogEvent> combinedOutputLogEvents = AwsCloudWatchLogsJsonWriter.getCombinedOutputLogEvents(
                         writerName,
-                        req
+                        req.getParameterMap()
                 );
 
                 try
                 {
                     out.println(String.format("%s (%d log events found)", writerName, combinedOutputLogEvents != null ? combinedOutputLogEvents.size() : 0));
-                    if (combinedOutputLogEvents != null && combinedOutputLogEvents.size() > 0)
+                    if (combinedOutputLogEvents != null && !combinedOutputLogEvents.isEmpty())
                     {
                         combinedOutputLogEvents.forEach(
                                 e -> {

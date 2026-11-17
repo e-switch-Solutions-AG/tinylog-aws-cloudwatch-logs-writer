@@ -9,8 +9,8 @@ import org.tinylog.configuration.Configuration;
 import software.amazon.awssdk.services.cloudwatch.model.CloudWatchException;
 import software.amazon.awssdk.services.cloudwatchlogs.model.OutputLogEvent;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -106,7 +106,8 @@ public class AWSCloudWatchLogsTest
                                                         ZoneId.systemDefault());
             String startDateTime = zdt.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
 
-            final List<OutputLogEvent> outputLogEvents = AwsCloudWatchLogsJsonWriter.getCombinedOutputLogEvents(writerName, new TestServletRequest(startDateTime));
+            TestServletRequest testServletRequest = new TestServletRequest(startDateTime);
+            final List<OutputLogEvent> outputLogEvents = AwsCloudWatchLogsJsonWriter.getCombinedOutputLogEvents(writerName, testServletRequest.getParameterMap());
 
             int logLimit = outputLogEvents.size();
 
@@ -369,12 +370,6 @@ class TestServletRequest implements HttpServletRequest
     }
 
     @Override
-    public boolean isRequestedSessionIdFromUrl()
-    {
-        return false;
-    }
-
-    @Override
     public boolean authenticate(HttpServletResponse response) throws IOException, ServletException
     {
         return false;
@@ -489,7 +484,10 @@ class TestServletRequest implements HttpServletRequest
     @Override
     public Map<String, String[]> getParameterMap()
     {
-        return null;
+        return Map.of(
+                "timeRadios", new String[] { "absoluteRadio" },
+                "startDateTime", new String[] { startDateTime }
+        );
     }
 
     @Override
@@ -571,12 +569,6 @@ class TestServletRequest implements HttpServletRequest
     }
 
     @Override
-    public String getRealPath(String path)
-    {
-        return null;
-    }
-
-    @Override
     public int getRemotePort()
     {
         return 0;
@@ -638,6 +630,24 @@ class TestServletRequest implements HttpServletRequest
 
     @Override
     public DispatcherType getDispatcherType()
+    {
+        return null;
+    }
+
+    @Override
+    public String getRequestId()
+    {
+        return "1";
+    }
+
+    @Override
+    public String getProtocolRequestId()
+    {
+        return "";
+    }
+
+    @Override
+    public ServletConnection getServletConnection()
     {
         return null;
     }
